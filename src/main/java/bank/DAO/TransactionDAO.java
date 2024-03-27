@@ -3,13 +3,14 @@ package bank.DAO;
 import bank.entities.Transaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TransactionDao {
+public class TransactionDAO {
     @PersistenceContext
     private EntityManager entityManager;
-
+    @Transactional
     public void save(Transaction transaction) {
         entityManager.persist(transaction);
     }

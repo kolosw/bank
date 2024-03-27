@@ -1,26 +1,27 @@
 package bank.DAO;
 
-import bank.entities.Transaction;
+import bank.entities.Currencies;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.Currency;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CurrenciesDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void save(Currency currency) {
+    public void save(Currencies currency) {
         entityManager.persist(currency);
     }
 
-    public Currency getById(int id) {
-        return entityManager.find(Currency.class, id);
+    public Currencies getById(int id) {
+        return entityManager.find(Currencies.class, id);
     }
 
-    public void update(Currency currency) {
+    public void update(Currencies currency) {
         entityManager.merge(currency);
     }
-    public void delete(Currency currency) {
+    public void delete(Currencies currency) {
         entityManager.remove(currency);
     }
 }

@@ -1,10 +1,11 @@
 package bank.DAO;
 
 import bank.entities.Beneficiary;
-import bank.entities.Transaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class BeneficiaryDAO {
     @PersistenceContext
     private EntityManager entityManager;

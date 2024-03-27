@@ -1,11 +1,12 @@
 package bank.DAO;
 
 import bank.entities.CurrencyExchange;
-import bank.entities.Transaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
-public class CurrencyExchangeDao {
+@Repository
+public class CurrencyExchangeDAO {
     @PersistenceContext
     private EntityManager entityManager;
 

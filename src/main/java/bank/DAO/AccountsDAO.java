@@ -1,10 +1,11 @@
 package bank.DAO;
 
 import bank.entities.Accounts;
-import bank.entities.Transaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class AccountsDAO {
     @PersistenceContext
     private EntityManager entityManager;
@@ -13,8 +14,8 @@ public class AccountsDAO {
         entityManager.persist(accounts);
     }
 
-    public Transaction getById(int id) {
-        return entityManager.find(Transaction.class, id);
+    public Accounts getById(int id) {
+        return entityManager.find(Accounts.class, id);
     }
 
     public void update(Accounts accounts) {
