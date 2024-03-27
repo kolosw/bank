@@ -6,15 +6,18 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "currencyExchange")
-public class currencyExchange {
+public class CurrencyExchange {
     private @Id
     @GeneratedValue int id;
     private String name;
     private String surname;
 
-    public currencyExchange(String name, String surname) {
+    public CurrencyExchange(String name, String surname) {
         this.name = name;
         this.surname = surname;
+    }
+
+    public CurrencyExchange() {
     }
 
     public String getName() {

@@ -6,14 +6,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "accounts")
-public class accounts {
+public class Accounts {
 
     private @Id
     @GeneratedValue int id;
     private int user_id;
     private String type;
 
-    public accounts(int user_id, String type) {
+    public Accounts() {
+    }
+
+    public Accounts(int user_id, String type) {
         this.user_id = user_id;
         this.type = type;
     }

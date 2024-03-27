@@ -1,28 +1,38 @@
 package bank.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class user {
+public class User {
 
-private @Id @GeneratedValue int id;
+private @Id @GeneratedValue(strategy= GenerationType.AUTO) Integer id;
 private String name;
 private String surname;
 
 private String email;
 private String password;
 
-    public user(String name, String surname, String email, String password) {
+    public User() {
+    }
+
+
+    public User(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
     }
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
     public String getName() {
         return name;
     }

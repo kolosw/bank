@@ -6,14 +6,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "accountCurrency")
-public class accountCurrency {
+public class AccountCurrency {
     private @Id
     @GeneratedValue int id;
     private int account_id;
     private int currency_id;
     private int balance;
 
-    public accountCurrency(int account_id, int currency_id, int balance) {
+    public AccountCurrency() {
+    }
+
+    public AccountCurrency(int account_id, int currency_id, int balance) {
         this.account_id = account_id;
         this.currency_id = currency_id;
         this.balance = balance;

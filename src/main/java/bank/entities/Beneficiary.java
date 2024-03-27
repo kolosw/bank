@@ -6,13 +6,16 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "beneficiaries")
-public class beneficiary {
+public class Beneficiary {
     private @Id
     @GeneratedValue int id;
     private String name;
     private String surname;
 
-    public beneficiary(String name, String surname) {
+    public Beneficiary() {
+    }
+
+    public Beneficiary(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }

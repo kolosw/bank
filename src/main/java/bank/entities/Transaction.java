@@ -10,7 +10,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name = "transactions")
-public class transaction {
+public class Transaction {
     private @Id
     @GeneratedValue int id;
 
@@ -19,7 +19,10 @@ public class transaction {
     private java.sql.Date date;
     private java.sql.Time time;
 
-    public transaction(int sender_id, int recipient_id, Date date, Time time) {
+    public Transaction() {
+    }
+
+    public Transaction(int sender_id, int recipient_id, Date date, Time time) {
         this.sender_id = sender_id;
         this.recipient_id = recipient_id;
         this.date = date;
