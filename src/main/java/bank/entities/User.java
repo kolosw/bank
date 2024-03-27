@@ -1,5 +1,4 @@
 package bank.entities;
-
 import jakarta.persistence.*;
 
 @Entity

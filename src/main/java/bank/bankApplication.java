@@ -1,7 +1,6 @@
 package bank;
 
-import bank.DAO.UserDao;
-import bank.entities.User;
+import bank.DAO.UserDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +14,7 @@ public class bankApplication {
         SpringApplication.run(bankApplication.class, args);
     }
     @Bean
-    public CommandLineRunner demo(UserDao repository) {
+    public CommandLineRunner demo(UserDAO repository) {
         return (args) -> {
             // save a few customers
             //repository.save(new User("Jekos", "Kolosowski", "sabacka@mail.ru", "Jo74pa"));
