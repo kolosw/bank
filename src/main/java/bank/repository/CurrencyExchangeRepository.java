@@ -1,4 +1,4 @@
-package bank.DAO;
+package bank.repository;
 
 import bank.entities.CurrencyExchange;
 import jakarta.persistence.EntityManager;
@@ -6,7 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CurrencyExchangeDAO {
+public class CurrencyExchangeRepository {
     @PersistenceContext
     private EntityManager entityManager;
 

@@ -1,4 +1,4 @@
-package bank.DAO;
+package bank.repository;
 
 import bank.entities.Transaction;
 import jakarta.persistence.EntityManager;
@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TransactionDAO {
+public class TransactionRepository {
     @PersistenceContext
     private EntityManager entityManager;
     @Transactional

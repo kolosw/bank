@@ -1,6 +1,6 @@
-package bank;
+package bank.controller;
 
-import bank.DAO.*;
+import bank.repository.*;
 import bank.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,201 +10,201 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 
   @Autowired
-  private UserDAO userDao;
+  private UserRepository userRepository;
   @Autowired
-  private TransactionDAO transactionDao;
+  private TransactionRepository transactionRepository;
   @Autowired
-  private CurrencyExchangeDAO currencyExchangeDAO;
+  private CurrencyExchangeRepository currencyExchangeRepository;
   @Autowired
-  private CurrenciesDAO currenciesDAO;
+  private CurrenciesRepository currenciesRepository;
   @Autowired
-  private BeneficiaryDAO beneficiaryDAO;
+  private BeneficiaryRepository beneficiaryRepository;
   @Autowired
-  private AccountsDAO accountsDAO;
+  private AccountsRepository accountsRepository;
   @Autowired
-  private AccountCurrencyDAO accountCurrencyDAO;
+  private AccountCurrencyRepository accountCurrencyRepository;
 
   @PostMapping("/users")
   public void createUser(@RequestBody User user) {
-    userDao.save(user);
+    userRepository.save(user);
   }
 
   @GetMapping("/users/{id}")
   public User getUser(@PathVariable Integer id) {
-    return userDao.getById(id);
+    return userRepository.getById(id);
   }
 
   @PutMapping("/users/{id}")
   public void updateUser(@PathVariable Integer id, @RequestBody User user) {
-    User existingUser = userDao.getById(id);
+    User existingUser = userRepository.getById(id);
     if (existingUser != null) {
       user.setId(id);
-      userDao.update(user);
+      userRepository.update(user);
     }
   }
 
   @DeleteMapping("/users/{id}")
   public void deleteUser(@PathVariable Integer id) {
-    User user = userDao.getById(id);
+    User user = userRepository.getById(id);
     if (user != null) {
-      userDao.delete(user);
+      userRepository.delete(user);
     }
   }
 
   @PostMapping("/transactions")
   public void createTransaction(@RequestBody Transaction transaction) {
-    transactionDao.save(transaction);
+    transactionRepository.save(transaction);
   }
 
   @GetMapping("/transactions/{id}")
   public Transaction getTransaction(@PathVariable Integer id) {
-    return transactionDao.getById(id);
+    return transactionRepository.getById(id);
   }
 
   @PutMapping("/transactions/{id}")
   public void updateTransaction(@PathVariable Integer id, @RequestBody Transaction transactions) {
-    Transaction existingTransaction = transactionDao.getById(id);
+    Transaction existingTransaction = transactionRepository.getById(id);
     if (existingTransaction != null) {
       transactions.setId(id);
-      transactionDao.update(transactions);
+      transactionRepository.update(transactions);
     }
   }
 
   @DeleteMapping("/transaction/{id}")
   public void deleteTransaction(@PathVariable Integer id) {
-    Transaction transactions = transactionDao.getById(id);
+    Transaction transactions = transactionRepository.getById(id);
     if (transactions != null) {
-      transactionDao.delete(transactions);
+      transactionRepository.delete(transactions);
     }
   }
   @PostMapping("/currencyExchange")
   public void createCurrencyExchange(@RequestBody CurrencyExchange currencyExchange) {
-    currencyExchangeDAO.save(currencyExchange);
+    currencyExchangeRepository.save(currencyExchange);
   }
 
   @GetMapping("/currencyExchange/{id}")
   public CurrencyExchange getCurrencyExchange(@PathVariable Integer id) {
-    return currencyExchangeDAO.getById(id);
+    return currencyExchangeRepository.getById(id);
   }
 
   @PutMapping("/currencyExchange/{id}")
   public void updateCurrencyExchange(@PathVariable Integer id, @RequestBody CurrencyExchange curEx) {
-    CurrencyExchange existingCurrencyExchange = currencyExchangeDAO.getById(id);
+    CurrencyExchange existingCurrencyExchange = currencyExchangeRepository.getById(id);
     if (existingCurrencyExchange != null) {
       curEx.setId(id);
-      currencyExchangeDAO.update(curEx);
+      currencyExchangeRepository.update(curEx);
     }
   }
 
   @DeleteMapping("/currencyExchange/{id}")
   public void deleteCurrencyExchange(@PathVariable Integer id) {
-    CurrencyExchange curEx = currencyExchangeDAO.getById(id);
+    CurrencyExchange curEx = currencyExchangeRepository.getById(id);
     if (curEx != null) {
-      currencyExchangeDAO.delete(curEx);
+      currencyExchangeRepository.delete(curEx);
     }
   }
   @PostMapping("/currencies")
   public void createCurrency(@RequestBody Currencies currencies) {
-    currenciesDAO.save(currencies);
+    currenciesRepository.save(currencies);
   }
 
   @GetMapping("/currencies/{id}")
   public Currencies getCurrency(@PathVariable Integer id) {
-    return currenciesDAO.getById(id);
+    return currenciesRepository.getById(id);
   }
 
   @PutMapping("/currencies/{id}")
   public void updateCurrency(@PathVariable Integer id, @RequestBody Currencies currencies) {
-    Currencies existingCurrencies = currenciesDAO.getById(id);
+    Currencies existingCurrencies = currenciesRepository.getById(id);
     if (existingCurrencies != null) {
       currencies.setId(id);
-      currenciesDAO.update(currencies);
+      currenciesRepository.update(currencies);
     }
   }
 
   @DeleteMapping("/currencies/{id}")
   public void deleteCurrency(@PathVariable Integer id) {
-    Currencies currencies = currenciesDAO.getById(id);
+    Currencies currencies = currenciesRepository.getById(id);
     if (currencies != null) {
-      currenciesDAO.delete(currencies);
+      currenciesRepository.delete(currencies);
     }
   }
   @PostMapping("/beneficiary")
   public void createBeneficiary(@RequestBody Beneficiary beneficiary) {
-    beneficiaryDAO.save(beneficiary);
+    beneficiaryRepository.save(beneficiary);
   }
 
   @GetMapping("/beneficiary/{id}")
   public Beneficiary getBeneficiary(@PathVariable Integer id) {
-    return beneficiaryDAO.getById(id);
+    return beneficiaryRepository.getById(id);
   }
 
   @PutMapping("/beneficiary/{id}")
   public void updateBeneficiary(@PathVariable Integer id, @RequestBody Beneficiary beneficiary) {
-    Beneficiary existingBeneficiary = beneficiaryDAO.getById(id);
+    Beneficiary existingBeneficiary = beneficiaryRepository.getById(id);
     if (existingBeneficiary != null) {
       beneficiary.setId(id);
-      beneficiaryDAO.update(beneficiary);
+      beneficiaryRepository.update(beneficiary);
     }
   }
 
   @DeleteMapping("/beneficiary/{id}")
   public void deleteBeneficiary(@PathVariable Integer id) {
-    Beneficiary beneficiary = beneficiaryDAO.getById(id);
+    Beneficiary beneficiary = beneficiaryRepository.getById(id);
     if (beneficiary != null) {
-      beneficiaryDAO.delete(beneficiary);
+      beneficiaryRepository.delete(beneficiary);
     }
   }
   @PostMapping("/accounts")
   public void createAccount(@RequestBody Accounts user) {
-    accountsDAO.save(user);
+    accountsRepository.save(user);
   }
 
   @GetMapping("/accounts/{id}")
   public Accounts getAccount(@PathVariable Integer id) {
-    return accountsDAO.getById(id);
+    return accountsRepository.getById(id);
   }
 
   @PutMapping("/accounts/{id}")
   public void updateAccount(@PathVariable Integer id, @RequestBody Accounts accounts) {
-    Accounts existingAccount = accountsDAO.getById(id);
+    Accounts existingAccount = accountsRepository.getById(id);
     if (existingAccount != null) {
       accounts.setId(id);
-      accountsDAO.update(accounts);
+      accountsRepository.update(accounts);
     }
   }
 
   @DeleteMapping("/accounts/{id}")
   public void deleteAccount(@PathVariable Integer id) {
-    Accounts accounts = accountsDAO.getById(id);
+    Accounts accounts = accountsRepository.getById(id);
     if (accounts != null) {
-      accountsDAO.delete(accounts);
+      accountsRepository.delete(accounts);
     }
   }
   @PostMapping("/accountCurrency")
   public void createAccountCurrency(@RequestBody AccountCurrency accountCurrency) {
-    accountCurrencyDAO.save(accountCurrency);
+    accountCurrencyRepository.save(accountCurrency);
   }
 
   @GetMapping("/accountCurrency/{id}")
   public AccountCurrency getAccountCurrency(@PathVariable Integer id) {
-    return accountCurrencyDAO.getById(id);
+    return accountCurrencyRepository.getById(id);
   }
 
   @PutMapping("/accountCurrency/{id}")
   public void updateAccountCurrency(@PathVariable Integer id, @RequestBody AccountCurrency accountCurrency) {
-    AccountCurrency existingAccountCurrency = accountCurrencyDAO.getById(id);
+    AccountCurrency existingAccountCurrency = accountCurrencyRepository.getById(id);
     if (existingAccountCurrency != null) {
       accountCurrency.setId(id);
-      accountCurrencyDAO.update(accountCurrency);
+      accountCurrencyRepository.update(accountCurrency);
     }
   }
 
   @DeleteMapping("/accountCurrency/{id}")
   public void deleteAccountCurrency(@PathVariable Integer id) {
-    AccountCurrency accountCurrency = accountCurrencyDAO.getById(id);
+    AccountCurrency accountCurrency = accountCurrencyRepository.getById(id);
     if (accountCurrency != null) {
-      accountCurrencyDAO.delete(accountCurrency);
+      accountCurrencyRepository.delete(accountCurrency);
     }
   }
 }
