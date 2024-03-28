@@ -1,9 +1,7 @@
 package bank.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -13,17 +11,19 @@ public class Transaction {
     private @Id
     @GeneratedValue int id;
 
-    private int sender_id;
-    private int recipient_id;
+    @Column(name = "sender_id")
+    private int senderId;
+    @Column(name = "recipient_id")
+    private int recipientId;
     private java.sql.Date date;
     private java.sql.Time time;
 
     public Transaction() {
     }
 
-    public Transaction(int sender_id, int recipient_id, Date date, Time time) {
-        this.sender_id = sender_id;
-        this.recipient_id = recipient_id;
+    public Transaction(int senderId, int recipientId, Date date, Time time) {
+        this.senderId = senderId;
+        this.recipientId = recipientId;
         this.date = date;
         this.time = time;
     }
@@ -36,20 +36,20 @@ public class Transaction {
         this.id = id;
     }
 
-    public int getSender_id() {
-        return sender_id;
+    public int getSenderId() {
+        return senderId;
     }
 
-    public void setSender_id(int sender_id) {
-        this.sender_id = sender_id;
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
-    public int getRecipient_id() {
-        return recipient_id;
+    public int getRecipientId() {
+        return recipientId;
     }
 
-    public void setRecipient_id(int recipient_id) {
-        this.recipient_id = recipient_id;
+    public void setRecipientId(int recipientId) {
+        this.recipientId = recipientId;
     }
 
     public Date getDate() {

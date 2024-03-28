@@ -104,29 +104,29 @@ public class MainController {
     }
   }
   @PostMapping("/currencies")
-  public void createCurrency(@RequestBody Currencies currencies) {
-    currenciesRepository.save(currencies);
+  public void createCurrency(@RequestBody Currency currency) {
+    currenciesRepository.save(currency);
   }
 
   @GetMapping("/currencies/{id}")
-  public Currencies getCurrency(@PathVariable Integer id) {
+  public Currency getCurrency(@PathVariable Integer id) {
     return currenciesRepository.getById(id);
   }
 
   @PutMapping("/currencies/{id}")
-  public void updateCurrency(@PathVariable Integer id, @RequestBody Currencies currencies) {
-    Currencies existingCurrencies = currenciesRepository.getById(id);
-    if (existingCurrencies != null) {
-      currencies.setId(id);
-      currenciesRepository.update(currencies);
+  public void updateCurrency(@PathVariable Integer id, @RequestBody Currency currency) {
+    Currency existingCurrency = currenciesRepository.getById(id);
+    if (existingCurrency != null) {
+      currency.setId(id);
+      currenciesRepository.update(currency);
     }
   }
 
   @DeleteMapping("/currencies/{id}")
   public void deleteCurrency(@PathVariable Integer id) {
-    Currencies currencies = currenciesRepository.getById(id);
-    if (currencies != null) {
-      currenciesRepository.delete(currencies);
+    Currency currency = currenciesRepository.getById(id);
+    if (currency != null) {
+      currenciesRepository.delete(currency);
     }
   }
   @PostMapping("/beneficiary")
@@ -156,55 +156,30 @@ public class MainController {
     }
   }
   @PostMapping("/accounts")
-  public void createAccount(@RequestBody Accounts user) {
+  public void createAccount(@RequestBody Account user) {
     accountsRepository.save(user);
   }
 
   @GetMapping("/accounts/{id}")
-  public Accounts getAccount(@PathVariable Integer id) {
+  public Account getAccount(@PathVariable Integer id) {
     return accountsRepository.getById(id);
   }
 
   @PutMapping("/accounts/{id}")
-  public void updateAccount(@PathVariable Integer id, @RequestBody Accounts accounts) {
-    Accounts existingAccount = accountsRepository.getById(id);
+  public void updateAccount(@PathVariable Integer id, @RequestBody Account account) {
+    Account existingAccount = accountsRepository.getById(id);
     if (existingAccount != null) {
-      accounts.setId(id);
-      accountsRepository.update(accounts);
+      account.setId(id);
+      accountsRepository.update(account);
     }
   }
 
   @DeleteMapping("/accounts/{id}")
   public void deleteAccount(@PathVariable Integer id) {
-    Accounts accounts = accountsRepository.getById(id);
-    if (accounts != null) {
-      accountsRepository.delete(accounts);
-    }
-  }
-  @PostMapping("/accountCurrency")
-  public void createAccountCurrency(@RequestBody AccountCurrency accountCurrency) {
-    accountCurrencyRepository.save(accountCurrency);
-  }
-
-  @GetMapping("/accountCurrency/{id}")
-  public AccountCurrency getAccountCurrency(@PathVariable Integer id) {
-    return accountCurrencyRepository.getById(id);
-  }
-
-  @PutMapping("/accountCurrency/{id}")
-  public void updateAccountCurrency(@PathVariable Integer id, @RequestBody AccountCurrency accountCurrency) {
-    AccountCurrency existingAccountCurrency = accountCurrencyRepository.getById(id);
-    if (existingAccountCurrency != null) {
-      accountCurrency.setId(id);
-      accountCurrencyRepository.update(accountCurrency);
+    Account account = accountsRepository.getById(id);
+    if (account != null) {
+      accountsRepository.delete(account);
     }
   }
 
-  @DeleteMapping("/accountCurrency/{id}")
-  public void deleteAccountCurrency(@PathVariable Integer id) {
-    AccountCurrency accountCurrency = accountCurrencyRepository.getById(id);
-    if (accountCurrency != null) {
-      accountCurrencyRepository.delete(accountCurrency);
-    }
-  }
 }

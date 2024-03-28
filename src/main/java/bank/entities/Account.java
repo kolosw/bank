@@ -1,23 +1,21 @@
 package bank.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "accounts")
-public class Accounts {
+public class Account {
 
     private @Id
     @GeneratedValue int id;
-    private int user_id;
+    @Column(name = "user_id")
+    private int userId;
     private String type;
 
-    public Accounts() {
+    public Account() {
     }
 
-    public Accounts(int user_id, String type) {
-        this.user_id = user_id;
+    public Account(int userId, String type) {
+        this.userId = userId;
         this.type = type;
     }
 
@@ -29,12 +27,12 @@ public class Accounts {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getType() {

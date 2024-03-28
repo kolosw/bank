@@ -1,6 +1,6 @@
 package bank.repository;
 
-import bank.entities.Currencies;
+import bank.entities.Currency;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -10,18 +10,18 @@ public class CurrenciesRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void save(Currencies currency) {
+    public void save(Currency currency) {
         entityManager.persist(currency);
     }
 
-    public Currencies getById(int id) {
-        return entityManager.find(Currencies.class, id);
+    public Currency getById(int id) {
+        return entityManager.find(Currency.class, id);
     }
 
-    public void update(Currencies currency) {
+    public void update(Currency currency) {
         entityManager.merge(currency);
     }
-    public void delete(Currencies currency) {
+    public void delete(Currency currency) {
         entityManager.remove(currency);
     }
 }

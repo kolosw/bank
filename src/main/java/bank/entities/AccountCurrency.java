@@ -1,49 +1,41 @@
 package bank.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "accountCurrency")
 public class AccountCurrency {
-    private @Id
-    @GeneratedValue int id;
-    private int account_id;
-    private int currency_id;
+
+    @Id
+    @Column(name="account_id")
+    private int accountId;
+    @Id
+    @Column(name="currency_id")
+    private int currencyId;
     private int balance;
 
     public AccountCurrency() {
     }
 
-    public AccountCurrency(int account_id, int currency_id, int balance) {
-        this.account_id = account_id;
-        this.currency_id = currency_id;
+    public AccountCurrency(int accountId, int currencyId, int balance) {
+        this.accountId = accountId;
+        this.currencyId = currencyId;
         this.balance = balance;
     }
 
-    public int getId() {
-        return id;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
-    public int getAccount_id() {
-        return account_id;
+    public int getCurrencyId() {
+        return currencyId;
     }
 
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
-    }
-
-    public int getCurrency_id() {
-        return currency_id;
-    }
-
-    public void setCurrency_id(int currency_id) {
-        this.currency_id = currency_id;
+    public void setCurrencyId(int currencyId) {
+        this.currencyId = currencyId;
     }
 
     public int getBalance() {

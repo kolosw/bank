@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 @SpringBootApplication
-public class bankApplication {
-    private static final Logger log = LoggerFactory.getLogger(bankApplication.class);
+public class BankApplication {
+    private static final Logger log = LoggerFactory.getLogger(BankApplication.class);
     public static void main(String[] args) {
-        SpringApplication.run(bankApplication.class, args);
+        SpringApplication.run(BankApplication.class, args);
     }
     @Bean
     public CommandLineRunner demo(UserRepository repository) {

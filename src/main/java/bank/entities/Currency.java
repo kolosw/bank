@@ -6,17 +6,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "currencies")
-public class Currencies {
+public class Currency {
     private @Id
     @GeneratedValue int id;
     private String name;
     private String shortname;
     private char symbol;
 
-    public Currencies() {
+    public Currency() {
     }
 
-    public Currencies(String name, String shortname, char symbol) {
+    public Currency(String name, String shortname, char symbol) {
         this.name = name;
         this.shortname = shortname;
         this.symbol = symbol;

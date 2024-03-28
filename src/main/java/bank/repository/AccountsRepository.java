@@ -1,6 +1,6 @@
 package bank.repository;
 
-import bank.entities.Accounts;
+import bank.entities.Account;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -10,18 +10,18 @@ public class AccountsRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void save(Accounts accounts) {
-        entityManager.persist(accounts);
+    public void save(Account account) {
+        entityManager.persist(account);
     }
 
-    public Accounts getById(int id) {
-        return entityManager.find(Accounts.class, id);
+    public Account getById(int id) {
+        return entityManager.find(Account.class, id);
     }
 
-    public void update(Accounts accounts) {
-        entityManager.merge(accounts);
+    public void update(Account account) {
+        entityManager.merge(account);
     }
-    public void delete(Accounts accounts) {
-        entityManager.remove(accounts);
+    public void delete(Account account) {
+        entityManager.remove(account);
     }
 }
