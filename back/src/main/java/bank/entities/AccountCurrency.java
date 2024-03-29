@@ -2,8 +2,6 @@ package bank.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-
 @Entity
 @Table(name = "account_currency")
 public class AccountCurrency{
