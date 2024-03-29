@@ -48,12 +48,4 @@ public class AccountCurrency{
     public void setBalance(int balance) {
         this.balance = balance;
     }
-
-//    public AccountCurrencyId getId() {
-//        return id;
-//    }
-//
-//    public void setId(AccountCurrencyId id) {
-//        this.id = id;
-//    }
 }
