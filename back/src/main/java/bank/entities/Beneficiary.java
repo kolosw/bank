@@ -4,6 +4,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "beneficiaries")
 public class Beneficiary {
@@ -42,5 +44,18 @@ public class Beneficiary {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Beneficiary that = (Beneficiary) o;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname);
     }
 }

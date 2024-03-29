@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 @Entity
 @Table(name = "transactions")
@@ -67,4 +68,18 @@ public class Transaction {
     public void setTime(Time time) {
         this.time = time;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return id == that.id && senderId == that.senderId && recipientId == that.recipientId && Objects.equals(date, that.date) && Objects.equals(time, that.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, senderId, recipientId, date, time);
+    }
+
 }

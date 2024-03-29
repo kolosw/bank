@@ -1,6 +1,9 @@
 package bank.entities;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -8,6 +11,8 @@ public class User {
 private @Id @GeneratedValue(strategy= GenerationType.AUTO) Integer id;
 private String name;
 private String surname;
+@OneToMany(mappedBy = "user")
+Set<Account> accounts;
 
 private String email;
 private String password;
@@ -77,5 +82,18 @@ private String password;
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email, password);
     }
 }
