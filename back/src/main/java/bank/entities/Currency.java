@@ -1,8 +1,8 @@
 package bank.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "currencies")
@@ -12,7 +12,8 @@ public class Currency {
     private String name;
     private String shortname;
     private char symbol;
-
+    @ManyToMany(mappedBy = "currencies")
+    private Set<Account> accounts = new HashSet<>();
     public Currency() {
     }
 

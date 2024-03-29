@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "currencyExchange")
+@Table(name = "currency_exchange")
 public class CurrencyExchange {
     private @Id
     @GeneratedValue int id;

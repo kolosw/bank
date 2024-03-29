@@ -1,6 +1,9 @@
 package bank.entities;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -9,6 +12,13 @@ public class Account {
     @GeneratedValue int id;
     @Column(name = "user_id")
     private int userId;
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinTable(
+            name = "accountCurrency",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name="currency_id")}
+    )
+    Set<Currency> currencies = new HashSet<>();
     private String type;
 
     public Account() {

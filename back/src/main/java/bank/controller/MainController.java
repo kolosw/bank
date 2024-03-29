@@ -1,7 +1,7 @@
 package bank.controller;
 
-import bank.repository.*;
 import bank.entities.*;
+import bank.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +21,6 @@ public class MainController {
   private BeneficiaryRepository beneficiaryRepository;
   @Autowired
   private AccountsRepository accountsRepository;
-  @Autowired
-  private AccountCurrencyRepository accountCurrencyRepository;
 
   @PostMapping("/users")
   public void createUser(@RequestBody User user) {
