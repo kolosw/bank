@@ -15,7 +15,7 @@ CREATE TABLE currency (
 
 CREATE TABLE bank_account (
     id SERIAL PRIMARY KEY NOT NULL,
-	id_user INT,
+    id_user INT,
     balance INT NOT NULL,
     account_type VARCHAR(32) NOT NULL,
 
@@ -23,8 +23,8 @@ CREATE TABLE bank_account (
 );
 
 CREATE TABLE bank_account_currency (
-	id_bank_account INT,
-	id_currency INT,
+    id_bank_account INT,
+    id_currency INT,
 
     CONSTRAINT fk_bank_account FOREIGN KEY (id_bank_account) REFERENCES bank_account(id),
     CONSTRAINT fk_currency FOREIGN KEY (id_currency) REFERENCES currency(id),
@@ -33,8 +33,8 @@ CREATE TABLE bank_account_currency (
 
 CREATE TABLE bank_transaction (
     id SERIAL PRIMARY KEY NOT NULL,
-	id_sender INT,
-	id_recipient INT,
+    id_sender INT,
+    id_recipient INT,
     date DATE NOT NULL,
     time TIME NOT NULL,
     amount INT NOT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE bank_transaction (
 
 CREATE TABLE currency_exchange (
     id SERIAL PRIMARY KEY NOT NULL,
-	id_from INT,
-	id_to INT,
+    id_from INT,
+    id_to INT,
     amount FLOAT NOT NULL,
 
     CONSTRAINT fk_currency_from FOREIGN KEY (id_from) REFERENCES currency(id),
@@ -55,7 +55,7 @@ CREATE TABLE currency_exchange (
 
 CREATE TABLE loan_application (
     id SERIAL PRIMARY KEY NOT NULL,
-	id_bank_account INT,
+    id_bank_account INT,
     amount INT NOT NULL,
     interest INT NOT NULL,
     period_in_months INT NOT NULL,
