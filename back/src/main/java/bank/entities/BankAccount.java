@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "accounts")
-public class Account {
+@Table(name = "bank_account")
+public class BankAccount {
 
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +14,14 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "account")
-    private Set<AccountCurrency> currencyAssoc;
+    @OneToMany(mappedBy = "bankAccount")
+    private Set<BankAccountCurrency> currencyAssoc;
     private String type;
 
-    public Account() {
+    public BankAccount() {
     }
 
-    public Account(User user, String type) {
+    public BankAccount(User user, String type) {
         this.user = user;
         this.type = type;
     }

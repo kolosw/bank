@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "currencies")
+@Table(name = "currency")
 public class Currency {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class Currency {
     private String shortname;
     private char symbol;
     @OneToMany(mappedBy = "currency")
-    private Set<AccountCurrency> accountAssoc;
+    private Set<BankAccountCurrency> accountAssoc;
     public Currency() {
     }
 

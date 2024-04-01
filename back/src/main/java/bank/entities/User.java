@@ -5,14 +5,14 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "bank_user")
 public class User {
 
 private @Id @GeneratedValue(strategy= GenerationType.AUTO) Integer id;
 private String name;
 private String surname;
 @OneToMany(mappedBy = "user")
-Set<Account> accounts;
+Set<BankAccount> bankAccounts;
 
 private String email;
 private String password;

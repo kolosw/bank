@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.util.Objects;
 
 @Entity
-@Table(name = "transactions")
+@Table(name = "bank_transaction")
 public class Transaction {
     private @Id
     @GeneratedValue int id;

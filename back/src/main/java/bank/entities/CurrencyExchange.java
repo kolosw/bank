@@ -1,8 +1,5 @@
 package bank.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -11,12 +8,21 @@ import java.util.Objects;
 public class CurrencyExchange {
     private @Id
     @GeneratedValue int id;
-    private String name;
-    private String surname;
+    @Column(name = "from_id")
+    private Integer from;
+    @Column(name = "to_id")
+    private Integer to;
 
-    public CurrencyExchange(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+    private Float amount;
+
+    public CurrencyExchange(int id, Integer from, Integer to, Float amount) {
+        this.id = id;
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
+    }
+
+    public CurrencyExchange() {
     }
 
     public int getId() {
@@ -27,35 +33,27 @@ public class CurrencyExchange {
         this.id = id;
     }
 
-    public CurrencyExchange() {
+    public Integer getFrom() {
+        return from;
     }
 
-    public String getName() {
-        return name;
+    public void setFrom(Integer from) {
+        this.from = from;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Integer getTo() {
+        return to;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setTo(Integer to) {
+        this.to = to;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public Float getAmount() {
+        return amount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CurrencyExchange that = (CurrencyExchange) o;
-        return id == that.id && Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname);
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 }
