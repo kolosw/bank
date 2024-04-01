@@ -7,16 +7,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class AccountCurrencyId implements Serializable {
-    @Column(name = "account_id")
+public class BankAccountCurrencyId implements Serializable {
+    @Column(name = "bank_account_id")
     private Integer account;
     @Column(name = "currency_id")
     private Integer currency;
 
-    public AccountCurrencyId() {
+    public BankAccountCurrencyId() {
     }
 
-    public AccountCurrencyId(Integer account, Integer currency) {
+    public BankAccountCurrencyId(Integer account, Integer currency) {
         this.account = account;
         this.currency = currency;
     }
@@ -41,7 +41,7 @@ public class AccountCurrencyId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountCurrencyId that = (AccountCurrencyId) o;
+        BankAccountCurrencyId that = (BankAccountCurrencyId) o;
         return Objects.equals(account, that.account) && Objects.equals(currency, that.currency);
     }
 

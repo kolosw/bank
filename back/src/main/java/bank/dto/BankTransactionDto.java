@@ -1,15 +1,10 @@
 package bank.dto;
 
-import bank.entities.Transaction;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
-public class TransactionDto {
+public class BankTransactionDto {
     private int id;
 
     private int senderId;
@@ -17,10 +12,10 @@ public class TransactionDto {
     private java.sql.Date date;
     private java.sql.Time time;
 
-    public TransactionDto() {
+    public BankTransactionDto() {
     }
 
-    public TransactionDto(int senderId, int recipientId, Date date, Time time) {
+    public BankTransactionDto(int senderId, int recipientId, Date date, Time time) {
         this.senderId = senderId;
         this.recipientId = recipientId;
         this.date = date;
@@ -71,7 +66,7 @@ public class TransactionDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TransactionDto that = (TransactionDto) o;
+        BankTransactionDto that = (BankTransactionDto) o;
         return id == that.id && senderId == that.senderId && recipientId == that.recipientId && Objects.equals(date, that.date) && Objects.equals(time, that.time);
     }
 

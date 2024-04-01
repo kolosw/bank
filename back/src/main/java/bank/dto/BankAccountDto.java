@@ -1,21 +1,17 @@
 package bank.dto;
 
-import bank.entities.AccountCurrency;
 import bank.entities.User;
-import jakarta.persistence.*;
 
-import java.util.Set;
-
-public class AccountDto {
+public class BankAccountDto {
 
     private Integer id;
     private User user;
     private String type;
 
-    public AccountDto() {
+    public BankAccountDto() {
     }
 
-    public AccountDto(User user, String type) {
+    public BankAccountDto(User user, String type) {
         this.user = user;
         this.type = type;
     }

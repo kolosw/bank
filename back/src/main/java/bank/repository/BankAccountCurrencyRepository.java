@@ -1,6 +1,6 @@
 package bank.repository;
 
-import bank.entities.CurrencyExchange;
+import bank.entities.BankAccountCurrency;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CurrencyExchangeRepository extends JpaRepository<CurrencyExchange,Integer> {
+public interface BankAccountCurrencyRepository extends JpaRepository<BankAccountCurrency, Integer> {
 }

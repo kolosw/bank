@@ -1,17 +1,17 @@
 package bank.dto;
 
-public class AccountCurrencyDto {
+public class BankAccountCurrencyDto {
     private Integer accountId;
     private Integer currencyId;
     private Integer balance;
 
-    public AccountCurrencyDto(Integer accountId, Integer currencyId, Integer balance) {
+    public BankAccountCurrencyDto(Integer accountId, Integer currencyId, Integer balance) {
         this.accountId = accountId;
         this.currencyId = currencyId;
         this.balance = balance;
     }
 
-    public AccountCurrencyDto() {
+    public BankAccountCurrencyDto() {
     }
 
     public Integer getAccountId() {

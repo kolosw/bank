@@ -1,11 +1,9 @@
 package bank;
 
-import bank.entities.Account;
-import bank.entities.AccountCurrency;
-import bank.entities.Currency;
-import bank.repository.AccountCurrencyRepository;
-import bank.repository.AccountsRepository;
-import bank.repository.CurrenciesRepository;
+import bank.entities.User;
+import bank.repository.BankAccountCurrencyRepository;
+import bank.repository.BankAccountsRepository;
+import bank.repository.CurrencyRepository;
 import bank.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,21 +18,10 @@ public class BankApplication {
         SpringApplication.run(BankApplication.class, args);
     }
     @Bean
-    public CommandLineRunner demo(UserRepository userRepository, AccountsRepository accountsRepository,
-                                  CurrenciesRepository currenciesRepository, AccountCurrencyRepository accountCurrencyRepository) {
+    public CommandLineRunner demo(UserRepository userRepository, BankAccountsRepository bankAccountsRepository,
+                                  CurrencyRepository currencyRepository, BankAccountCurrencyRepository bankAccountCurrencyRepository) {
         return (args) -> {
-            //accountsRepository.save(new Account(1,"Pension"));
-            //currenciesRepository.save(new Currency("Belarussian Ruble","BYN",'B'));
-            AccountCurrency accountCurrency = new AccountCurrency();
-            //accountCurrency.setAccount(accountsRepository.getById(1));
-            accountCurrency.setAccount(new Account(userRepository.getById(1),"Zarplata"));
-            accountCurrency.setCurrency(new Currency("Tugrenik","TUG",'T'));
-            //accountCurrency.setCurrency(currenciesRepository.getById(1));
-            accountCurrency.setBalance(100);
-            accountCurrencyRepository.save(accountCurrency);
-
-            //accountCurrencyRepository.save(new AccountCurrency(accountsRepository.getById(1),currenciesRepository.getById(1),100));
-
+            userRepository.save(new User("Jekos","Kolosowski","sabacka@gmmail.com","123456"));
             log.info("Running...");
             log.info(userRepository.getById(1).toString());
             log.info("");

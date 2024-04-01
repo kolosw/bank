@@ -1,6 +1,6 @@
 package bank.dto;
 
-public class UserDto {
+public class BankUserDto {
     private Integer id;
     private String name;
     private String surname;
@@ -8,10 +8,10 @@ public class UserDto {
     private String email;
     private String password;
 
-    public UserDto() {
+    public BankUserDto() {
     }
 
-    public UserDto(Integer id, String name, String surname, String email, String password) {
+    public BankUserDto(Integer id, String name, String surname, String email, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -19,7 +19,7 @@ public class UserDto {
         this.password = password;
     }
 
-    public UserDto(String name, String surname, String email, String password) {
+    public BankUserDto(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
