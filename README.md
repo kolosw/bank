@@ -12,9 +12,9 @@
 
 ### Результаты работы:
 
-- [схема](https://github.com/kolosw/bank/blob/main/docs/Схемабд.bmp)
+- [схема](https://github.com/kolosw/bank/blob/main/docs/db_scheme.bmp)
 
-- [скрипт создания таблиц](https://github.com/kolosw/bank/blob/main/docs/SqlScript.sql)
+- [скрипт создания таблиц](https://github.com/kolosw/bank/blob/main/docs/sql_script.sql)
 
 - Ожидание объема работы: 6 часов
 
