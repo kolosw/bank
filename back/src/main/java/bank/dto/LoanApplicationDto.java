@@ -1,24 +1,20 @@
-package bank.entities;
+package bank.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name = "loan_application")
-public class LoanApplication {
-    @Id
-    @GeneratedValue Integer id;
-
-    @Column(name = "id_bank_account")
+public class LoanApplicationDto {
+    Integer id;
     Integer bankAccountId;
     Integer amount;
     Integer interest;
-    @Column(name = "period_in_month")
     Integer period;
 
-    public LoanApplication() {
+    public LoanApplicationDto() {
     }
 
-    public LoanApplication(Integer id, Integer bankAccountId, Integer amount, Integer interest, Integer period) {
+    public LoanApplicationDto(Integer id, Integer bankAccountId, Integer amount, Integer interest, Integer period) {
         this.id = id;
         this.bankAccountId = bankAccountId;
         this.amount = amount;

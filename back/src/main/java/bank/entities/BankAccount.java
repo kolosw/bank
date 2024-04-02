@@ -2,6 +2,7 @@ package bank.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -12,18 +13,22 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
     @OneToMany(mappedBy = "bankAccount")
     private Set<BankAccountCurrency> currencyAssoc;
+    @Column(name = "account_type")
     private String type;
+    private Integer balance;
 
     public BankAccount() {
     }
 
-    public BankAccount(User user, String type) {
+    public BankAccount(Integer id,User user, String type, Integer balance) {
+        this.id = id;
         this.user = user;
         this.type = type;
+        this.balance = balance;
     }
 
 
@@ -51,5 +56,35 @@ public class BankAccount {
         this.type = type;
     }
 
+    public Integer getBalance() {
+        return balance;
+    }
 
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankAccount that = (BankAccount) o;
+        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(currencyAssoc, that.currencyAssoc) && Objects.equals(type, that.type) && Objects.equals(balance, that.balance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, currencyAssoc, type, balance);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "id=" + id +
+                ", user=" + user +
+                ", currencyAssoc=" + currencyAssoc +
+                ", type='" + type + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

@@ -8,9 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class BankAccountCurrencyId implements Serializable {
-    @Column(name = "bank_account_id")
+    @Column(name = "id_bank_account")
     private Integer account;
-    @Column(name = "currency_id")
+    @Column(name = "id_currency")
     private Integer currency;
 
     public BankAccountCurrencyId() {

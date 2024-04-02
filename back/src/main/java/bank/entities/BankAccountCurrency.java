@@ -2,6 +2,8 @@ package bank.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "bank_account_currency")
 public class BankAccountCurrency {
@@ -39,4 +41,25 @@ public class BankAccountCurrency {
         this.currency = currency;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankAccountCurrency that = (BankAccountCurrency) o;
+        return Objects.equals(bankAccount, that.bankAccount) && Objects.equals(currency, that.currency) && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bankAccount, currency, id);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccountCurrency{" +
+                "bankAccount=" + bankAccount +
+                ", currency=" + currency +
+                ", id=" + id +
+                '}';
+    }
 }

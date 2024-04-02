@@ -12,9 +12,9 @@ public class Transaction {
     private @Id
     @GeneratedValue int id;
 
-    @Column(name = "sender_id")
+    @Column(name = "id_sender")
     private int senderId;
-    @Column(name = "recipient_id")
+    @Column(name = "id_recipient")
     private int recipientId;
     private java.sql.Date date;
     private java.sql.Time time;
@@ -22,7 +22,8 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int senderId, int recipientId, Date date, Time time) {
+    public Transaction(int id, int senderId, int recipientId, Date date, Time time) {
+        this.id = id;
         this.senderId = senderId;
         this.recipientId = recipientId;
         this.date = date;

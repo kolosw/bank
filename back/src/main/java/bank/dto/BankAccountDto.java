@@ -7,15 +7,25 @@ public class BankAccountDto {
     private Integer id;
     private User user;
     private String type;
+    private Integer balance;
 
     public BankAccountDto() {
     }
 
-    public BankAccountDto(User user, String type) {
+    public BankAccountDto(Integer id, User user, String type, Integer balance) {
+        this.id = id;
         this.user = user;
         this.type = type;
+        this.balance = balance;
     }
 
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
 
     public int getId() {
         return id;

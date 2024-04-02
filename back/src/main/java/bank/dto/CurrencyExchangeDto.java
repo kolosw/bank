@@ -1,19 +1,30 @@
 package bank.dto;
 
 import bank.entities.CurrencyExchange;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
 
 public class CurrencyExchangeDto {
-    private int id;
-    private String name;
-    private String surname;
+    private @Id
+    @GeneratedValue int id;
+    @Column(name = "id_from")
+    private Integer from;
+    @Column(name = "id_to")
+    private Integer to;
 
-    public CurrencyExchangeDto(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+    private Float amount;
+
+    public CurrencyExchangeDto(int id, Integer from, Integer to, Float amount) {
+        this.id = id;
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
+    }
+
+    public CurrencyExchangeDto() {
     }
 
     public int getId() {
@@ -24,35 +35,27 @@ public class CurrencyExchangeDto {
         this.id = id;
     }
 
-    public CurrencyExchangeDto() {
+    public Integer getFrom() {
+        return from;
     }
 
-    public String getName() {
-        return name;
+    public void setFrom(Integer from) {
+        this.from = from;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Integer getTo() {
+        return to;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setTo(Integer to) {
+        this.to = to;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public Float getAmount() {
+        return amount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CurrencyExchangeDto that = (CurrencyExchangeDto) o;
-        return id == that.id && Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname);
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 }

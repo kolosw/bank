@@ -2,6 +2,7 @@ package bank.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -63,4 +64,27 @@ public class Currency {
         this.symbol = symbol;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Currency currency = (Currency) o;
+        return symbol == currency.symbol && Objects.equals(id, currency.id) && Objects.equals(name, currency.name) && Objects.equals(shortname, currency.shortname) && Objects.equals(accountAssoc, currency.accountAssoc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, shortname, symbol, accountAssoc);
+    }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", shortname='" + shortname + '\'' +
+                ", symbol=" + symbol +
+                ", accountAssoc=" + accountAssoc +
+                '}';
+    }
 }

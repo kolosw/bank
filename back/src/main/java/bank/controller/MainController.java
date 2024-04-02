@@ -1,9 +1,12 @@
 package bank.controller;
 
+import bank.dto.BankAccountCurrencyDto;
+import bank.dto.BankAccountDto;
 import bank.dto.BankUserDto;
+import bank.dto.CurrencyDto;
 import bank.entities.*;
 import bank.repository.*;
-import bank.service.BankUserService;
+import bank.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,87 +15,90 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 
   @Autowired
-  private BankUserService bankUserService;
+  private UserService userService;
   @Autowired
-  private TransactionRepository transactionRepository;
+  private TransactionService transactionService;
   @Autowired
-  private CurrencyExchangeRepository currencyExchangeRepository;
+  private CurrencyService currencyService;
   @Autowired
-  private CurrencyRepository currencyRepository;
+  private BankAccountService bankAccountService;
   @Autowired
-  private BankAccountsRepository bankAccountsRepository;
+  private BankAccountCurrencyService bankAccountCurrencyService;
 
   @PostMapping("/users")
   public void createUser(@RequestBody BankUserDto user) {
-    bankUserService.createUser(user);
+    userService.create(user);
   }
 
   @GetMapping("/users/{id}")
   public BankUserDto getUser(@PathVariable int id) {
-    return bankUserService.getUserById(id);
+    return userService.getById(id);
   }
 
   @PutMapping("/users/{id}")
   public void updateUser(@PathVariable int id, @RequestBody BankUserDto user) {
-    bankUserService.updateUser(user);
+    userService.update(user);
   }
 
   @DeleteMapping("/users/{id}")
   public void deleteUser(@PathVariable int id) {
-    bankUserService.deleteUserById(id);
+    userService.deleteById(id);
   }
 
-  @PostMapping("/currencies")
-  public void createCurrency(@RequestBody Currency currency) {
-    currencyRepository.save(currency);
+  @PostMapping("/currency")
+  public void createCurrency(@RequestBody CurrencyDto currency) { currencyService.create(currency);}
+
+  @GetMapping("/currency/{id}")
+  public CurrencyDto getCurrency(@PathVariable Integer id) {
+    return currencyService.getById(id);
   }
 
-  @GetMapping("/currencies/{id}")
-  public Currency getCurrency(@PathVariable Integer id) {
-    return currencyRepository.getById(id);
+  @PutMapping("/currency/{id}")
+  public void updateCurrency(@RequestBody CurrencyDto currency) {
+    currencyService.update(currency);
   }
 
-  @PutMapping("/currencies/{id}")
-  public void updateCurrency(@PathVariable Integer id, @RequestBody Currency currency) {
-    Currency existingCurrency = currencyRepository.getById(id);
-    if (existingCurrency != null) {
-      currency.setId(id);
-      currencyRepository.save(currency);
-    }
-  }
-
-  @DeleteMapping("/currencies/{id}")
+  @DeleteMapping("/currency/{id}")
   public void deleteCurrency(@PathVariable Integer id) {
-    Currency currency = currencyRepository.getById(id);
-    if (currency != null) {
-      currencyRepository.delete(currency);
-    }
+    currencyService.deleteById(id);
   }
-  @PostMapping("/accounts")
-  public void createAccount(@RequestBody BankAccount user) {
-    bankAccountsRepository.save(user);
+  @PostMapping("/account")
+  public void createAccount(@RequestBody BankAccountDto bankAccountDto) {
+    bankAccountService.create(bankAccountDto);
   }
 
-  @GetMapping("/accounts/{id}")
-  public BankAccount getAccount(@PathVariable Integer id) {
-    return bankAccountsRepository.getById(id);
+  @GetMapping("/account/{id}")
+  public BankAccountDto getAccount(@PathVariable Integer id) {
+    return bankAccountService.getById(id);
   }
 
-  @PutMapping("/accounts/{id}")
-  public void updateAccount(@PathVariable Integer id, @RequestBody BankAccount bankAccount) {
-    BankAccount existingBankAccount = bankAccountsRepository.getById(id);
-    if (existingBankAccount != null) {
-      bankAccount.setId(id);
-      bankAccountsRepository.save(bankAccount);
-    }
+  @PutMapping("/account/{id}")
+  public void updateAccount(@RequestBody BankAccountDto bankAccount) {
+    bankAccountService.update(bankAccount);
   }
 
-  @DeleteMapping("/accounts/{id}")
+  @DeleteMapping("/account/{id}")
   public void deleteAccount(@PathVariable Integer id) {
-    BankAccount bankAccount = bankAccountsRepository.getById(id);
-    if (bankAccount != null) {
-      bankAccountsRepository.delete(bankAccount);
-    }
+    bankAccountService.deleteById(id);
   }
 
+  @PostMapping("/accountCurrency")
+  public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+    bankAccountCurrencyService.create(bankAccountCurrencyDto);
+  }
+
+  @GetMapping("/accountCurrency/{id}")
+  public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
+    return bankAccountCurrencyService.getById(accountId,currencyId);
+  }
+
+  @PutMapping("/accountCurrency/{id}")
+  public void updateAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+    bankAccountCurrencyService.update(bankAccountCurrencyDto);
+  }
+
+  @DeleteMapping("/accountCurrency/{id}")
+  public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
+    bankAccountCurrencyService.deleteById(accountId,currencyId);
+  }
 }

@@ -8,9 +8,9 @@ import java.util.Objects;
 public class CurrencyExchange {
     private @Id
     @GeneratedValue int id;
-    @Column(name = "from_id")
+    @Column(name = "id_from")
     private Integer from;
-    @Column(name = "to_id")
+    @Column(name = "id_to")
     private Integer to;
 
     private Float amount;

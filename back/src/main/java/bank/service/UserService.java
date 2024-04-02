@@ -7,25 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BankUserService {
+public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void createUser(BankUserDto newUser)
+    public void create(BankUserDto newUser)
     {
         User user = new User(newUser.getName(), newUser.getSurname(), newUser.getEmail(), newUser.getPassword());
         userRepository.save(user);
     }
-    public BankUserDto getUserById(int i)
+    public BankUserDto getById(int i)
     {
-        User user = userRepository.getById(i);
+        User user = userRepository.getReferenceById(i);
         return new BankUserDto(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getPassword());
     }
-    public void deleteUserById(int i)
+    public void deleteById(int i)
     {
-        userRepository.delete(userRepository.getById(i));
+        userRepository.delete(userRepository.getReferenceById(i));
     }
-    public void updateUser (BankUserDto newUser)
+    public void update (BankUserDto newUser)
     {
         User user = new User(newUser.getId(), newUser.getName(), newUser.getSurname(), newUser.getEmail(), newUser.getPassword());
         userRepository.save(user);
