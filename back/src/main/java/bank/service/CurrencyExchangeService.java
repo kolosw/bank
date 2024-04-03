@@ -30,10 +30,15 @@ public class CurrencyExchangeService {
     {
         currencyExchangeRepository.delete(currencyExchangeRepository.getReferenceById(i));
     }
-    public void update (CurrencyExchangeDto currencyExchangeDto)
+    public void update (Integer id, CurrencyExchangeDto currencyExchangeDto)
     {
-        CurrencyExchange currency = new CurrencyExchange(currencyExchangeDto.getId(),currencyExchangeDto.getFrom(),
-                currencyExchangeDto.getTo(), currencyExchangeDto.getAmount());
+        CurrencyExchange currency = currencyExchangeRepository.getReferenceById(id);
+        if(currencyExchangeDto.getTo() != null)
+            currency.setTo(currencyExchangeDto.getTo());
+        if(currencyExchangeDto.getFrom() != null)
+            currency.setFrom(currencyExchangeDto.getFrom());
+        if(currencyExchangeDto.getAmount() != null)
+            currency.setAmount(currencyExchangeDto.getAmount());
         currencyExchangeRepository.save(currency);
     }
 }

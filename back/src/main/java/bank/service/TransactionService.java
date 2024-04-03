@@ -29,10 +29,17 @@ public class TransactionService {
     {
         transactionRepository.delete(transactionRepository.getReferenceById(i));
     }
-    public void update (TransactionDto transactionDto)
+    public void update (Integer id, TransactionDto transactionDto)
     {
-        Transaction transaction = new Transaction(transactionDto.getId(),transactionDto.getSenderId(),
-                transactionDto.getRecipientId(), transactionDto.getDate(), transactionDto.getTime());
+        Transaction transaction = transactionRepository.getReferenceById(id);
+        if(transaction.getDate() != null)
+            transaction.setDate(transactionDto.getDate());
+        if(transaction.getTime() != null)
+            transaction.setTime(transactionDto.getTime());
+        if(transaction.getRecipientId() != null)
+            transaction.setRecipientId(transactionDto.getRecipientId());
+        if(transaction.getSenderId() != null)
+            transaction.setSenderId(transactionDto.getSenderId());
         transactionRepository.save(transaction);
     }
 }

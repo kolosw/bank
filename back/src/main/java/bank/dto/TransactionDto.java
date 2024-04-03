@@ -5,17 +5,17 @@ import java.sql.Time;
 import java.util.Objects;
 
 public class TransactionDto {
-    private int id;
+    private Integer id;
 
-    private int senderId;
-    private int recipientId;
+    private Integer senderId;
+    private Integer recipientId;
     private java.sql.Date date;
     private java.sql.Time time;
 
     public TransactionDto() {
     }
 
-    public TransactionDto(int id, int senderId, int recipientId, Date date, Time time) {
+    public TransactionDto(int id, Integer senderId, Integer recipientId, Date date, Time time) {
         this.id = id;
         this.senderId = senderId;
         this.recipientId = recipientId;
@@ -27,23 +27,23 @@ public class TransactionDto {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getSenderId() {
+    public Integer getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(int senderId) {
+    public void setSenderId(Integer senderId) {
         this.senderId = senderId;
     }
 
-    public int getRecipientId() {
+    public Integer getRecipientId() {
         return recipientId;
     }
 
-    public void setRecipientId(int recipientId) {
+    public void setRecipientId(Integer recipientId) {
         this.recipientId = recipientId;
     }
 

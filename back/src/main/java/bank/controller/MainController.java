@@ -45,7 +45,7 @@ public class MainController {
 
   @PutMapping("/users/{id}")
   public void updateUser(@PathVariable int id, @RequestBody BankUserDto user) {
-    userService.update(user);
+    userService.update(user, id);
   }
 
   @DeleteMapping("/users/{id}")
@@ -62,8 +62,8 @@ public class MainController {
   }
 
   @PutMapping("/currency/{id}")
-  public void updateCurrency(@RequestBody CurrencyDto currency) {
-    currencyService.update(currency);
+  public void updateCurrency(@PathVariable Integer id, @RequestBody CurrencyDto currency) {
+    currencyService.update(id, currency);
   }
 
   @DeleteMapping("/currency/{id}")
@@ -81,8 +81,8 @@ public class MainController {
   }
 
   @PutMapping("/account/{id}")
-  public void updateAccount(@RequestBody BankAccountDto bankAccount) {
-    bankAccountService.update(bankAccount);
+  public void updateAccount(@PathVariable Integer id, @RequestBody BankAccountDto bankAccount) {
+    bankAccountService.update(id, bankAccount);
   }
 
   @DeleteMapping("/account/{id}")
@@ -100,9 +100,9 @@ public class MainController {
     return bankAccountCurrencyService.getById(accountId,currencyId);
   }
 
-  @PutMapping("/accountCurrency/{id}")
-  public void updateAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
-    bankAccountCurrencyService.update(bankAccountCurrencyDto);
+  @PutMapping("/accountCurrency/{idAccount}{idCurrency}")
+  public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+    bankAccountCurrencyService.update(idAccount,idCurrency, bankAccountCurrencyDto);
   }
 
   @DeleteMapping("/accountCurrency/{id}")

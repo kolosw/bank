@@ -29,9 +29,13 @@ public class BankAccountCurrencyService {
     {
         repository.delete(repository.getReferenceById(new BankAccountCurrencyId(currencyId,accountId)));
     }
-    public void update (BankAccountCurrencyDto dto)
+    public void update (Integer accountId, Integer currencyId, BankAccountCurrencyDto dto)
     {
-        BankAccountCurrency bankAccountCurrency = new BankAccountCurrency(dto.getAccount(),dto.getCurrency());
+        BankAccountCurrency bankAccountCurrency = repository.getReferenceById(new BankAccountCurrencyId(accountId,currencyId));
+        if(dto.getAccount() != null)
+            bankAccountCurrency.setAccount(dto.getAccount());
+        if(dto.getCurrency() != null)
+            bankAccountCurrency.setCurrency(dto.getCurrency());
         repository.save(bankAccountCurrency);
     }
 }

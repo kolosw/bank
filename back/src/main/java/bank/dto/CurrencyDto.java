@@ -4,18 +4,18 @@ public class CurrencyDto {
     private Integer id;
     private String name;
     private String shortname;
-    private char symbol;
+    private Character symbol;
     public CurrencyDto() {
     }
 
-    public CurrencyDto(int id, String name, String shortname, char symbol) {
+    public CurrencyDto(int id, String name, String shortname, Character symbol) {
         this.id = id;
         this.name = name;
         this.shortname = shortname;
         this.symbol = symbol;
     }
 
-    public CurrencyDto(String name, String shortname, char symbol) {
+    public CurrencyDto(String name, String shortname, Character symbol) {
         this.name = name;
         this.shortname = shortname;
         this.symbol = symbol;
@@ -45,11 +45,11 @@ public class CurrencyDto {
         this.shortname = shortname;
     }
 
-    public char getSymbol() {
+    public Character getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(char symbol) {
+    public void setSymbol(Character symbol) {
         this.symbol = symbol;
     }
 }

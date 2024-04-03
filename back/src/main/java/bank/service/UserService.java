@@ -27,9 +27,17 @@ public class UserService {
     {
         userRepository.delete(userRepository.getReferenceById(i));
     }
-    public void update (BankUserDto newUser)
+    public void update (BankUserDto newUser, Integer id)
     {
-        User user = new User(newUser.getId(), newUser.getName(), newUser.getSurname(), newUser.getEmail(), newUser.getPassword());
+        User user = userRepository.getReferenceById(id);
+        if (!newUser.getName().isEmpty())
+            user.setName(newUser.getName());
+        if (!newUser.getSurname().isEmpty())
+            user.setSurname(newUser.getSurname());
+        if (!newUser.getEmail().isEmpty())
+            user.setEmail(newUser.getEmail());
+        if (!newUser.getPassword().isEmpty())
+            user.setPassword(newUser.getPassword());
         userRepository.save(user);
     }
     public List<User> getUserList()

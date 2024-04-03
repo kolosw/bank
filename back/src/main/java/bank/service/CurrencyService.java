@@ -25,9 +25,15 @@ public class CurrencyService {
     {
         currencyRepository.delete(currencyRepository.getReferenceById(i));
     }
-    public void update (CurrencyDto newCurrency)
+    public void update (Integer id, CurrencyDto newCurrency)
     {
-        Currency currency = new Currency(newCurrency.getId(), newCurrency.getName(), newCurrency.getShortname(), newCurrency.getSymbol());
+        Currency currency = currencyRepository.getReferenceById(id);
+        if(newCurrency.getName() != null)
+            currency.setName(newCurrency.getName());
+        if(newCurrency.getShortname() != null)
+            currency.setShortname(newCurrency.getShortname());
+        if(newCurrency.getSymbol() != null)
+            currency.setSymbol(newCurrency.getSymbol());
         currencyRepository.save(currency);
     }
 }

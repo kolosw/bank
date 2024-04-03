@@ -10,19 +10,19 @@ import java.util.Objects;
 @Table(name = "bank_transaction")
 public class Transaction {
     private @Id
-    @GeneratedValue int id;
+    @GeneratedValue Integer id;
 
     @Column(name = "id_sender")
-    private int senderId;
+    private Integer senderId;
     @Column(name = "id_recipient")
-    private int recipientId;
+    private Integer recipientId;
     private java.sql.Date date;
     private java.sql.Time time;
 
     public Transaction() {
     }
 
-    public Transaction(int id, int senderId, int recipientId, Date date, Time time) {
+    public Transaction(Integer id, Integer senderId, Integer recipientId, Date date, Time time) {
         this.id = id;
         this.senderId = senderId;
         this.recipientId = recipientId;
@@ -30,27 +30,27 @@ public class Transaction {
         this.time = time;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getSenderId() {
+    public Integer getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(int senderId) {
+    public void setSenderId(Integer senderId) {
         this.senderId = senderId;
     }
 
-    public int getRecipientId() {
+    public Integer getRecipientId() {
         return recipientId;
     }
 
-    public void setRecipientId(int recipientId) {
+    public void setRecipientId(Integer recipientId) {
         this.recipientId = recipientId;
     }
 

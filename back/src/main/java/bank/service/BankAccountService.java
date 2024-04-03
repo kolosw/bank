@@ -27,9 +27,15 @@ public class BankAccountService {
     {
         bankAccountRepository.delete(bankAccountRepository.getReferenceById(i));
     }
-    public void update (BankAccountDto bankAccountDto)
+    public void update (Integer id, BankAccountDto bankAccountDto)
     {
-        BankAccount bankAccount = new BankAccount(bankAccountDto.getId(),bankAccountDto.getUser(),bankAccountDto.getType(),bankAccountDto.getBalance());
+        BankAccount bankAccount = bankAccountRepository.getReferenceById(id);
+        if(bankAccountDto.getUser() != null)
+            bankAccount.setUser(bankAccountDto.getUser());
+        if(bankAccountDto.getBalance() != null)
+            bankAccount.setBalance(bankAccountDto.getBalance());
+        if(bankAccountDto.getType() != null)
+            bankAccount.setType(bankAccountDto.getType());
         bankAccountRepository.save(bankAccount);
     }
 }
