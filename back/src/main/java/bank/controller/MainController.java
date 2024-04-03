@@ -8,10 +8,13 @@ import bank.entities.*;
 import bank.repository.*;
 import bank.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path="/bank")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 
   @Autowired
@@ -25,6 +28,11 @@ public class MainController {
   @Autowired
   private BankAccountCurrencyService bankAccountCurrencyService;
 
+  @GetMapping("/users")
+  @ResponseStatus(value = HttpStatus.OK)
+  public List<User> findAllUser() {
+    return this.userService.getUserList();
+  }
   @PostMapping("/users")
   public void createUser(@RequestBody BankUserDto user) {
     userService.create(user);

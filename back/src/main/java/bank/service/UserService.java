@@ -6,6 +6,8 @@ import bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -29,5 +31,9 @@ public class UserService {
     {
         User user = new User(newUser.getId(), newUser.getName(), newUser.getSurname(), newUser.getEmail(), newUser.getPassword());
         userRepository.save(user);
+    }
+    public List<User> getUserList()
+    {
+        return userRepository.findAll();
     }
 }
