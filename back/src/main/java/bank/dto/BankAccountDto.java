@@ -2,19 +2,27 @@ package bank.dto;
 
 import bank.entities.User;
 
+import java.util.Objects;
+
 public class BankAccountDto {
 
     private Integer id;
-    private User user;
+    private Integer userId;
     private String type;
     private Integer balance;
 
     public BankAccountDto() {
     }
 
-    public BankAccountDto(Integer id, User user, String type, Integer balance) {
+    public BankAccountDto(Integer id, Integer user, String type, Integer balance) {
         this.id = id;
-        this.user = user;
+        this.userId = user;
+        this.type = type;
+        this.balance = balance;
+    }
+
+    public BankAccountDto(Integer userId, String type, Integer balance) {
+        this.userId = userId;
         this.type = type;
         this.balance = balance;
     }
@@ -35,12 +43,12 @@ public class BankAccountDto {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Integer user) {
+        this.userId = user;
     }
 
     public String getType() {
@@ -51,5 +59,26 @@ public class BankAccountDto {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankAccountDto that = (BankAccountDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(type, that.type) && Objects.equals(balance, that.balance);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, type, balance);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccountDto{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", type='" + type + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

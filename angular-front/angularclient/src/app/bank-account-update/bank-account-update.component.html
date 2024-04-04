@@ -1,0 +1,49 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #bankAccountForm="ngForm">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="number" [(ngModel)]="account.id"
+               class="form-control"
+               id="id"
+               name="id"
+               placeholder="Enter ID"
+               required #id="ngModel">
+      </div>
+      <div [hidden]="!id.pristine" class="alert alert-danger">ID is required</div>
+
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input type="text" [(ngModel)]="account.balance"
+               class="form-control"
+               id="balance"
+               name="balance"
+               placeholder="Enter your balance"
+               required #balance="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" [(ngModel)]="account.type"
+               class="form-control"
+               id="type"
+               name="type"
+               placeholder="Enter your type"
+               required #type="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="userId">userID</label>
+        <input type="number" [(ngModel)]="account.userId"
+               class="form-control"
+               id="userId"
+               name="userId"
+               placeholder="Enter your userID"
+               required #userId="ngModel">
+      </div>
+
+      <button type="submit" [disabled]="!bankAccountForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

@@ -19,4 +19,15 @@ export class UserListComponent implements OnInit {
       this.users = data;
     });
   }
+  loadUsers() {
+      this.userService.findAll().subscribe(data => {
+        this.users = data;
+      });
+    }
+
+    delete(userId: number) {
+      this.userService.delete(userId).subscribe(() => {
+        this.loadUsers(); // Refresh the user list after deletion
+      });
+    }
 }

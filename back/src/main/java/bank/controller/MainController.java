@@ -53,6 +53,11 @@ public class MainController {
     userService.deleteById(id);
   }
 
+  @GetMapping("/currency")
+  @ResponseStatus(value = HttpStatus.OK)
+  public List<Currency> findAllCurrency() {
+    return this.currencyService.getCurrencyList();
+  }
   @PostMapping("/currency")
   public void createCurrency(@RequestBody CurrencyDto currency) { currencyService.create(currency);}
 
@@ -70,8 +75,12 @@ public class MainController {
   public void deleteCurrency(@PathVariable Integer id) {
     currencyService.deleteById(id);
   }
+  @GetMapping("/account")
+  @ResponseStatus(value = HttpStatus.OK)
+  public List<BankAccountDto> findAllAccount() {return this.bankAccountService.getaccountList();  }
   @PostMapping("/account")
   public void createAccount(@RequestBody BankAccountDto bankAccountDto) {
+    System.out.println(bankAccountDto);
     bankAccountService.create(bankAccountDto);
   }
 
@@ -90,6 +99,11 @@ public class MainController {
     bankAccountService.deleteById(id);
   }
 
+  @GetMapping("/accountCurrency")
+  @ResponseStatus(value = HttpStatus.OK)
+  public List<BankAccountCurrency> findAllAccountCurrency() {
+    return this.bankAccountCurrencyService.getAccountCurrencyList();
+  }
   @PostMapping("/accountCurrency")
   public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
     bankAccountCurrencyService.create(bankAccountCurrencyDto);
@@ -102,7 +116,7 @@ public class MainController {
 
   @PutMapping("/accountCurrency/{idAccount}{idCurrency}")
   public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
-    bankAccountCurrencyService.update(idAccount,idCurrency, bankAccountCurrencyDto);
+    bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
   }
 
   @DeleteMapping("/accountCurrency/{id}")

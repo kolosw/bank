@@ -2,9 +2,12 @@ package bank.service;
 
 import bank.dto.CurrencyDto;
 import bank.entities.Currency;
+import bank.entities.User;
 import bank.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CurrencyService {
@@ -35,5 +38,9 @@ public class CurrencyService {
         if(newCurrency.getSymbol() != null)
             currency.setSymbol(newCurrency.getSymbol());
         currencyRepository.save(currency);
+    }
+    public List<Currency> getCurrencyList()
+    {
+        return currencyRepository.findAll();
     }
 }

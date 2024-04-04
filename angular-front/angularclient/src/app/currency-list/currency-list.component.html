@@ -5,21 +5,19 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
+        <th scope="col">Shortname</th>
+        <th scope="col">Symbol</th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.surname }}</td>
-        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
-        <td>{{ user.password }}</td>
+      <tr *ngFor="let currency of currencies">
+        <td>{{ currency.id }}</td>
+        <td>{{ currency.name }}</td>
+        <td>{{ currency.shortname }}</td>
+        <td>{{ currency.symbol }}</td>
         <td>
-          <button (click)="delete(user.id)" class="btn btn-danger btn-sm">
+          <button (click)="delete(currency.id)" class="btn btn-danger btn-sm">
             <i class="fa fa-trash"></i> Delete
           </button>
         </td>

@@ -1,0 +1,46 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #currencyForm="ngForm">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="number" [(ngModel)]="currency.id"
+               class="form-control"
+               id="id"
+               name="id"
+               placeholder="Enter ID"
+               required #id="ngModel">
+      </div>
+      <div [hidden]="!id.pristine" class="alert alert-danger">ID is required</div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="currency.name"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Enter your name"
+               required #name="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="shortname">Shortname</label>
+        <input type="text" [(ngModel)]="currency.shortname"
+               class="form-control"
+               id="shortname"
+               name="shortname"
+               placeholder="Enter your shortname"
+               required #shortname="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="symbol">Symbol</label>
+        <input type="text" [(ngModel)]="currency.symbol"
+               class="form-control"
+               id="symbol"
+               name="symbol"
+               placeholder="Enter your symbol"
+               required #symbol="ngModel">
+      </div>
+      <button type="submit" [disabled]="!currencyForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>
