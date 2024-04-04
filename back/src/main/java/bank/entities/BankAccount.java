@@ -10,7 +10,7 @@ import java.util.Set;
 public class BankAccount {
 
     private @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     @ManyToOne
     @JoinColumn(name = "id_user")
@@ -30,7 +30,6 @@ public class BankAccount {
         this.type = type;
         this.balance = balance;
     }
-
 
     public int getId() {
         return id;

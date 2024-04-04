@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CurrencyService } from '../service/currency.service';
-import { Currency } from '../model/currency';
+import { CurrencyService } from '../../service/currency-service/currency.service';
+import { Currency } from '../../model/currency';
 
 @Component({
   selector: 'app-currency-update',

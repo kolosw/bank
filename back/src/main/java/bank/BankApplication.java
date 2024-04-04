@@ -5,6 +5,7 @@ import bank.repository.BankAccountCurrencyRepository;
 import bank.repository.BankAccountRepository;
 import bank.repository.CurrencyRepository;
 import bank.repository.UserRepository;
+import bank.service.BankAccountService;
 import bank.service.LoanApplicationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +21,9 @@ public class BankApplication {
         SpringApplication.run(BankApplication.class, args);
     }
     @Bean
-    public CommandLineRunner demo() {
+    public CommandLineRunner demo(BankAccountService bankAccountService) {
         return (args) -> {
+            //log.info(bankAccountService.getaccountList().toString());
             log.info("Running...");
             log.info("");
         };

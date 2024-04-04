@@ -1,7 +1,5 @@
 package bank.dto;
 
-import bank.entities.User;
-
 import java.util.Objects;
 
 public class BankAccountDto {
@@ -17,12 +15,6 @@ public class BankAccountDto {
     public BankAccountDto(Integer id, Integer user, String type, Integer balance) {
         this.id = id;
         this.userId = user;
-        this.type = type;
-        this.balance = balance;
-    }
-
-    public BankAccountDto(Integer userId, String type, Integer balance) {
-        this.userId = userId;
         this.type = type;
         this.balance = balance;
     }
@@ -43,12 +35,12 @@ public class BankAccountDto {
         this.id = id;
     }
 
-    public Integer getUser() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUser(Integer user) {
-        this.userId = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getType() {

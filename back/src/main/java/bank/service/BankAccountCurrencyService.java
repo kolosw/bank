@@ -11,6 +11,7 @@ import bank.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,8 +42,11 @@ public class BankAccountCurrencyService {
             bankAccountCurrency.setCurrency(dto.getCurrency());
         repository.save(bankAccountCurrency);
     }
-    public List<BankAccountCurrency> getAccountCurrencyList()
+    public List<BankAccountCurrencyDto> getAccountCurrencyList()
     {
-        return repository.findAll();
+        List<BankAccountCurrencyDto> dto = new ArrayList<>();
+        for(BankAccountCurrency bankAccountCurrency : repository.findAll())
+            dto.add(new BankAccountCurrencyDto(bankAccountCurrency.getAccount(),bankAccountCurrency.getCurrency()));
+        return dto;
     }
 }

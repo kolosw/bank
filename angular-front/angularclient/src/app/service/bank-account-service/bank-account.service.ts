@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BankAccount } from '../model/bank-account';
+import { BankAccount } from '../../model/bank-account';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -19,7 +19,11 @@ export class BankAccountService {
   public save(account: BankAccount) {
     return this.http.post<BankAccount>(this.accountUrl, account);
   }
-
+  public getById(id : number)
+  {
+    const url = `${this.accountUrl}/${id}`;
+    return this.http.get<BankAccount>(url);
+  }
   public delete(accountId: number)
   {
   const url = `${this.accountUrl}/${accountId}`;

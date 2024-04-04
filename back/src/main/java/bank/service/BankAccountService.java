@@ -22,10 +22,13 @@ public class BankAccountService {
     UserService userService;
     public void create(BankAccountDto bankAccountDto)
     {
-        BankUserDto dtoUser = userService.getById(bankAccountDto.getUser());
-        User user = new User(dtoUser.getName(), dtoUser.getSurname(), dtoUser.getEmail(), dtoUser.getPassword());
-        BankAccount bankAccount = new BankAccount(bankAccountDto.getId(),user,
-                bankAccountDto.getType(),bankAccountDto.getBalance());
+        BankUserDto dtoUser = userService.getById(bankAccountDto.getUserId());
+        System.out.println(dtoUser);
+        User user = new User(dtoUser.getId(), dtoUser.getName(), dtoUser.getSurname(), dtoUser.getEmail(), dtoUser.getPassword());
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setUser(user);
+        bankAccount.setType(bankAccountDto.getType());
+        bankAccount.setBalance(bankAccountDto.getBalance());
         bankAccountRepository.save(bankAccount);
     }
     public BankAccountDto getById(int i)
@@ -39,10 +42,10 @@ public class BankAccountService {
     }
     public void update (Integer id, BankAccountDto bankAccountDto)
     {
-        BankUserDto dtoUser = userService.getById(bankAccountDto.getUser());
+        BankUserDto dtoUser = userService.getById(bankAccountDto.getUserId());
         User user = new User(dtoUser.getName(), dtoUser.getSurname(), dtoUser.getEmail(), dtoUser.getPassword());
         BankAccount bankAccount = bankAccountRepository.getReferenceById(id);
-        if(bankAccountDto.getUser() != null)
+        if(bankAccountDto.getUserId() != null)
             bankAccount.setUser(user);
         if(bankAccountDto.getBalance() != null)
             bankAccount.setBalance(bankAccountDto.getBalance());

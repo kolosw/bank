@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Currency } from '../model/currency';
+import { Currency } from '../../model/currency';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -15,7 +15,11 @@ export class CurrencyService {
   public findAll(): Observable<Currency[]> {
     return this.http.get<Currency[]>(this.currencyUrl);
   }
-
+  public getById(id : number)
+  {
+    const url = `${this.currencyUrl}/${id}`;
+    return this.http.get<Currency>(url);
+  }
   public save(currency: Currency) {
     return this.http.post<Currency>(this.currencyUrl, currency);
   }

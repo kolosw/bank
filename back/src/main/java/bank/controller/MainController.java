@@ -101,7 +101,7 @@ public class MainController {
 
   @GetMapping("/accountCurrency")
   @ResponseStatus(value = HttpStatus.OK)
-  public List<BankAccountCurrency> findAllAccountCurrency() {
+  public List<BankAccountCurrencyDto> findAllAccountCurrency() {
     return this.bankAccountCurrencyService.getAccountCurrencyList();
   }
   @PostMapping("/accountCurrency")
@@ -114,12 +114,12 @@ public class MainController {
     return bankAccountCurrencyService.getById(accountId,currencyId);
   }
 
-  @PutMapping("/accountCurrency/{idAccount}{idCurrency}")
+  @PutMapping("/accountCurrency/{idAccount}/{idCurrency}")
   public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
     bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
   }
 
-  @DeleteMapping("/accountCurrency/{id}")
+  @DeleteMapping("/accountCurrency/{accountId}/{currencyId}")
   public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
     bankAccountCurrencyService.deleteById(accountId,currencyId);
   }

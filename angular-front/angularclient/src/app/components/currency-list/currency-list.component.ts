@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Currency } from '../model/currency';
-import { CurrencyService } from '../service/currency.service';
+import { Currency } from '../../model/currency';
+import { CurrencyService } from '../../service/currency-service/currency.service';
 
 @Component({
   selector: 'app-currency-list',

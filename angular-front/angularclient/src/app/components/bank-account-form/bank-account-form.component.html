@@ -3,7 +3,7 @@
     <form (ngSubmit)="onSubmit()" #bankAccountForm="ngForm">
       <div class="form-group">
         <label for="balance">Balance</label>
-        <input type="text" [(ngModel)]="account.balance"
+        <input type="number" [(ngModel)]="account.balance"
                class="form-control"
                id="balance"
                name="balance"
