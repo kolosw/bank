@@ -22,7 +22,7 @@ class BankAccountEdit extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const bankAccount = await (await fetch(`/api/bankaccounts/${this.props.match.params.id}`)).json();
+            const bankAccount = await (await fetch(`/api/bankaccount/${this.props.match.params.id}`)).json();
             this.setState({item : bankAccount});
         }
     }
@@ -47,7 +47,7 @@ class BankAccountEdit extends Component {
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/bankaccounts');
+        this.props.history.push('/account');
     }
 
     render() {
@@ -76,7 +76,7 @@ class BankAccountEdit extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/bankaccounts">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/accounts">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

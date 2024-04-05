@@ -7,12 +7,12 @@ class BankAccountList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {bankAccount : []};
+        this.state = {bankAccounts : []};
         this.remove = this.remove.bind(this);
     }
 
     componentDidMount() {
-        fetch('api/bankAccount')
+        fetch('api/account')
             .then(response => response.json())
             .then(data => this.setState({bankAccounts: data}));
     }
@@ -44,7 +44,7 @@ class BankAccountList extends Component {
                 <td>{bankAccount.balance}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/bankAccounts/" + bankAccount.id}>Edit</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/account/" + bankAccount.id}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(bankAccount.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -56,7 +56,7 @@ class BankAccountList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/bankAccounts/new">Add Bank Account</Button>
+                        <Button color="success" tag={Link} to="/account/new">Add Bank Account</Button>
                     </div>
                     <h3>Bank Accounts</h3>
                     <Table className="mt-4">

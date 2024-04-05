@@ -8,6 +8,8 @@ import CurrencyList from './components/CurrencyList';
 import CurrencyEdit from "./components/CurrencyEdit";
 import BankAccountList from './components/BankAccountList';
 import BankAccountEdit from "./components/BankAccountEdit";
+import BankAccountCurrencyList from './components/BankAccountCurrencyList';
+import BankAccountCurrencyEdit from "./components/BankAccountCurrencyEdit";
 
 class App extends Component {
   render() {
@@ -19,8 +21,11 @@ class App extends Component {
             <Route path='/users/:id' exact={true} component={UserEdit}/>
             <Route path='/currencies' exact={true} component={CurrencyList}/>
             <Route path='/currency/:id' exact={true} component={CurrencyEdit}/>
-            <Route path='/bankaccounts' exact={true} component={BankAccountList}/>
+            <Route path='/accounts' exact={true} component={BankAccountList}/>
             <Route path='/account/:id' exact={true} component={BankAccountEdit}/>
+            <Route path='/bankaccountcurrencies' exact={true} component={BankAccountCurrencyList}/>
+            <Route path='/bankaccountcurrencies/:id1/:id2' exact={true} component={BankAccountCurrencyEdit}/>
+            <Route path="/bankaccountcurrency/new" component={BankAccountCurrencyEdit} />
           </Switch>
         </Router>
     )

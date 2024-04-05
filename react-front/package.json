@@ -20,8 +20,7 @@
     "allowedHosts": [
       "localhost",
       ".localhost"
-    ],
-    "proxy": "https://localhost:8080/"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",

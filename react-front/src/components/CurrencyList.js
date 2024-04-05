@@ -12,13 +12,13 @@ class CurrencyList extends Component {
     }
 
     componentDidMount() {
-        fetch('api/currencies')
+        fetch('api/currency')
             .then(response => response.json())
             .then(data => this.setState({currencies: data}));
     }
 
     async remove(id) {
-        await fetch(`api/currencies/${id}`, {
+        await fetch(`api/currency/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -44,7 +44,7 @@ class CurrencyList extends Component {
                 <td>{currency.symbol}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/currencies/" + currency.id}>Edit</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/currency/" + currency.id}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(currency.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -56,7 +56,7 @@ class CurrencyList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/currencies/new">Add Currency</Button>
+                        <Button color="success" tag={Link} to="/currency/new">Add Currency</Button>
                     </div>
                     <h3>Currencies</h3>
                     <Table className="mt-4">

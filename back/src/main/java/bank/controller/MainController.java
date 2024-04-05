@@ -99,27 +99,31 @@ public class MainController {
     bankAccountService.deleteById(id);
   }
 
-  @GetMapping("/accountCurrency")
+  @GetMapping("/accountcurrency")
   @ResponseStatus(value = HttpStatus.OK)
   public List<BankAccountCurrencyDto> findAllAccountCurrency() {
     return this.bankAccountCurrencyService.getAccountCurrencyList();
   }
-  @PostMapping("/accountCurrency")
+  @PostMapping("/accountcurrency")
   public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
     bankAccountCurrencyService.create(bankAccountCurrencyDto);
   }
 
-  @GetMapping("/accountCurrency/{id}")
-  public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
-    return bankAccountCurrencyService.getById(accountId,currencyId);
+  @PostMapping("/accountcurrency/{idAccount}/{idCurrency}")
+  public void createAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
+    //bankAccountCurrencyService.create(bankAccountCurrencyDto);
+  }
+  @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
+  public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
+    return bankAccountCurrencyService.getById(idAccount,idCurrency);
   }
 
-  @PutMapping("/accountCurrency/{idAccount}/{idCurrency}")
+  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
   public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
     bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
   }
 
-  @DeleteMapping("/accountCurrency/{accountId}/{currencyId}")
+  @DeleteMapping("/accountcurrency/{accountId}/{currencyId}")
   public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
     bankAccountCurrencyService.deleteById(accountId,currencyId);
   }
