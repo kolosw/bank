@@ -5,6 +5,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BankAccountListComponent } from './components/bank-account-list/bank-account-list.component';
 import { BankAccountFormComponent } from './components/bank-account-form/bank-account-form.component';
+import { BankAccountUpdateComponent } from './components/bank-account-update/bank-account-update.component';
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
 import { CurrencyFormComponent } from './components/currency-form/currency-form.component';
 import { CurrencyUpdateComponent } from './components/currency-update/currency-update.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'updateuser', component: UserUpdateComponent },
   { path: 'account', component: BankAccountListComponent },
   { path: 'addaccount', component: BankAccountFormComponent },
-  { path: 'updateaccount', component: BankAccountFormComponent },
+  { path: 'updateaccount', component: BankAccountUpdateComponent },
   { path: 'currency', component: CurrencyListComponent },
   { path: 'addcurrency', component: CurrencyFormComponent },
   { path: 'updatecurrency', component: CurrencyUpdateComponent },
