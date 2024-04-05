@@ -1,7 +1,6 @@
 package bank.entities;
-import jakarta.persistence.*;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "currency_exchange")

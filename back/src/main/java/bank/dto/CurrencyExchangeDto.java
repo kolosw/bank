@@ -1,11 +1,8 @@
 package bank.dto;
 
-import bank.entities.CurrencyExchange;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-import java.util.Objects;
 
 public class CurrencyExchangeDto {
     private @Id

@@ -4,8 +4,8 @@ import bank.dto.BankAccountCurrencyDto;
 import bank.dto.BankAccountDto;
 import bank.dto.BankUserDto;
 import bank.dto.CurrencyDto;
-import bank.entities.*;
-import bank.repository.*;
+import bank.entities.Currency;
+import bank.entities.User;
 import bank.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 
   @Autowired

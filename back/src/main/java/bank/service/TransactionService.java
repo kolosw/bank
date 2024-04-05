@@ -1,8 +1,6 @@
 package bank.service;
 
 import bank.dto.TransactionDto;
-import bank.dto.CurrencyDto;
-import bank.entities.Currency;
 import bank.entities.Transaction;
 import bank.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,6 @@
 package bank;
 
-import bank.dto.LoanApplicationDto;
-import bank.repository.BankAccountCurrencyRepository;
-import bank.repository.BankAccountRepository;
-import bank.repository.CurrencyRepository;
-import bank.repository.UserRepository;
 import bank.service.BankAccountService;
-import bank.service.LoanApplicationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

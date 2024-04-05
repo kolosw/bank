@@ -13,6 +13,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.organization>kolosw</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <node.version>v20.12.0</node.version>
+        <yarn.version>v1.12.1</yarn.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -79,6 +82,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${project.parent.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
             </plugin>
         </plugins>
     </build>

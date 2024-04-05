@@ -1,44 +1,100 @@
+<style>
+  .link-group ul.list-inline li {
+    margin-bottom: 10px;
+     font-size: 20px;
+  }
+</style>
+
+<style>
+  .user-links ul.list-inline li {
+    margin-bottom: 1px; /* Adjust the value as desired */
+  }
+</style>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="card bg-dark my-5">
         <div class="card-body">
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/users" class="btn btn-info">List Users</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/adduser" class="btn btn-info">Add User</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/updateuser" class="btn btn-info">Update User</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/account" class="btn btn-info">List Accounts</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/addaccount" class="btn btn-info">Add Account</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/updateaccounts" class="btn btn-info">Update Account</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/currency" class="btn btn-info">List Currencies</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/addcurrency" class="btn btn-info">Add Currency</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/updatecurrency" class="btn btn-info">Update Currency</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/accountcurrency" class="btn btn-info">List Account Currencies</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/addaccountcurrency" class="btn btn-info">Add Account Currencies</a>
-            </li>
-          </ul>
+
+          <div class="row">
+
+            <!-- Column 1: Users -->
+            <div class="col-md-3">
+              <div class="link-group">
+                <h4 class="text-white text-center mb-3">Users</h4>
+                <ul class="text-center list-inline user-links">
+                  <li class="list-inline-item">
+                    <a routerLink="/users" class="btn btn-info">List Users</a>
+                  </li>
+                </ul>
+                <ul class="text-center list-inline user-links">
+                  <li class="list-inline-item">
+                    <a routerLink="/adduser" class="btn btn-info">Add User</a>
+                  </li>
+                </ul>
+                <ul class="text-center list-inline user-links">
+                  <li class="list-inline-item">
+                    <a routerLink="/updateuser" class="btn btn-info">Update User</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 2: Accounts -->
+            <div class="col-md-3">
+              <div class="link-group">
+                <h4 class="text-white text-center mb-3">Accounts</h4>
+                <ul class="text-center list-inline py-3">
+                  <li class="list-inline-item">
+                    <a routerLink="/account" class="btn btn-info">List Accounts</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a routerLink="/addaccount" class="btn btn-info">Add Account</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a routerLink="/updateaccount" class="btn btn-info">Update Account</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 3: Currencies -->
+            <div class="col-md-3">
+              <div class="link-group">
+                <h4 class="text-white text-center mb-3">Currencies</h4>
+                <ul class="text-center list-inline py-3">
+                  <li class="list-inline-item">
+                    <a routerLink="/currency" class="btn btn-info">List Currencies</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a routerLink="/addcurrency" class="btn btn-info">Add Currency</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a routerLink="/updatecurrency" class="btn btn-info">Update Currency</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 4: Account Currencies -->
+            <div class="col-md-3">
+              <div class="link-group">
+                <h4 class="text-white text-center mb-3">Account Currencies</h4>
+                <ul class="text-center list-inline py-3">
+                  <li class="list-inline-item">
+                    <a routerLink="/accountcurrency" class="btn btn-info">List Account Currencies</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a routerLink="/addaccountcurrency" class="btn btn-info">Add Account Currencies</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
       <router-outlet></router-outlet>

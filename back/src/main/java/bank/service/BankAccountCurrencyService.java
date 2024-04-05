@@ -1,13 +1,9 @@
 package bank.service;
 
 import bank.dto.BankAccountCurrencyDto;
-import bank.dto.BankAccountDto;
-import bank.entities.BankAccount;
 import bank.entities.BankAccountCurrency;
 import bank.entities.BankAccountCurrencyId;
-import bank.entities.User;
 import bank.repository.BankAccountCurrencyRepository;
-import bank.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
