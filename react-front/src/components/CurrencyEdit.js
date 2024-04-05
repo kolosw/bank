@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from '../AppNavbar';
 
-class UserEdit extends Component {
+class CurrencyEdit extends Component {
 
     emptyItem = {
         name: '',
-        surname: '',
-        email: '',
-        password: ''
+        shortname: '',
+        symbol: ''
     };
 
     constructor(props) {
@@ -23,8 +22,8 @@ class UserEdit extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const user = await (await fetch(`/api/users/${this.props.match.params.id}`)).json();
-            this.setState({item : user});
+            const currency = await (await fetch(`/api/currencies/${this.props.match.params.id}`)).json();
+            this.setState({item : currency});
         }
     }
 
@@ -40,7 +39,7 @@ class UserEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch(`/api/users${item.id ? '/' + item.id : ''}`, {
+        await fetch(`/api/currencies{item.id ? '/' + item.id : ''}`, {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -48,12 +47,12 @@ class UserEdit extends Component {
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/users');
+        this.props.history.push('/currencies');
     }
 
     render() {
         const {item} = this.state;
-        const title = <h2>{item.id ? 'Edit User' : 'Add User'}</h2>;
+        const title = <h2>{item.id ? 'Edit Currency' : 'Add Currency'}</h2>;
 
         return <div>
             <AppNavbar/>
@@ -66,27 +65,22 @@ class UserEdit extends Component {
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="name">Surname</Label>
-                        <Input type="text" name="surname" id="surname" value={item.surname || ''}
-                               onChange={this.handleChange} autoComplete="surname"/>
+                        <Label for="Shortname">Shortname</Label>
+                        <Input type="text" name="Shortname" id="Shortname" value={item.Shortname || ''}
+                               onChange={this.handleChange} autoComplete="Shortname"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="email">Email</Label>
-                        <Input type="text" name="email" id="email" value={item.email || ''}
-                               onChange={this.handleChange} autoComplete="email"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="password">Password</Label>
-                        <Input type="text" name="password" id="password" value={item.password || ''}
-                               onChange={this.handleChange} autoComplete="password"/>
+                        <Label for="symbol">Email</Label>
+                        <Input type="text" name="symbol" id="symbol" value={item.email || ''}
+                               onChange={this.handleChange} autoComplete="Symbol"/>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/users">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/currencies">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>
         </div>
     }
 }
-export default withRouter(UserEdit);
+export default withRouter(CurrencyEdit);
