@@ -27,7 +27,7 @@ public class BankAccountDto {
         this.balance = balance;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

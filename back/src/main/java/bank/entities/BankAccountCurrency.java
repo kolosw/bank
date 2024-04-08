@@ -25,6 +25,14 @@ public class BankAccountCurrency {
 
     }
 
+    public BankAccountCurrencyId getId() {
+        return id;
+    }
+
+    public void setId(BankAccountCurrencyId id) {
+        this.id = id;
+    }
+
     public BankAccount getAccount() {
         return bankAccount;
     }

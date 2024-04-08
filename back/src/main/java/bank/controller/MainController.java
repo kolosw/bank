@@ -2,7 +2,7 @@ package bank.controller;
 
 import bank.dto.BankAccountCurrencyDto;
 import bank.dto.BankAccountDto;
-import bank.dto.BankUserDto;
+import bank.dto.UserDto;
 import bank.dto.CurrencyDto;
 import bank.entities.Currency;
 import bank.entities.User;
@@ -34,17 +34,17 @@ public class MainController {
     return this.userService.getUserList();
   }
   @PostMapping("/users")
-  public void createUser(@RequestBody BankUserDto user) {
+  public void createUser(@RequestBody UserDto user) {
     userService.create(user);
   }
 
   @GetMapping("/users/{id}")
-  public BankUserDto getUser(@PathVariable int id) {
+  public UserDto getUser(@PathVariable int id) {
     return userService.getById(id);
   }
 
   @PutMapping("/users/{id}")
-  public void updateUser(@PathVariable int id, @RequestBody BankUserDto user) {
+  public void updateUser(@PathVariable int id, @RequestBody UserDto user) {
     userService.update(user, id);
   }
 
@@ -109,19 +109,19 @@ public class MainController {
     bankAccountCurrencyService.create(bankAccountCurrencyDto);
   }
 
-  @PostMapping("/accountcurrency/{idAccount}/{idCurrency}")
+  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
   public void createAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
-    //bankAccountCurrencyService.create(bankAccountCurrencyDto);
+    bankAccountCurrencyService.createWithIds(idAccount,idCurrency);
   }
   @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
   public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
     return bankAccountCurrencyService.getById(idAccount,idCurrency);
   }
 
-  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
-  public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
-    bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
-  }
+//  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
+//  public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+//    bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
+//  }
 
   @DeleteMapping("/accountcurrency/{accountId}/{currencyId}")
   public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {

@@ -1,7 +1,8 @@
 package bank.service;
 
-import bank.dto.BankUserDto;
+import bank.dto.UserDto;
 import bank.entities.User;
+import bank.mapper.UserMapper;
 import bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,21 +14,20 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void create(BankUserDto newUser)
+    public void create(UserDto newUser)
     {
-        User user = new User(newUser.getName(), newUser.getSurname(), newUser.getEmail(), newUser.getPassword());
-        userRepository.save(user);
+        userRepository.save(UserMapper.toEntity(newUser));
     }
-    public BankUserDto getById(int i)
+    public UserDto getById(int i)
     {
         User user = userRepository.getReferenceById(i);
-        return new BankUserDto(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getPassword());
+        return UserMapper.toDto(user);
     }
     public void deleteById(int i)
     {
         userRepository.delete(userRepository.getReferenceById(i));
     }
-    public void update (BankUserDto newUser, Integer id)
+    public void update (UserDto newUser, Integer id)
     {
         User user = userRepository.getReferenceById(id);
         if (!newUser.getName().isEmpty())

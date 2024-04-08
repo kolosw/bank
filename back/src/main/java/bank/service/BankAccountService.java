@@ -1,9 +1,11 @@
 package bank.service;
 
 import bank.dto.BankAccountDto;
-import bank.dto.BankUserDto;
+import bank.dto.UserDto;
 import bank.entities.BankAccount;
 import bank.entities.User;
+import bank.mapper.BankAccountMapper;
+import bank.mapper.UserMapper;
 import bank.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,21 +19,16 @@ public class BankAccountService {
     BankAccountRepository bankAccountRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    BankAccountMapper bankAccountMapper;
     public void create(BankAccountDto bankAccountDto)
     {
-        BankUserDto dtoUser = userService.getById(bankAccountDto.getUserId());
-        System.out.println(dtoUser);
-        User user = new User(dtoUser.getId(), dtoUser.getName(), dtoUser.getSurname(), dtoUser.getEmail(), dtoUser.getPassword());
-        BankAccount bankAccount = new BankAccount();
-        bankAccount.setUser(user);
-        bankAccount.setType(bankAccountDto.getType());
-        bankAccount.setBalance(bankAccountDto.getBalance());
-        bankAccountRepository.save(bankAccount);
+        bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
     }
     public BankAccountDto getById(int i)
     {
         BankAccount bankAccount = bankAccountRepository.getReferenceById(i);
-        return new BankAccountDto(bankAccount.getId(),bankAccount.getUser().getId(),bankAccount.getType(),bankAccount.getBalance());
+        return bankAccountMapper.toDto(bankAccount);
     }
     public void deleteById(int i)
     {
@@ -39,8 +36,8 @@ public class BankAccountService {
     }
     public void update (Integer id, BankAccountDto bankAccountDto)
     {
-        BankUserDto dtoUser = userService.getById(bankAccountDto.getUserId());
-        User user = new User(dtoUser.getName(), dtoUser.getSurname(), dtoUser.getEmail(), dtoUser.getPassword());
+        UserDto dtoUser = userService.getById(bankAccountDto.getUserId());
+        User user = UserMapper.toEntity(dtoUser);
         BankAccount bankAccount = bankAccountRepository.getReferenceById(id);
         if(bankAccountDto.getUserId() != null)
             bankAccount.setUser(user);
@@ -53,11 +50,9 @@ public class BankAccountService {
 
     public List<BankAccountDto> getaccountList()
     {
-        System.out.println(bankAccountRepository.findAll());
         List<BankAccountDto> dtoList = new LinkedList<>();
         for (BankAccount bankAccount : bankAccountRepository.findAll())
-            dtoList.add(new BankAccountDto(bankAccount.getId(),bankAccount.getUser().getId(),bankAccount.getType(),bankAccount.getBalance()));
-        System.out.println(dtoList);
+            dtoList.add(bankAccountMapper.toDto(bankAccount));
         return dtoList;
     }
 }

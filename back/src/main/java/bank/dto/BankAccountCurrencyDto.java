@@ -7,6 +7,9 @@ public class BankAccountCurrencyDto {
     private BankAccount account;
     private Currency currency;
 
+    public BankAccountCurrencyDto() {
+    }
+
     public BankAccountCurrencyDto(BankAccount account, Currency currency) {
         this.account = account;
         this.currency = currency;

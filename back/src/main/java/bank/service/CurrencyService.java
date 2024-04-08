@@ -2,6 +2,7 @@ package bank.service;
 
 import bank.dto.CurrencyDto;
 import bank.entities.Currency;
+import bank.mapper.CurrencyMapper;
 import bank.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,12 @@ public class CurrencyService {
 
     public void create(CurrencyDto currencyDto)
     {
-        Currency currency = new Currency(currencyDto.getName(),currencyDto.getShortname(),currencyDto.getSymbol());
-        currencyRepository.save(currency);
+        currencyRepository.save(CurrencyMapper.toEntity(currencyDto));
     }
     public CurrencyDto getById(int i)
     {
         Currency currency = currencyRepository.getReferenceById(i);
-        return new CurrencyDto(currency.getId(), currency.getName(), currency.getShortname(), currency.getSymbol());
+        return CurrencyMapper.toDto(currency);
     }
     public void deleteById(int i)
     {
