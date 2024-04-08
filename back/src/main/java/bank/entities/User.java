@@ -9,7 +9,10 @@ import java.util.Set;
 public class User {
 
 private @Id @GeneratedValue(strategy= GenerationType.AUTO) Integer id;
+
+@Column(nullable = false)
 private String name;
+@Column(nullable = false)
 private String surname;
 @OneToMany(mappedBy = "user")
 Set<BankAccount> bankAccounts;

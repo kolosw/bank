@@ -40,7 +40,7 @@ public class UserService {
             user.setPassword(newUser.getPassword());
         userRepository.save(user);
     }
-    public List<User> getUserList()
+    public List<User> getList()
     {
         return userRepository.findAll();
     }

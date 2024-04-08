@@ -10,9 +10,11 @@ public class LoanApplication {
 
     @Column(name = "id_bank_account")
     Integer bankAccountId;
+    @Column(nullable = false)
     Integer amount;
+    @Column(nullable = false)
     Integer interest;
-    @Column(name = "period_in_month")
+    @Column(name = "period_in_month", nullable = false)
     Integer period;
 
     public LoanApplication() {

@@ -2,8 +2,8 @@ package bank.controller;
 
 import bank.dto.BankAccountCurrencyDto;
 import bank.dto.BankAccountDto;
-import bank.dto.UserDto;
 import bank.dto.CurrencyDto;
+import bank.dto.UserDto;
 import bank.entities.Currency;
 import bank.entities.User;
 import bank.service.*;
@@ -31,14 +31,16 @@ public class MainController {
   @GetMapping("/users")
   @ResponseStatus(value = HttpStatus.OK)
   public List<User> findAllUser() {
-    return this.userService.getUserList();
+    return this.userService.getList();
   }
   @PostMapping("/users")
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void createUser(@RequestBody UserDto user) {
     userService.create(user);
   }
 
   @GetMapping("/users/{id}")
+  @ResponseStatus(value = HttpStatus.FOUND)
   public UserDto getUser(@PathVariable int id) {
     return userService.getById(id);
   }
@@ -56,12 +58,14 @@ public class MainController {
   @GetMapping("/currency")
   @ResponseStatus(value = HttpStatus.OK)
   public List<Currency> findAllCurrency() {
-    return this.currencyService.getCurrencyList();
+    return this.currencyService.getList();
   }
   @PostMapping("/currency")
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void createCurrency(@RequestBody CurrencyDto currency) { currencyService.create(currency);}
 
   @GetMapping("/currency/{id}")
+  @ResponseStatus(value = HttpStatus.FOUND)
   public CurrencyDto getCurrency(@PathVariable Integer id) {
     return currencyService.getById(id);
   }
@@ -72,13 +76,15 @@ public class MainController {
   }
 
   @DeleteMapping("/currency/{id}")
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void deleteCurrency(@PathVariable Integer id) {
     currencyService.deleteById(id);
   }
   @GetMapping("/account")
   @ResponseStatus(value = HttpStatus.OK)
-  public List<BankAccountDto> findAllAccount() {return this.bankAccountService.getaccountList();  }
+  public List<BankAccountDto> findAllAccount() {return this.bankAccountService.getList();  }
   @PostMapping("/account")
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void createAccount(@RequestBody BankAccountDto bankAccountDto) {
     System.out.println(bankAccountDto);
     bankAccountService.create(bankAccountDto);
@@ -102,9 +108,10 @@ public class MainController {
   @GetMapping("/accountcurrency")
   @ResponseStatus(value = HttpStatus.OK)
   public List<BankAccountCurrencyDto> findAllAccountCurrency() {
-    return this.bankAccountCurrencyService.getAccountCurrencyList();
+    return this.bankAccountCurrencyService.getList();
   }
   @PostMapping("/accountcurrency")
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
     bankAccountCurrencyService.create(bankAccountCurrencyDto);
   }
@@ -114,6 +121,7 @@ public class MainController {
     bankAccountCurrencyService.createWithIds(idAccount,idCurrency);
   }
   @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
+  @ResponseStatus(value = HttpStatus.FOUND)
   public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
     return bankAccountCurrencyService.getById(idAccount,idCurrency);
   }

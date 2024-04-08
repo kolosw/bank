@@ -2,7 +2,6 @@ package bank.mapper;
 
 import bank.dto.UserDto;
 import bank.entities.User;
-import org.springframework.stereotype.Component;
 
 public class UserMapper {
 

@@ -12,11 +12,13 @@ public class Transaction {
     private @Id
     @GeneratedValue Integer id;
 
-    @Column(name = "id_sender")
+    @Column(name = "id_sender", nullable = false)
     private Integer senderId;
-    @Column(name = "id_recipient")
+    @Column(name = "id_recipient", nullable = false)
     private Integer recipientId;
+    @Column(nullable = false)
     private java.sql.Date date;
+    @Column(nullable = false)
     private java.sql.Time time;
 
     public Transaction() {

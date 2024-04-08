@@ -9,7 +9,7 @@ export class BankAccountCurrencyService {
   private accountCurrencyUrl: string;
 
   constructor(private http: HttpClient) {
-    this.accountCurrencyUrl = 'http://localhost:8080/accountCurrency';
+    this.accountCurrencyUrl = 'http://localhost:8080/accountcurrency';
   }
 
   public findAll(): Observable<BankAccountCurrency[]> {

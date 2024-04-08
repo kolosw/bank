@@ -11,8 +11,11 @@ public class Currency {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String shortname;
+    @Column(length = 1, nullable = false)
     private Character symbol;
     @OneToMany(mappedBy = "currency")
     private Set<BankAccountCurrency> accountAssoc;

@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 public class CurrencyExchange {
     private @Id
     @GeneratedValue int id;
-    @Column(name = "id_from")
+    @Column(name = "id_from", nullable = false)
     private Integer from;
-    @Column(name = "id_to")
+    @Column(name = "id_to", nullable = false)
     private Integer to;
 
     private Float amount;
 
-    public CurrencyExchange(int id, Integer from, Integer to, Float amount) {
+    public CurrencyExchange(Integer id, Integer from, Integer to, Float amount) {
         this.id = id;
         this.from = from;
         this.to = to;

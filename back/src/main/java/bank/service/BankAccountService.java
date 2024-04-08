@@ -48,7 +48,7 @@ public class BankAccountService {
         bankAccountRepository.save(bankAccount);
     }
 
-    public List<BankAccountDto> getaccountList()
+    public List<BankAccountDto> getList()
     {
         List<BankAccountDto> dtoList = new LinkedList<>();
         for (BankAccount bankAccount : bankAccountRepository.findAll())

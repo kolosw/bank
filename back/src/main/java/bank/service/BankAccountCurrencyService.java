@@ -50,7 +50,7 @@ public class BankAccountCurrencyService {
             bankAccountCurrency.setCurrency(dto.getCurrency());
         repository.save(bankAccountCurrency);
     }
-    public List<BankAccountCurrencyDto> getAccountCurrencyList()
+    public List<BankAccountCurrencyDto> getList()
     {
         List<BankAccountCurrencyDto> dto = new ArrayList<>();
         for(BankAccountCurrency bankAccountCurrency : repository.findAll())

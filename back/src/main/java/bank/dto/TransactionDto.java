@@ -68,7 +68,7 @@ public class TransactionDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TransactionDto that = (TransactionDto) o;
-        return id == that.id && senderId == that.senderId && recipientId == that.recipientId && Objects.equals(date, that.date) && Objects.equals(time, that.time);
+        return Objects.equals(id, that.id) && Objects.equals(senderId, that.senderId) && Objects.equals(recipientId, that.recipientId) && Objects.equals(date, that.date) && Objects.equals(time, that.time);
     }
 
     @Override

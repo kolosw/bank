@@ -38,7 +38,7 @@ public class CurrencyService {
             currency.setSymbol(newCurrency.getSymbol());
         currencyRepository.save(currency);
     }
-    public List<Currency> getCurrencyList()
+    public List<Currency> getList()
     {
         return currencyRepository.findAll();
     }

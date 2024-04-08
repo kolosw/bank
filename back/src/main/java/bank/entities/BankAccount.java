@@ -17,8 +17,9 @@ public class BankAccount {
     private User user;
     @OneToMany(mappedBy = "bankAccount")
     private Set<BankAccountCurrency> currencyAssoc;
-    @Column(name = "account_type")
+    @Column(name = "account_type", nullable = false)
     private String type;
+    @Column(nullable = false)
     private Integer balance;
 
     public BankAccount() {

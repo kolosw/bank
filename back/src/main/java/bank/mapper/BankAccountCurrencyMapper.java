@@ -1,12 +1,8 @@
 package bank.mapper;
 
 import bank.dto.BankAccountCurrencyDto;
-import bank.dto.BankAccountDto;
-import bank.entities.BankAccount;
 import bank.entities.BankAccountCurrency;
 import bank.entities.BankAccountCurrencyId;
-import bank.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
