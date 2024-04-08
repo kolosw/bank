@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 
   @Autowired
@@ -117,11 +117,6 @@ public class MainController {
   public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
     return bankAccountCurrencyService.getById(idAccount,idCurrency);
   }
-
-//  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
-//  public void updateAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency, @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
-//    bankAccountCurrencyService.update(idAccount, idCurrency, bankAccountCurrencyDto);
-//  }
 
   @DeleteMapping("/accountcurrency/{accountId}/{currencyId}")
   public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {

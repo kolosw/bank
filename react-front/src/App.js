@@ -25,7 +25,7 @@ class App extends Component {
             <Route path='/account/:id' exact={true} component={BankAccountEdit}/>
             <Route path='/bankaccountcurrencies' exact={true} component={BankAccountCurrencyList}/>
             <Route path='/bankaccountcurrencies/:id1/:id2' exact={true} component={BankAccountCurrencyEdit}/>
-            <Route path="/bankaccountcurrency/new" component={BankAccountCurrencyEdit} />
+            <Route path="/bankaccountcurrency/new" exact={true} component={BankAccountCurrencyEdit} />
           </Switch>
         </Router>
     )
