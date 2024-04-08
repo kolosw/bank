@@ -47,14 +47,6 @@ class BankAccountCurrencyList extends Component {
           <ButtonGroup>
             <Button
               size="sm"
-              color="primary"
-              tag={Link}
-              to={`/bankaccountcurrencies/${bankAccountCurrency.account.id}/${bankAccountCurrency.currency.id}`}
-            >
-              Edit
-            </Button>
-            <Button
-              size="sm"
               color="danger"
               onClick={() => this.remove(bankAccountCurrency.account.id, bankAccountCurrency.currency.id)}
             >

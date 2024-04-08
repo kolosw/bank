@@ -39,6 +39,7 @@ class CurrencyList extends Component {
 
         const currencyList = currencies.map(currency => {
             return <tr key={currency.id}>
+                <td>{currency.id}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{currency.name}</td>
                 <td>{currency.shortname}</td>
                 <td>{currency.symbol}</td>
@@ -62,10 +63,11 @@ class CurrencyList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
+                            <th width="10%">#</th>
                             <th width="20%">Name</th>
                             <th width="20%">Shortname</th>
                             <th width="20%">Symbol</th>
-                            <th width="40%">Actions</th>
+                            <th width="30%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>

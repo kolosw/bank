@@ -91,6 +91,7 @@ async handleSubmit(event) {
     // Handle the case when one or both IDs are missing
     console.log('Missing ID1 or ID2');
   }
+  this.props.history.push('/bankaccountcurrencies');
 }
 
 render() {

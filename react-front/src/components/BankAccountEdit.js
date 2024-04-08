@@ -22,7 +22,7 @@ class BankAccountEdit extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const bankAccount = await (await fetch(`/api/bankaccount/${this.props.match.params.id}`)).json();
+            const bankAccount = await (await fetch(`/api/account/${this.props.match.params.id}`)).json();
             this.setState({item : bankAccount});
         }
     }
@@ -39,7 +39,7 @@ class BankAccountEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch(`/api/bankaccounts{item.id ? '/' + item.id : ''}`, {
+        await fetch(`/api/account${item.id ? '/' + item.id : ''}`, {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -47,7 +47,7 @@ class BankAccountEdit extends Component {
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/account');
+        this.props.history.push('/accounts');
     }
 
     render() {
@@ -60,19 +60,19 @@ class BankAccountEdit extends Component {
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="userid">User Id</Label>
-                        <Input type="text" name="userid" id="userid" value={item.userId || ''}
-                               onChange={this.handleChange} autoComplete="userid"/>
+                        <Label for="userId">User Id</Label>
+                        <Input type="text" name="userId" id="userId" value={item.userId || ''}
+                               onChange={this.handleChange} autoComplete="userId"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="type">type</Label>
+                        <Label for="type">Type</Label>
                         <Input type="text" name="type" id="type" value={item.type || ''}
                                onChange={this.handleChange} autoComplete="type"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="balance">Balance</Label>
-                        <Input type="text" name="balance" id="balance" value={item.email || ''}
-                               onChange={this.handleChange} autoComplete="Balance"/>
+                        <Input type="text" name="balance" id="balance" value={item.balance || ''}
+                               onChange={this.handleChange} autoComplete="balance"/>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
