@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 
   @Autowired
@@ -30,7 +30,7 @@ public class MainController {
 
   @GetMapping("/users")
   @ResponseStatus(value = HttpStatus.OK)
-  public List<User> findAllUser() {
+  public List<UserDto> findAllUser() {
     return this.userService.getList();
   }
   @PostMapping("/users")
@@ -57,7 +57,7 @@ public class MainController {
 
   @GetMapping("/currency")
   @ResponseStatus(value = HttpStatus.OK)
-  public List<Currency> findAllCurrency() {
+  public List<CurrencyDto> findAllCurrency() {
     return this.currencyService.getList();
   }
   @PostMapping("/currency")
@@ -116,9 +116,9 @@ public class MainController {
     bankAccountCurrencyService.create(bankAccountCurrencyDto);
   }
 
-  @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
-  public void createAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
-    bankAccountCurrencyService.createWithIds(idAccount,idCurrency);
+  @PutMapping("/accountcurrency")
+  public void updateAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+    bankAccountCurrencyService.update(bankAccountCurrencyDto);
   }
   @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
   @ResponseStatus(value = HttpStatus.FOUND)
@@ -127,6 +127,7 @@ public class MainController {
   }
 
   @DeleteMapping("/accountcurrency/{accountId}/{currencyId}")
+  @ResponseStatus(value = HttpStatus.OK)
   public void deleteAccountCurrency(@PathVariable Integer accountId, @PathVariable Integer currencyId) {
     bankAccountCurrencyService.deleteById(accountId,currencyId);
   }

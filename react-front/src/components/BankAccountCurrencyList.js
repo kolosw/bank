@@ -17,7 +17,7 @@ class BankAccountCurrencyList extends Component {
   }
 
   async remove(accountId, currencyId) {
-    await fetch(`api/bankAccountCurrencies/${accountId}/${currencyId}`, {
+    await fetch(`api/accountcurrency/${accountId}/${currencyId}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -42,9 +42,11 @@ class BankAccountCurrencyList extends Component {
       <tr key={bankAccountCurrency.id}>
         <td style={{ whiteSpace: 'nowrap' }}>{bankAccountCurrency.account.id}</td>
         <td>{bankAccountCurrency.currency.id}</td>
-        <td>{bankAccountCurrency.account.balance}</td>
+        <td>{bankAccountCurrency.balance}</td>
         <td>
           <ButtonGroup>
+            <Button size="sm" color="primary" tag={Link} to={"/bankaccountcurrency/" +
+            bankAccountCurrency.currency.id + '/' + bankAccountCurrency.account.id}>Edit</Button>
             <Button
               size="sm"
               color="danger"

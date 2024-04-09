@@ -4,9 +4,9 @@ import bank.dto.BankAccountCurrencyDto;
 import bank.entities.BankAccountCurrency;
 import bank.entities.BankAccountCurrencyId;
 import bank.mapper.BankAccountCurrencyMapper;
+import bank.mapper.BankAccountMapper;
+import bank.mapper.CurrencyMapper;
 import bank.repository.BankAccountCurrencyRepository;
-import bank.repository.BankAccountRepository;
-import bank.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +18,15 @@ public class BankAccountCurrencyService {
     @Autowired
     BankAccountCurrencyRepository repository;
     @Autowired
-    CurrencyRepository currencyRepository;
+    BankAccountService bankAccountService;
     @Autowired
-    BankAccountRepository bankAccountRepository;
+    CurrencyService currencyService;
     @Autowired BankAccountCurrencyMapper bankAccountCurrencyMapper;
 
-    public void createWithIds(Integer accountId, Integer currencyId)
-    {
-        repository.save(new BankAccountCurrency(bankAccountRepository.getReferenceById(accountId),
-                currencyRepository.getReferenceById(currencyId)));
-    }
     public void create(BankAccountCurrencyDto dto)
     {
+        dto.setAccount(bankAccountService.getById(dto.getAccount().getId()));
+        dto.setCurrency(currencyService.getById(dto.getCurrency().getId()));
         repository.save(bankAccountCurrencyMapper.toEntity(dto));
     }
     public BankAccountCurrencyDto getById(int accountId, int currencyId)
@@ -39,22 +36,18 @@ public class BankAccountCurrencyService {
     }
     public void deleteById(int accountId, int currencyId)
     {
-        repository.delete(repository.getReferenceById(new BankAccountCurrencyId(currencyId,accountId)));
+        repository.delete(repository.getReferenceById(new BankAccountCurrencyId(accountId,currencyId)));
     }
-    public void update (Integer accountId, Integer currencyId, BankAccountCurrencyDto dto)
+    public void update (BankAccountCurrencyDto dto)
     {
-        BankAccountCurrency bankAccountCurrency = repository.getReferenceById(new BankAccountCurrencyId(accountId,currencyId));
-        if(dto.getAccount() != null)
-            bankAccountCurrency.setAccount(dto.getAccount());
-        if(dto.getCurrency() != null)
-            bankAccountCurrency.setCurrency(dto.getCurrency());
+        BankAccountCurrency bankAccountCurrency = bankAccountCurrencyMapper.toEntity(dto);
         repository.save(bankAccountCurrency);
     }
     public List<BankAccountCurrencyDto> getList()
     {
         List<BankAccountCurrencyDto> dto = new ArrayList<>();
         for(BankAccountCurrency bankAccountCurrency : repository.findAll())
-            dto.add(new BankAccountCurrencyDto(bankAccountCurrency.getAccount(),bankAccountCurrency.getCurrency()));
+            dto.add(bankAccountCurrencyMapper.toDto(bankAccountCurrency));
         return dto;
     }
 }

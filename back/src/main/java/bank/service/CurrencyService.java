@@ -7,6 +7,7 @@ import bank.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -38,8 +39,11 @@ public class CurrencyService {
             currency.setSymbol(newCurrency.getSymbol());
         currencyRepository.save(currency);
     }
-    public List<Currency> getList()
+    public List<CurrencyDto> getList()
     {
-        return currencyRepository.findAll();
+        List<CurrencyDto> list = new LinkedList<>();
+        for(Currency currency : currencyRepository.findAll())
+            list.add(CurrencyMapper.toDto(currency));
+        return list;
     }
 }

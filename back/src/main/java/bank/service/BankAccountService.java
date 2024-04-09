@@ -41,8 +41,6 @@ public class BankAccountService {
         BankAccount bankAccount = bankAccountRepository.getReferenceById(id);
         if(bankAccountDto.getUserId() != null)
             bankAccount.setUser(user);
-        if(bankAccountDto.getBalance() != null)
-            bankAccount.setBalance(bankAccountDto.getBalance());
         if(bankAccountDto.getType() != null)
             bankAccount.setType(bankAccountDto.getType());
         bankAccountRepository.save(bankAccount);

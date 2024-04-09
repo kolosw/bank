@@ -7,6 +7,7 @@ import bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -40,8 +41,11 @@ public class UserService {
             user.setPassword(newUser.getPassword());
         userRepository.save(user);
     }
-    public List<User> getList()
+    public List<UserDto> getList()
     {
-        return userRepository.findAll();
+        List<UserDto> list = new LinkedList<>();
+        for(User user : userRepository.findAll())
+            list.add(UserMapper.toDto(user));
+        return list;
     }
 }

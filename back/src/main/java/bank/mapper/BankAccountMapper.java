@@ -16,7 +16,6 @@ public class BankAccountMapper {
         accountDto.setId(account.getId());
         accountDto.setType(account.getType());
         accountDto.setUserId(account.getUser().getId());
-        accountDto.setBalance(account.getBalance());
         return accountDto;
     }
 
@@ -26,7 +25,6 @@ public class BankAccountMapper {
             bankAccount.setId(bankAccountDto.getId());
         bankAccount.setUser(UserMapper.toEntity(userService.getById(bankAccountDto.getUserId())));
         bankAccount.setType(bankAccountDto.getType());
-        bankAccount.setBalance(bankAccountDto.getBalance());
         return bankAccount;
     }
 }

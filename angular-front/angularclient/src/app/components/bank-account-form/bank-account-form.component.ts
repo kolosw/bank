@@ -20,7 +20,6 @@ export class BankAccountFormComponent {
   }
 
   onSubmit() {
-    console.log('Account:', this.account);
     this.bankAccountService.save(this.account).subscribe(result => this.goToBankAccountList());
   }
 

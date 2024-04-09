@@ -19,17 +19,14 @@ public class BankAccount {
     private Set<BankAccountCurrency> currencyAssoc;
     @Column(name = "account_type", nullable = false)
     private String type;
-    @Column(nullable = false)
-    private Integer balance;
 
     public BankAccount() {
     }
 
-    public BankAccount(Integer id,User user, String type, Integer balance) {
+    public BankAccount(Integer id,User user, String type) {
         this.id = id;
         this.user = user;
         this.type = type;
-        this.balance = balance;
     }
 
     public int getId() {
@@ -56,25 +53,18 @@ public class BankAccount {
         this.type = type;
     }
 
-    public Integer getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Integer balance) {
-        this.balance = balance;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BankAccount that = (BankAccount) o;
-        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(currencyAssoc, that.currencyAssoc) && Objects.equals(type, that.type) && Objects.equals(balance, that.balance);
+        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(currencyAssoc, that.currencyAssoc) && Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, currencyAssoc, type, balance);
+        return Objects.hash(id, user, currencyAssoc, type);
     }
 
     @Override
@@ -84,7 +74,6 @@ public class BankAccount {
                 ", user=" + user +
                 ", currencyAssoc=" + currencyAssoc +
                 ", type='" + type + '\'' +
-                ", balance=" + balance +
                 '}';
     }
 }

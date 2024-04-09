@@ -2,17 +2,6 @@
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #bankAccountForm="ngForm">
       <div class="form-group">
-        <label for="balance">Balance</label>
-        <input type="number" [(ngModel)]="account.balance"
-               class="form-control"
-               id="balance"
-               name="balance"
-               placeholder="Enter your balance"
-               required #balance="ngModel">
-      </div>
-      <div [hidden]="!balance.pristine" class="alert alert-danger">Balance is required</div>
-
-      <div class="form-group">
         <label for="type">Type</label>
         <input type="text" [(ngModel)]="account.type"
                class="form-control"

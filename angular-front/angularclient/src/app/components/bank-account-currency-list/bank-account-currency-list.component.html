@@ -5,7 +5,7 @@
       <tr>
         <th scope="col">Account ID</th>
         <th scope="col">Currency ID</th>
-        <th scope="col">Account balance</th>
+        <th scope="col">Balance</th>
         <th scope="col">Currency name</th>
         <th scope="col">USER ID</th>
         <th scope="col">Actions</th>
@@ -15,7 +15,7 @@
       <tr *ngFor="let accountCurrency of bankAccountCurrency">
         <td>{{ accountCurrency.account.id }}</td>
         <td>{{ accountCurrency.currency.id }}</td>
-        <td>{{ accountCurrency.account.balance }}</td>
+        <td>{{ accountCurrency.balance }}</td>
         <td>{{ accountCurrency.currency.name }}</td>
         <td>{{ accountCurrency.account.userId }}</td>
         <td>

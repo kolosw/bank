@@ -41,7 +41,6 @@ class BankAccountList extends Component {
             return <tr key={bankAccount.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{bankAccount.userId}</td>
                 <td>{bankAccount.type}</td>
-                <td>{bankAccount.balance}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/account/" + bankAccount.id}>Edit</Button>
@@ -62,9 +61,8 @@ class BankAccountList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">userID</th>
-                            <th width="20%">Type</th>
-                            <th width="20%">balance</th>
+                            <th width="30%">userID</th>
+                            <th width="30%">Type</th>
                             <th width="40%">Actions</th>
                         </tr>
                         </thead>

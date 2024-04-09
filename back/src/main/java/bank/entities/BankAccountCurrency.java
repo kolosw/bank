@@ -15,14 +15,23 @@ public class BankAccountCurrency {
     private Currency currency;
     @EmbeddedId
     private BankAccountCurrencyId id = new BankAccountCurrencyId();
-
-    public BankAccountCurrency(BankAccount bankAccount, Currency currency) {
+    private Integer balance;
+    public BankAccountCurrency(BankAccount bankAccount, Currency currency, Integer balance) {
         this.bankAccount = bankAccount;
         this.currency = currency;
+        this.balance = balance;
     }
 
     public BankAccountCurrency() {
 
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 
     public BankAccountCurrencyId getId() {
@@ -54,20 +63,11 @@ public class BankAccountCurrency {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BankAccountCurrency that = (BankAccountCurrency) o;
-        return Objects.equals(bankAccount, that.bankAccount) && Objects.equals(currency, that.currency) && Objects.equals(id, that.id);
+        return Objects.equals(bankAccount, that.bankAccount) && Objects.equals(currency, that.currency) && Objects.equals(id, that.id) && Objects.equals(balance, that.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bankAccount, currency, id);
-    }
-
-    @Override
-    public String toString() {
-        return "BankAccountCurrency{" +
-                "bankAccount=" + bankAccount +
-                ", currency=" + currency +
-                ", id=" + id +
-                '}';
+        return Objects.hash(bankAccount, currency, id, balance);
     }
 }

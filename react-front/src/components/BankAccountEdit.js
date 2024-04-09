@@ -7,8 +7,7 @@ class BankAccountEdit extends Component {
 
     emptyItem = {
         userId: '',
-        type: '',
-        balance: ''
+        type: ''
     };
 
     constructor(props) {

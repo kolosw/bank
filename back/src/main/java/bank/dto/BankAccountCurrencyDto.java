@@ -1,34 +1,40 @@
 package bank.dto;
 
-import bank.entities.BankAccount;
-import bank.entities.Currency;
-
 public class BankAccountCurrencyDto {
-    private BankAccount account;
-    private Currency currency;
+    private BankAccountDto account;
+    private CurrencyDto currency;
+    private Integer balance;
 
     public BankAccountCurrencyDto() {
     }
 
-    public BankAccountCurrencyDto(BankAccount account, Currency currency) {
+    public BankAccountCurrencyDto(BankAccountDto account, CurrencyDto currency, Integer balance) {
         this.account = account;
         this.currency = currency;
+        this.balance = balance;
     }
 
-    public BankAccount getAccount() {
+    public BankAccountDto getAccount() {
         return account;
     }
 
-    public void setAccount(BankAccount account) {
+    public void setAccount(BankAccountDto account) {
         this.account = account;
     }
 
-    public Currency getCurrency() {
+    public CurrencyDto getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(CurrencyDto currency) {
         this.currency = currency;
     }
 
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
 }
