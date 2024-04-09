@@ -4,8 +4,6 @@ import bank.dto.CurrencyDto;
 import bank.entities.Currency;
 import bank.mapper.CurrencyMapper;
 import bank.repository.CurrencyRepository;
-import bank.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -31,7 +29,7 @@ public class CurrencyService {
     {
         currencyRepository.delete(currencyRepository.getReferenceById(i));
     }
-    public void update (Integer id, CurrencyDto newCurrency)
+    public void update (CurrencyDto newCurrency, Integer id)
     {
         Currency currency = currencyRepository.getReferenceById(id);
         if(newCurrency.getName() != null)

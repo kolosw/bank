@@ -1,11 +1,16 @@
 package bank.service;
 
+import bank.dto.CurrencyDto;
 import bank.dto.CurrencyExchangeDto;
+import bank.entities.Currency;
 import bank.entities.CurrencyExchange;
+import bank.mapper.CurrencyExchangeMapper;
+import bank.mapper.CurrencyMapper;
 import bank.repository.CurrencyExchangeRepository;
-import bank.repository.CurrencyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class CurrencyExchangeService {
@@ -30,7 +35,7 @@ public class CurrencyExchangeService {
     {
         currencyExchangeRepository.delete(currencyExchangeRepository.getReferenceById(i));
     }
-    public void update (Integer id, CurrencyExchangeDto currencyExchangeDto)
+    public void update (CurrencyExchangeDto currencyExchangeDto, Integer id)
     {
         CurrencyExchange currency = currencyExchangeRepository.getReferenceById(id);
         if(currencyExchangeDto.getTo() != null)
@@ -40,5 +45,13 @@ public class CurrencyExchangeService {
         if(currencyExchangeDto.getAmount() != null)
             currency.setAmount(currencyExchangeDto.getAmount());
         currencyExchangeRepository.save(currency);
+    }
+
+    public List<CurrencyExchangeDto> getList()
+    {
+        List<CurrencyExchangeDto> list = new LinkedList<>();
+        for(CurrencyExchange currencyExchange : currencyExchangeRepository.findAll())
+            list.add(CurrencyExchangeMapper.toDto(currencyExchange));
+        return list;
     }
 }

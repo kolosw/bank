@@ -4,11 +4,7 @@ import bank.dto.BankAccountCurrencyDto;
 import bank.entities.BankAccountCurrency;
 import bank.entities.BankAccountCurrencyId;
 import bank.mapper.BankAccountCurrencyMapper;
-import bank.mapper.BankAccountMapper;
-import bank.mapper.CurrencyMapper;
 import bank.repository.BankAccountCurrencyRepository;
-import bank.repository.BankAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

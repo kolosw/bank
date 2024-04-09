@@ -1,7 +1,5 @@
 package bank.dto;
 
-import java.util.Objects;
-
 public class BankAccountDto {
 
     private Integer id;

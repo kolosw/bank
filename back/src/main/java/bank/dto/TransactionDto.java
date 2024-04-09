@@ -2,7 +2,6 @@ package bank.dto;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.Objects;
 
 public class TransactionDto {
     private Integer id;

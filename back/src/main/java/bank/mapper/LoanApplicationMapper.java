@@ -1,9 +1,7 @@
 package bank.mapper;
 
 import bank.dto.LoanApplicationDto;
-import bank.dto.UserDto;
 import bank.entities.LoanApplication;
-import bank.entities.User;
 
 public class LoanApplicationMapper {
 

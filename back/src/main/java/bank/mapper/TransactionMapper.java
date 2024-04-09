@@ -1,9 +1,7 @@
 package bank.mapper;
 
 import bank.dto.TransactionDto;
-import bank.dto.UserDto;
 import bank.entities.Transaction;
-import bank.entities.User;
 
 public class TransactionMapper {
 

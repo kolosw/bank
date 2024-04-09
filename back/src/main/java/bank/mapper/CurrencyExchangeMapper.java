@@ -1,28 +1,28 @@
 package bank.mapper;
 
+import bank.dto.CurrencyExchangeDto;
 import bank.dto.UserDto;
+import bank.entities.CurrencyExchange;
 import bank.entities.User;
 
 public class CurrencyExchangeMapper {
 
-    public static UserDto toDto(User user) {
-        UserDto userDTO = new UserDto();
-        userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setSurname(user.getSurname());
-        userDTO.setPassword(user.getPassword());
-        return userDTO;
+    public static CurrencyExchangeDto toDto(CurrencyExchange currencyExchange) {
+        CurrencyExchangeDto currencyExchangeDto = new CurrencyExchangeDto();
+        currencyExchangeDto.setId(currencyExchange.getId());
+        currencyExchangeDto.setAmount(currencyExchange.getAmount());
+        currencyExchangeDto.setFrom(currencyExchange.getFrom());
+        currencyExchangeDto.setTo(currencyExchange.getTo());
+        return currencyExchangeDto;
     }
 
-    public static User toEntity(UserDto userDTO) {
-        User user = new User();
-        if(userDTO.getId()!=null)
-            user.setId(userDTO.getId());
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        user.setSurname(userDTO.getSurname());
-        user.setPassword(userDTO.getPassword());
-        return user;
+    public static CurrencyExchange toEntity(CurrencyExchangeDto currencyExchangeDto) {
+        CurrencyExchange currencyExchange = new CurrencyExchange();
+        if(currencyExchangeDto.getId()!=null)
+            currencyExchange.setId(currencyExchangeDto.getId());
+        currencyExchange.setAmount(currencyExchangeDto.getAmount());
+        currencyExchange.setFrom(currencyExchangeDto.getFrom());
+        currencyExchange.setTo(currencyExchangeDto.getTo());
+        return currencyExchange;
     }
 }

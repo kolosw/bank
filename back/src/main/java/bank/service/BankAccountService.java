@@ -7,8 +7,6 @@ import bank.entities.User;
 import bank.mapper.BankAccountMapper;
 import bank.mapper.UserMapper;
 import bank.repository.BankAccountRepository;
-import bank.repository.CurrencyExchangeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;

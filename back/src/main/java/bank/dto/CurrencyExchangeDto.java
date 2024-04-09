@@ -5,16 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 public class CurrencyExchangeDto {
-    private @Id
-    @GeneratedValue int id;
-    @Column(name = "id_from")
+    private int id;
     private Integer from;
-    @Column(name = "id_to")
     private Integer to;
 
     private Float amount;
 
-    public CurrencyExchangeDto(int id, Integer from, Integer to, Float amount) {
+    public CurrencyExchangeDto(Integer id, Integer from, Integer to, Float amount) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -24,7 +21,7 @@ public class CurrencyExchangeDto {
     public CurrencyExchangeDto() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

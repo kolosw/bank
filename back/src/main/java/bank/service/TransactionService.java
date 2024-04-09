@@ -2,10 +2,12 @@ package bank.service;
 
 import bank.dto.TransactionDto;
 import bank.entities.Transaction;
+import bank.mapper.TransactionMapper;
 import bank.repository.TransactionRepository;
-import bank.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -16,21 +18,17 @@ public class TransactionService {
     }
     public void create(TransactionDto transactionDto)
     {
-        Transaction transaction = new Transaction(transactionDto.getId(),transactionDto.getSenderId(),
-                transactionDto.getRecipientId(), transactionDto.getDate(), transactionDto.getTime());
-        transactionRepository.save(transaction);
+        transactionRepository.save(TransactionMapper.toEntity(transactionDto));
     }
     public TransactionDto getById(int i)
     {
-        Transaction transaction = transactionRepository.getReferenceById(i);
-        return new TransactionDto(transaction.getId(),transaction.getSenderId(),
-                transaction.getRecipientId(), transaction.getDate(), transaction.getTime());
+        return TransactionMapper.toDto(transactionRepository.getReferenceById(i));
     }
     public void deleteById(int i)
     {
         transactionRepository.delete(transactionRepository.getReferenceById(i));
     }
-    public void update (Integer id, TransactionDto transactionDto)
+    public void update ( TransactionDto transactionDto, Integer id)
     {
         Transaction transaction = transactionRepository.getReferenceById(id);
         if(transaction.getDate() != null)
@@ -42,5 +40,11 @@ public class TransactionService {
         if(transaction.getSenderId() != null)
             transaction.setSenderId(transactionDto.getSenderId());
         transactionRepository.save(transaction);
+    }
+    public List<TransactionDto> getList() {
+        List<TransactionDto> list = new LinkedList<>();
+        for (Transaction transaction : transactionRepository.findAll())
+            list.add(TransactionMapper.toDto(transaction));
+        return list;
     }
 }

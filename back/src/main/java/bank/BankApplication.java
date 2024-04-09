@@ -10,16 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class BankApplication {
-    private static final Logger log = LoggerFactory.getLogger(BankApplication.class);
     public static void main(String[] args) {
         SpringApplication.run(BankApplication.class, args);
-    }
-    @Bean
-    public CommandLineRunner demo(BankAccountService bankAccountService) {
-        return (args) -> {
-            //log.info(bankAccountService.getaccountList().toString());
-            log.info("Running...");
-            log.info("");
-        };
     }
 }
