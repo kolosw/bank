@@ -15,7 +15,7 @@ public class TransactionDto {
     public TransactionDto() {
     }
 
-    public TransactionDto(int id, Integer senderId, Integer recipientId, Date date, Time time) {
+    public TransactionDto(Integer id, Integer senderId, Integer recipientId, Date date, Time time) {
         this.id = id;
         this.senderId = senderId;
         this.recipientId = recipientId;
@@ -23,7 +23,7 @@ public class TransactionDto {
         this.time = time;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -63,16 +63,4 @@ public class TransactionDto {
         this.time = time;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TransactionDto that = (TransactionDto) o;
-        return Objects.equals(id, that.id) && Objects.equals(senderId, that.senderId) && Objects.equals(recipientId, that.recipientId) && Objects.equals(date, that.date) && Objects.equals(time, that.time);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, senderId, recipientId, date, time);
-    }
 }

@@ -7,6 +7,7 @@ import bank.mapper.BankAccountCurrencyMapper;
 import bank.mapper.BankAccountMapper;
 import bank.mapper.CurrencyMapper;
 import bank.repository.BankAccountCurrencyRepository;
+import bank.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,20 @@ import java.util.List;
 
 @Service
 public class BankAccountCurrencyService {
-    @Autowired
-    BankAccountCurrencyRepository repository;
-    @Autowired
-    BankAccountService bankAccountService;
-    @Autowired
-    CurrencyService currencyService;
-    @Autowired BankAccountCurrencyMapper bankAccountCurrencyMapper;
+    private final BankAccountCurrencyRepository repository;
 
+    private final BankAccountService bankAccountService;
+
+    private final CurrencyService currencyService;
+    private final BankAccountCurrencyMapper bankAccountCurrencyMapper;
+
+    public BankAccountCurrencyService(BankAccountCurrencyRepository repository, BankAccountService bankAccountService,
+                              CurrencyService currencyService, BankAccountCurrencyMapper bankAccountCurrencyMapper) {
+        this.repository = repository;
+        this.bankAccountService = bankAccountService;
+        this.currencyService = currencyService;
+        this.bankAccountCurrencyMapper = bankAccountCurrencyMapper;
+    }
     public void create(BankAccountCurrencyDto dto)
     {
         dto.setAccount(bankAccountService.getById(dto.getAccount().getId()));

@@ -7,6 +7,7 @@ import bank.entities.User;
 import bank.mapper.BankAccountMapper;
 import bank.mapper.UserMapper;
 import bank.repository.BankAccountRepository;
+import bank.repository.CurrencyExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,18 @@ import java.util.List;
 
 @Service
 public class BankAccountService {
-    @Autowired
-    BankAccountRepository bankAccountRepository;
-    @Autowired
-    UserService userService;
-    @Autowired
-    BankAccountMapper bankAccountMapper;
+    private final BankAccountRepository bankAccountRepository;
+
+    private final UserService userService;
+
+    private final BankAccountMapper bankAccountMapper;
+
+
+    public BankAccountService(BankAccountRepository bankAccountRepository, UserService userService, BankAccountMapper bankAccountMapper) {
+        this.bankAccountRepository = bankAccountRepository;
+        this.userService = userService;
+        this.bankAccountMapper = bankAccountMapper;
+    }
     public void create(BankAccountDto bankAccountDto)
     {
         bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));

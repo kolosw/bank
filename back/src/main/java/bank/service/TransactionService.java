@@ -3,14 +3,17 @@ package bank.service;
 import bank.dto.TransactionDto;
 import bank.entities.Transaction;
 import bank.repository.TransactionRepository;
+import bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionService {
-    @Autowired
-    TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
 
+    public TransactionService(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
     public void create(TransactionDto transactionDto)
     {
         Transaction transaction = new Transaction(transactionDto.getId(),transactionDto.getSenderId(),

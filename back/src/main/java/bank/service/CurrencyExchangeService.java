@@ -3,14 +3,17 @@ package bank.service;
 import bank.dto.CurrencyExchangeDto;
 import bank.entities.CurrencyExchange;
 import bank.repository.CurrencyExchangeRepository;
+import bank.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CurrencyExchangeService {
-    @Autowired
-    CurrencyExchangeRepository currencyExchangeRepository;
+    private final CurrencyExchangeRepository currencyExchangeRepository;
 
+    public CurrencyExchangeService(CurrencyExchangeRepository currencyExchangeRepository) {
+        this.currencyExchangeRepository = currencyExchangeRepository;
+    }
     public void create(CurrencyExchangeDto currencyExchangeDto)
     {
         CurrencyExchange currency = new CurrencyExchange(currencyExchangeDto.getId(),currencyExchangeDto.getFrom(),

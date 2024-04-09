@@ -11,6 +11,7 @@ public class BankAccountCurrencyMapper {
 
     @Autowired
     BankAccountMapper accountMapper;
+
     public BankAccountCurrencyDto toDto(BankAccountCurrency bankAccountCurrency) {
         BankAccountCurrencyDto bankAccountCurrencyDto = new BankAccountCurrencyDto();
         bankAccountCurrencyDto.setAccount(accountMapper.toDto(bankAccountCurrency.getAccount()));

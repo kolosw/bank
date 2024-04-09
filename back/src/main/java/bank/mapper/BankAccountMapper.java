@@ -11,6 +11,7 @@ public class BankAccountMapper {
 
     @Autowired
     UserService userService;
+
     public BankAccountDto toDto(BankAccount account) {
         BankAccountDto accountDto = new BankAccountDto();
         accountDto.setId(account.getId());

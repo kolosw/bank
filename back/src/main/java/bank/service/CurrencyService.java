@@ -4,6 +4,7 @@ import bank.dto.CurrencyDto;
 import bank.entities.Currency;
 import bank.mapper.CurrencyMapper;
 import bank.repository.CurrencyRepository;
+import bank.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.List;
 
 @Service
 public class CurrencyService {
-    @Autowired
-    CurrencyRepository currencyRepository;
+    private final CurrencyRepository currencyRepository;
 
+    public CurrencyService(CurrencyRepository currencyRepository) {
+        this.currencyRepository = currencyRepository;
+    }
     public void create(CurrencyDto currencyDto)
     {
         currencyRepository.save(CurrencyMapper.toEntity(currencyDto));
