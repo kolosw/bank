@@ -4,7 +4,6 @@ public class UserDto {
     private Integer id;
     private String name;
     private String surname;
-
     private String email;
     private String password;
 
@@ -25,6 +24,7 @@ public class UserDto {
         this.email = email;
         this.password = password;
     }
+
     @Override
     public String toString() {
         return "User{" +
@@ -33,6 +33,7 @@ public class UserDto {
                 ", email='" + email + '\'' +
                 '}';
     }
+
     public String getName() {
         return name;
     }

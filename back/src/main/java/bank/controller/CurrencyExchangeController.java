@@ -1,9 +1,7 @@
 package bank.controller;
 
 import bank.dto.CurrencyExchangeDto;
-import bank.dto.LoanApplicationDto;
 import bank.service.CurrencyExchangeService;
-import bank.service.LoanApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +21,7 @@ public class CurrencyExchangeController {
     public List<CurrencyExchangeDto> findAllUser() {
         return this.currencyExchangeService.getList();
     }
+
     @PostMapping("/currencyexchange")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void create(@RequestBody CurrencyExchangeDto currencyExchangeDto) {

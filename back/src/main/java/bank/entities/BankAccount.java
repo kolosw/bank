@@ -20,8 +20,7 @@ public class BankAccount {
     @Column(name = "account_type", nullable = false)
     private String type;
 
-    public BankAccount() {
-    }
+    public BankAccount() {}
 
     public BankAccount(Integer id,User user, String type) {
         this.id = id;
@@ -52,7 +51,6 @@ public class BankAccount {
     public void setType(String type) {
         this.type = type;
     }
-
 
     @Override
     public boolean equals(Object o) {

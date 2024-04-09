@@ -11,15 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 public class BankAccountController {
     private final BankAccountService accountService;
-    BankAccountController(BankAccountService accountService)
-    {
-        this.accountService = accountService;
-    }
-
+    BankAccountController(BankAccountService accountService) {this.accountService = accountService;}
 
     @GetMapping("/account")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<BankAccountDto> findAllAccount() {return this.accountService.getList();  }
+    public List<BankAccountDto> findAllAccount() {return this.accountService.getList();}
+
     @PostMapping("/account")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createAccount(@RequestBody BankAccountDto bankAccountDto) {
@@ -41,5 +38,4 @@ public class BankAccountController {
     public void deleteAccount(@PathVariable Integer id) {
         accountService.deleteById(id);
     }
-
 }

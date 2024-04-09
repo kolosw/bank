@@ -21,6 +21,7 @@ public class LoanApplicationController {
     public List<LoanApplicationDto> findAllUser() {
         return this.loanApplicationService.getList();
     }
+
     @PostMapping("/loanapplication")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void create(@RequestBody LoanApplicationDto loanApplicationDto) {

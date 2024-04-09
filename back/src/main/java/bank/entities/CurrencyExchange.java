@@ -11,7 +11,6 @@ public class CurrencyExchange {
     private Integer from;
     @Column(name = "id_to", nullable = false)
     private Integer to;
-
     private Float amount;
 
     public CurrencyExchange(Integer id, Integer from, Integer to, Float amount) {

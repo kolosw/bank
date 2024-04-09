@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class LoanApplication {
     @Id
     @GeneratedValue Integer id;
-
     @Column(name = "id_bank_account")
     Integer bankAccountId;
     @Column(nullable = false)

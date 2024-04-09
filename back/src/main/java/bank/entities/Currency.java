@@ -19,8 +19,8 @@ public class Currency {
     private Character symbol;
     @OneToMany(mappedBy = "currency")
     private Set<BankAccountCurrency> accountAssoc;
-    public Currency() {
-    }
+
+    public Currency() {}
 
     public Currency(int id, String name, String shortname, Character symbol) {
         this.id = id;

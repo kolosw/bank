@@ -1,9 +1,7 @@
 package bank.mapper;
 
 import bank.dto.CurrencyExchangeDto;
-import bank.dto.UserDto;
 import bank.entities.CurrencyExchange;
-import bank.entities.User;
 
 public class CurrencyExchangeMapper {
 

@@ -1,11 +1,8 @@
 package bank.service;
 
-import bank.dto.CurrencyDto;
 import bank.dto.CurrencyExchangeDto;
-import bank.entities.Currency;
 import bank.entities.CurrencyExchange;
 import bank.mapper.CurrencyExchangeMapper;
-import bank.mapper.CurrencyMapper;
 import bank.repository.CurrencyExchangeRepository;
 import org.springframework.stereotype.Service;
 

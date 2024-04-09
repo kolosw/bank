@@ -21,6 +21,7 @@ public class CurrencyController {
     public List<CurrencyDto> findAllCurrency() {
         return this.currencyService.getList();
     }
+
     @PostMapping("/currency")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createCurrency(@RequestBody CurrencyDto currency) { currencyService.create(currency);}

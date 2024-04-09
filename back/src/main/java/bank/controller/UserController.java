@@ -21,6 +21,7 @@ public class UserController {
     public List<UserDto> findAllUser() {
         return this.userService.getList();
     }
+
     @PostMapping("/users")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createUser(@RequestBody UserDto user) {

@@ -23,6 +23,7 @@ public class BankAccountCurrencyController {
     public List<BankAccountCurrencyDto> findAllAccountCurrency() {
         return this.bankAccountCurrencyService.getList();
     }
+
     @PostMapping("/accountcurrency")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
@@ -33,6 +34,7 @@ public class BankAccountCurrencyController {
     public void updateAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
         bankAccountCurrencyService.update(bankAccountCurrencyDto);
     }
+
     @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
     @ResponseStatus(value = HttpStatus.FOUND)
     public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {

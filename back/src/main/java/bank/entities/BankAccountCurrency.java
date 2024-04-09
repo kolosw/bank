@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "bank_account_currency")
 public class BankAccountCurrency {
+
     @ManyToOne
     @MapsId("account")
     private BankAccount bankAccount;
@@ -16,6 +17,7 @@ public class BankAccountCurrency {
     @EmbeddedId
     private BankAccountCurrencyId id = new BankAccountCurrencyId();
     private Integer balance;
+
     public BankAccountCurrency(BankAccount bankAccount, Currency currency, Integer balance) {
         this.bankAccount = bankAccount;
         this.currency = currency;

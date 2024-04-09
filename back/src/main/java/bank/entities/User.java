@@ -9,14 +9,12 @@ import java.util.Set;
 public class User {
 
 private @Id @GeneratedValue(strategy= GenerationType.AUTO) Integer id;
-
 @Column(nullable = false)
 private String name;
 @Column(nullable = false)
 private String surname;
 @OneToMany(mappedBy = "user")
 Set<BankAccount> bankAccounts;
-
 private String email;
 private String password;
 
@@ -37,6 +35,7 @@ private String password;
         this.email = email;
         this.password = password;
     }
+
     @Override
     public String toString() {
         return "User{" +
@@ -47,6 +46,7 @@ private String password;
                 ", password='" + password + '\'' +
                 '}';
     }
+
     public String getName() {
         return name;
     }

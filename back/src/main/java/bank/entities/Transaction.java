@@ -11,7 +11,6 @@ import java.util.Objects;
 public class Transaction {
     private @Id
     @GeneratedValue Integer id;
-
     @Column(name = "id_sender", nullable = false)
     private Integer senderId;
     @Column(name = "id_recipient", nullable = false)
@@ -77,7 +76,8 @@ public class Transaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return id == that.id && senderId == that.senderId && recipientId == that.recipientId && Objects.equals(date, that.date) && Objects.equals(time, that.time);
+        return Objects.equals(id, that.id) && Objects.equals(senderId, that.senderId) &&
+                Objects.equals(recipientId, that.recipientId) && Objects.equals(date, that.date) && Objects.equals(time, that.time);
     }
 
     @Override

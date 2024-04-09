@@ -22,6 +22,7 @@ public class TransactionController {
     public List<TransactionDto> findAllUser() {
         return this.transactionService.getList();
     }
+
     @PostMapping("/transaction")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void create(@RequestBody TransactionDto transactionDto) {
