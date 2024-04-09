@@ -19,8 +19,8 @@ export class BankAccountCurrencyService {
   public save(bankAccountCurrency : BankAccountCurrency) {
     return this.http.post<BankAccountCurrency>(this.accountCurrencyUrl, bankAccountCurrency);
   }
-  public delete(accountId: number, currencyId: number)
-  {
+
+  public delete(accountId: number, currencyId: number) {
   const url = `${this.accountCurrencyUrl}/${accountId}/${currencyId}`;
   return this.http.delete<number>(url);
   }

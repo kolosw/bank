@@ -19,19 +19,19 @@ export class BankAccountService {
   public save(account: BankAccount) {
     return this.http.post<BankAccount>(this.accountUrl, account);
   }
+
   public getById(id : number)
   {
     const url = `${this.accountUrl}/${id}`;
     return this.http.get<BankAccount>(url);
   }
-  public delete(accountId: number)
-  {
+
+  public delete(accountId: number) {
   const url = `${this.accountUrl}/${accountId}`;
   return this.http.delete<number>(url);
   }
 
-  public update(account: BankAccount)
-  {
+  public update(account: BankAccount) {
     const url = `${this.accountUrl}/${account.id}`;
     return this.http.put<BankAccount>(url,account);
   }

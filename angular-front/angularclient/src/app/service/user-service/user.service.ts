@@ -19,13 +19,13 @@ export class UserService {
   public save(user: User) {
     return this.http.post<User>(this.usersUrl, user);
   }
-  public delete(userId: number)
-  {
+
+  public delete(userId: number) {
   const url = `${this.usersUrl}/${userId}`;
   return this.http.delete<number>(url);
   }
-  public update(user: User)
-  {
+
+  public update(user: User) {
     const url = `${this.usersUrl}/${user.id}`;
     return this.http.put<User>(url,user);
   }
