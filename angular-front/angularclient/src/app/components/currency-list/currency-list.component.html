@@ -3,15 +3,35 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Shortname</th>
-        <th scope="col">Symbol</th>
+        <th scope="col">
+          #
+          <button class="sort-button" (click)="sort('id')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'id' && !sortReverse, 'fa-caret-down': sortColumn === 'id' && sortReverse}">{{sortColumn === 'id' && !sortReverse ? '^' : 'v'}}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Name
+          <button class="sort-button" (click)="sort('name')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'name' && !sortReverse, 'fa-caret-down': sortColumn === 'name' && sortReverse}">{{sortColumn === 'name' && !sortReverse ? '^' : 'v'}}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Shortname
+          <button class="sort-button" (click)="sort('shortname')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'shortname' && !sortReverse, 'fa-caret-down': sortColumn === 'shortname' && sortReverse}">{{sortColumn === 'shortname' && !sortReverse ? '^' : 'v'}}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Symbol
+          <button class="sort-button" (click)="sort('symbol')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'symbol' && !sortReverse, 'fa-caret-down': sortColumn === 'symbol' && sortReverse}">{{sortColumn === 'symbol' && !sortReverse ? '^' : 'v'}}</span>
+          </button>
+        </th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let currency of currencies">
+      <tr *ngFor="let currency of sortedCurrencies">
         <td>{{ currency.id }}</td>
         <td>{{ currency.name }}</td>
         <td>{{ currency.shortname }}</td>

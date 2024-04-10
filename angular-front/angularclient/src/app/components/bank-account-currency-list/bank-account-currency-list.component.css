@@ -1,0 +1,12 @@
+.sort-button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sort-button:hover {
+  text-decoration: underline;
+}
+

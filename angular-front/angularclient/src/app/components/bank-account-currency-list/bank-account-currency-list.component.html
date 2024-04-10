@@ -3,11 +3,36 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Account ID</th>
-        <th scope="col">Currency ID</th>
-        <th scope="col">Balance</th>
-        <th scope="col">Currency name</th>
-        <th scope="col">USER ID</th>
+        <th scope="col">
+          Account ID
+          <button class="sort-button" (click)="sort('account.id')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'account.id' && !sortReverse, 'fa-caret-down': sortColumn === 'account.id' && sortReverse}">{{ sortColumn === 'account.id' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Currency ID
+          <button class="sort-button" (click)="sort('currency.id')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'currency.id' && !sortReverse, 'fa-caret-down': sortColumn === 'currency.id' && sortReverse}">{{ sortColumn === 'currency.id' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Balance
+          <button class="sort-button" (click)="sort('balance')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'balance' && !sortReverse, 'fa-caret-down': sortColumn === 'balance' && sortReverse}">{{ sortColumn === 'balance' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Currency name
+          <button class="sort-button" (click)="sort('currency.name')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'currency.name' && !sortReverse, 'fa-caret-down': sortColumn === 'currency.name' && sortReverse}">{{ sortColumn === 'currency.name' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          USER ID
+          <button class="sort-button" (click)="sort('account.userId')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'account.userId' && !sortReverse, 'fa-caret-down': sortColumn === 'account.userId' && sortReverse}">{{ sortColumn === 'account.userId' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
         <th scope="col">Actions</th>
       </tr>
       </thead>

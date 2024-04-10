@@ -3,14 +3,29 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">user ID</th>
-        <th scope="col">Type</th>
+        <th scope="col">
+          #
+          <button class="sort-button" (click)="sort('id')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'id' && !sortReverse, 'fa-caret-down': sortColumn === 'id' && sortReverse}">{{ sortColumn === 'id' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          user ID
+          <button class="sort-button" (click)="sort('userId')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'userId' && !sortReverse, 'fa-caret-down': sortColumn === 'userId' && sortReverse}">{{ sortColumn === 'userId' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
+        <th scope="col">
+          Type
+          <button class="sort-button" (click)="sort('type')">
+            <span [ngClass]="{'fa-caret-up': sortColumn === 'type' && !sortReverse, 'fa-caret-down': sortColumn === 'type' && sortReverse}">{{ sortColumn === 'type' && !sortReverse ? '^' : 'v' }}</span>
+          </button>
+        </th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let account of accounts">
+      <tr *ngFor="let account of sortedAccounts">
         <td>{{ account.id }}</td>
         <td>{{ account.userId }}</td>
         <td>{{ account.type }}</td>
