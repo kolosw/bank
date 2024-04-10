@@ -10,14 +10,11 @@ import { BankAccount } from '../../model/bank-account';
 })
 export class BankAccountUpdateComponent {
 
-  account : BankAccount;
+  account : BankAccount = new BankAccount();
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private bankAccountService: BankAccountService) {
-    this.account = new BankAccount();
-  }
+  private router: Router,
+  private bankAccountService: BankAccountService) {}
 
   onSubmit() {
     this.bankAccountService.update(this.account).subscribe(result => this.gotoAccountList());

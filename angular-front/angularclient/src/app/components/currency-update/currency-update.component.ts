@@ -10,12 +10,11 @@ import { Currency } from '../../model/currency';
 })
 export class CurrencyUpdateComponent {
 
-  currency : Currency;
+  currency : Currency = new Currency();
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private currencyService : CurrencyService) {
+  private router: Router,
+  private currencyService : CurrencyService) {
     this.currency = new Currency();
   }
 

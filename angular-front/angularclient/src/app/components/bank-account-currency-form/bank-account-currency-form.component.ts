@@ -17,7 +17,6 @@ export class BankAccountCurrencyFormComponent {
   bankAccountCurrency: BankAccountCurrency;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private bankAccountCurrencyService: BankAccountCurrencyService,
     private bankAccountService: BankAccountService,

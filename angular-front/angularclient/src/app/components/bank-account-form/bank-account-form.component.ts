@@ -10,12 +10,11 @@ import { BankAccount } from '../../model/bank-account';
 })
 export class BankAccountFormComponent {
 
-  account: BankAccount;
+  account: BankAccount = new BankAccount();
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private bankAccountService: BankAccountService) {
+  private router: Router,
+  private bankAccountService: BankAccountService) {
     this.account = new BankAccount();
   }
 

@@ -3,16 +3,36 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
+        <th scope="col">
+          # <button class="sort-button" (click)="sort('id')">
+          <span [ngClass]="{'fa-caret-up': sortColumn === 'id' && !sortReverse, 'fa-caret-down': sortColumn === 'id' && sortReverse}">{{sortColumn === 'id' && !sortReverse ? '^' : 'v'}}</span>
+        </button>
+        </th>
+        <th scope="col">
+          Name <button class="sort-button" (click)="sort('name')">
+          <span [ngClass]="{'fa-caret-up': sortColumn === 'name' && !sortReverse, 'fa-caret-down': sortColumn === 'name' && sortReverse}">{{sortColumn === 'name' && !sortReverse ? '^;' : 'v'}}</span>
+        </button>
+        </th>
+        <th scope="col">
+          Surname <button class="sort-button" (click)="sort('surname')">
+          <span [ngClass]="{'fa-caret-up': sortColumn === 'surname' && !sortReverse, 'fa-caret-down': sortColumn === 'surname' && sortReverse}">{{sortColumn === 'surname' && !sortReverse ? '^' : 'v'}}</span>
+        </button>
+        </th>
+        <th scope="col">
+          Email <button class="sort-button" (click)="sort('email')">
+          <span [ngClass]="{'fa-caret-up': sortColumn === 'email' && !sortReverse, 'fa-caret-down': sortColumn === 'email' && sortReverse}">{{sortColumn === 'email' && !sortReverse ? '^' : 'v'}}</span>
+        </button>
+        </th>
+        <th scope="col">
+          Password <button class="sort-button" (click)="sort('password')">
+          <span [ngClass]="{'fa-caret-up': sortColumn === 'password' && !sortReverse, 'fa-caret-down': sortColumn === 'password' && sortReverse}">{{sortColumn === 'password' && !sortReverse ? '^' : 'v'}}</span>
+        </button>
+        </th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of sortedUsers">
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.surname }}</td>

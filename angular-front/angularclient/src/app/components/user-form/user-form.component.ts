@@ -10,14 +10,11 @@ import { User } from '../../model/user';
 })
 export class UserFormComponent {
 
-  user: User;
+  user: User = new User;
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private userService: UserService) {
-    this.user = new User();
-  }
+  private router: Router,
+  private userService: UserService) {}
 
   onSubmit() {
     this.userService.save(this.user).subscribe(result => this.gotoUserList());

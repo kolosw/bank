@@ -10,14 +10,11 @@ import { Currency } from '../../model/currency';
 })
 export class CurrencyFormComponent {
 
-  currency : Currency;
+  currency : Currency = new Currency();
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private currencyService: CurrencyService) {
-    this.currency = new Currency();
-  }
+  private router: Router,
+  private currencyService: CurrencyService) {}
 
   onSubmit() {
     this.currencyService.save(this.currency).subscribe(result => this.gotoCurrencyList());

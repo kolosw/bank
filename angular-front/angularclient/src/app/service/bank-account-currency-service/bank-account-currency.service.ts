@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class BankAccountCurrencyService {
 
-  private accountCurrencyUrl: string;
+  private readonly accountCurrencyUrl: string;
 
   constructor(private http: HttpClient) {
     this.accountCurrencyUrl = 'http://localhost:8080/accountcurrency';
