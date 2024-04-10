@@ -16,22 +16,26 @@ public class CurrencyExchangeService {
     public CurrencyExchangeService(CurrencyExchangeRepository currencyExchangeRepository) {
         this.currencyExchangeRepository = currencyExchangeRepository;
     }
+
     public void create(CurrencyExchangeDto currencyExchangeDto)
     {
         CurrencyExchange currency = new CurrencyExchange(currencyExchangeDto.getId(),currencyExchangeDto.getFrom(),
                 currencyExchangeDto.getTo(), currencyExchangeDto.getAmount());
         currencyExchangeRepository.save(currency);
     }
+
     public CurrencyExchangeDto getById(int i)
     {
         CurrencyExchange currency = currencyExchangeRepository.getReferenceById(i);
         return new CurrencyExchangeDto(currency.getId(),currency.getFrom(),
                 currency.getTo(), currency.getAmount());
     }
+
     public void delete(int i)
     {
         currencyExchangeRepository.delete(currencyExchangeRepository.getReferenceById(i));
     }
+
     public void update (CurrencyExchangeDto currencyExchangeDto, Integer id)
     {
         CurrencyExchange currency = currencyExchangeRepository.getReferenceById(id);

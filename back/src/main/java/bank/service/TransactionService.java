@@ -16,18 +16,22 @@ public class TransactionService {
     public TransactionService(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
     }
+
     public void create(TransactionDto transactionDto)
     {
         transactionRepository.save(TransactionMapper.toEntity(transactionDto));
     }
+
     public TransactionDto getById(int i)
     {
         return TransactionMapper.toDto(transactionRepository.getReferenceById(i));
     }
+
     public void deleteById(int i)
     {
         transactionRepository.delete(transactionRepository.getReferenceById(i));
     }
+
     public void update ( TransactionDto transactionDto, Integer id)
     {
         Transaction transaction = transactionRepository.getReferenceById(id);
@@ -41,6 +45,7 @@ public class TransactionService {
             transaction.setSenderId(transactionDto.getSenderId());
         transactionRepository.save(transaction);
     }
+
     public List<TransactionDto> getList() {
         List<TransactionDto> list = new LinkedList<>();
         for (Transaction transaction : transactionRepository.findAll())

@@ -9,9 +9,9 @@ import { BankAccountService } from '../../service/bank-account-service/bank-acco
 })
 export class BankAccountListComponent implements OnInit {
   accounts: BankAccount[] = [];
-  sortedAccounts: BankAccount[] = []; // New property for sorted accounts
-  sortColumn: string = ''; // New property to track the currently sorted column
-  sortReverse: boolean = false; // New property to track the sorting order
+  sortedAccounts: BankAccount[] = [];
+  sortColumn: string = '';
+  sortReverse: boolean = false;
 
   constructor(private bankAccountService: BankAccountService) {}
 
@@ -26,12 +26,11 @@ export class BankAccountListComponent implements OnInit {
     });
   }
 
-  // Method to sort the accounts based on the selected column and sorting order
   sortData() {
     if (this.sortColumn) {
       this.sortedAccounts = this.accounts.slice().sort((a, b) => {
-        const aValue = a[this.sortColumn as keyof BankAccount]; // Use keyof to specify the key type
-        const bValue = b[this.sortColumn as keyof BankAccount]; // Use keyof to specify the key type
+        const aValue = a[this.sortColumn as keyof BankAccount];
+        const bValue = b[this.sortColumn as keyof BankAccount];
         if (aValue < bValue) {
           return this.sortReverse ? 1 : -1;
         } else if (aValue > bValue) {
@@ -45,7 +44,6 @@ export class BankAccountListComponent implements OnInit {
     }
   }
 
-  // Method to handle column sorting
   sort(column: string) {
     if (column === this.sortColumn) {
       this.sortReverse = !this.sortReverse; // Reverse sorting order if the same column is clicked again

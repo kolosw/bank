@@ -16,19 +16,23 @@ public class CurrencyService {
     public CurrencyService(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
     }
+
     public void create(CurrencyDto currencyDto)
     {
         currencyRepository.save(CurrencyMapper.toEntity(currencyDto));
     }
+
     public CurrencyDto getById(int i)
     {
         Currency currency = currencyRepository.getReferenceById(i);
         return CurrencyMapper.toDto(currency);
     }
+
     public void deleteById(int i)
     {
         currencyRepository.delete(currencyRepository.getReferenceById(i));
     }
+
     public void update (CurrencyDto newCurrency, Integer id)
     {
         Currency currency = currencyRepository.getReferenceById(id);
@@ -40,6 +44,7 @@ public class CurrencyService {
             currency.setSymbol(newCurrency.getSymbol());
         currencyRepository.save(currency);
     }
+
     public List<CurrencyDto> getList()
     {
         List<CurrencyDto> list = new LinkedList<>();
@@ -47,4 +52,5 @@ public class CurrencyService {
             list.add(CurrencyMapper.toDto(currency));
         return list;
     }
+
 }

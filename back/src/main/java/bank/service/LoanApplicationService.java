@@ -16,18 +16,20 @@ public class LoanApplicationService{
     public LoanApplicationService(LoanApplicationRepository loanApplicationRepository) {
         this.repository = loanApplicationRepository;
     }
-    public void create(LoanApplicationDto loanApplicationDto)
-    {
+    public void create(LoanApplicationDto loanApplicationDto) {
         repository.save(LoanApplicationMapper.toEntity(loanApplicationDto));
     }
+
     public LoanApplicationDto getById(int i)
     {
         return LoanApplicationMapper.toDto(repository.getReferenceById(i));
     }
+
     public void deleteById(int i)
     {
         repository.delete(repository.getReferenceById(i));
     }
+
     public void update ( LoanApplicationDto applicationDto, Integer id)
     {
         LoanApplication application = repository.getReferenceById(id);
@@ -41,11 +43,11 @@ public class LoanApplicationService{
             application.setBankAccountId(applicationDto.getBankAccountId());
         repository.save(application);
     }
+
     public List<LoanApplicationDto> getList() {
         List<LoanApplicationDto> list = new LinkedList<>();
         for (LoanApplication loanApplication : repository.findAll())
             list.add(LoanApplicationMapper.toDto(loanApplication));
         return list;
     }
-
 }

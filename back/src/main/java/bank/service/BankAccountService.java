@@ -26,19 +26,23 @@ public class BankAccountService {
         this.userService = userService;
         this.bankAccountMapper = bankAccountMapper;
     }
+
     public void create(BankAccountDto bankAccountDto)
     {
         bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
     }
+
     public BankAccountDto getById(int i)
     {
         BankAccount bankAccount = bankAccountRepository.getReferenceById(i);
         return bankAccountMapper.toDto(bankAccount);
     }
+
     public void deleteById(int i)
     {
         bankAccountRepository.delete(bankAccountRepository.getReferenceById(i));
     }
+
     public void update (Integer id, BankAccountDto bankAccountDto)
     {
         UserDto dtoUser = userService.getById(bankAccountDto.getUserId());
