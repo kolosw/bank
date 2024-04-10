@@ -1,0 +1,17 @@
+.sort-button {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sort-button.active {
+  font-weight: bold;
+}
+
+.sort-button.asc i {
+  transform: rotate(180deg);
+}
