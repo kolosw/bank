@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from '../AppNavbar';
 import { Link } from 'react-router-dom';
+import './SortButon.css';
 
 class BankAccountCurrencyList extends Component {
   constructor(props) {
     super(props);
-    this.state = { bankAccountCurrencies: [] };
+    this.state = { bankAccountCurrencies: [],
+                isLoading: true,
+                sortColumn: 'account.id',
+                sortDirection: 'asc'
+                };
     this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {
-    fetch('api/accountcurrency')
-      .then(response => response.json())
-      .then(data => this.setState({ bankAccountCurrencies: data }));
+    this.fetchAccountCurrencies()
+  }
+
+  async fetchAccountCurrencies() {
+    const { sortColumn, sortDirection } = this.state
+    const response = await fetch(`api/accountcurrency?sort=${sortColumn}&direction=${sortDirection}`)
+    const data = await response.json()
+    this.setState({ bankAccountCurrencies : data, isLoading: false })
   }
 
   async remove(accountId, currencyId) {
@@ -23,12 +33,69 @@ class BankAccountCurrencyList extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(() => {
+    }).then(response => {
+           if (response.ok) {
       let updatedBankAccountCurrencies = [...this.state.bankAccountCurrencies].filter(
         i => i.account.id !== accountId && i.currency.id !== currencyId
       );
       this.setState({ bankAccountCurrencies: updatedBankAccountCurrencies });
+      }
     });
+  }
+
+    handleSort(column) {
+      this.setState(prevState => {
+        const { sortColumn, sortDirection } = prevState;
+        const direction = column === sortColumn && sortDirection === 'asc' ? 'desc' : 'asc';
+        const sortedBankAccountCurrencies = [...prevState.bankAccountCurrencies].sort((a, b) => {
+          if (column === 'account.id') {
+            // Custom comparison logic for account IDs as strings
+            const idA = parseInt(a.account.id);
+            const idB = parseInt(b.account.id);
+            return direction === 'asc' ? idA - idB : idB - idA;
+          }
+          else if (column === 'currency.symbol') {
+                  // Custom comparison logic for currency symbols as strings
+                  const symbolA = a.currency.symbol.toLowerCase();
+                  const symbolB = b.currency.symbol.toLowerCase();
+                  return direction === 'asc' ? symbolA.localeCompare(symbolB) : symbolB.localeCompare(symbolA);
+                }
+          else if (column === 'account.type') {
+                            // Custom comparison logic for currency symbols as strings
+                            const symbolA = a.account.type.toLowerCase();
+                            const symbolB = b.account.type.toLowerCase();
+                            return direction === 'asc' ? symbolA.localeCompare(symbolB) : symbolB.localeCompare(symbolA);
+                          }
+          else {
+            // Default alphabetical sorting for other fields
+            if (a[column] < b[column]) return direction === 'asc' ? -1 : 1;
+            if (a[column] > b[column]) return direction === 'asc' ? 1 : -1;
+            return 0;
+          }
+        });
+        return {
+          bankAccountCurrencies: sortedBankAccountCurrencies,
+          sortColumn: column,
+          sortDirection: direction
+        };
+      });
+    }
+
+  renderSortButton(column) {
+    const { sortColumn, sortDirection } = this.state;
+    const isActive = column === sortColumn;
+    const buttonClass = isActive ? 'active' : '';
+    const buttonIcon = isActive && sortDirection === 'asc' ? '\u25B2' : '\u25BC';
+
+    return (
+      <Button
+        color="link"
+        className={`sort-button ${buttonClass}`}
+        onClick={() => this.handleSort(column)}
+      >
+        {buttonIcon}
+      </Button>
+    );
   }
 
   render() {
@@ -41,8 +108,9 @@ class BankAccountCurrencyList extends Component {
     const bankAccountCurrenciesList = bankAccountCurrencies.map(bankAccountCurrency => (
       <tr key={bankAccountCurrency.id}>
         <td style={{ whiteSpace: 'nowrap' }}>{bankAccountCurrency.account.id}</td>
-        <td>{bankAccountCurrency.currency.id}</td>
         <td>{bankAccountCurrency.balance}</td>
+        <td>{bankAccountCurrency.currency.symbol}</td>
+        <td>{bankAccountCurrency.account.type}</td>
         <td>
           <ButtonGroup>
             <Button size="sm" color="primary" tag={Link} to={"/bankaccountcurrency/" +
@@ -72,10 +140,23 @@ class BankAccountCurrencyList extends Component {
           <Table className="mt-4">
             <thead>
               <tr>
-                <th width="20%">accountId</th>
-                <th width="20%">currencyId</th>
-                <th width="20%">balance</th>
-                <th width="40%">Actions</th>
+                <th width="20%">
+                  Account ID
+                  {this.renderSortButton('account.id')}
+                </th>
+                <th width="20%">
+                  Balance
+                  {this.renderSortButton('balance')}
+                </th>
+                <th width="20%">
+                  Symbol
+                  {this.renderSortButton('currency.symbol')}
+                </th>
+                <th width="20%">
+                  Type
+                  {this.renderSortButton('account.type')}
+                </th>
+                <th width="20%">Actions</th>
               </tr>
             </thead>
             <tbody>{bankAccountCurrenciesList}</tbody>

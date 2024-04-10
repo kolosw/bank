@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  sort(column: keyof User) { // Specify the type of column as keyof User
+  sort(column: keyof User) {
     if (this.sortColumn === column) {
       this.sortReverse = !this.sortReverse;
     } else {
@@ -52,7 +52,7 @@ export class UserListComponent implements OnInit {
 
   delete(userId: number) {
     this.userService.delete(userId).subscribe(() => {
-      this.loadUsers(); // Refresh the user list after deletion
+      this.loadUsers();
     });
   }
 }

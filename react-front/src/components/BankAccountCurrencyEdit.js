@@ -201,7 +201,7 @@ class BankAccountCurrencyEdit extends Component {
             </FormGroup>
             <FormGroup>
               <Button color="primary" type="submit">Save</Button>{' '}
-              <Button color="secondary" tag={Link} to="/bankaccountcurrency">Cancel</Button>
+              <Button color="secondary" tag={Link} to="/bankaccountcurrencies">Cancel</Button>
             </FormGroup>
           </Form>
         </Container>
