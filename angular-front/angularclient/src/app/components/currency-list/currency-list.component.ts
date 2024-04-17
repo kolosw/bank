@@ -13,7 +13,7 @@ export class CurrencyListComponent implements OnInit {
   sortColumn: string = 'id';
   sortReverse: boolean = false;
 
-  constructor(private currencyService: CurrencyService) {
+  constructor(private currencyService : CurrencyService) {
   }
 
   ngOnInit() {
@@ -55,7 +55,7 @@ export class CurrencyListComponent implements OnInit {
       } else if (typeof valueA === 'number' && typeof valueB === 'number') {
         return this.sortReverse ? valueB - valueA : valueA - valueB;
       } else {
-        return 0; // Handle other types or mixed types as per your requirements
+        return 0;
       }
     });
   }

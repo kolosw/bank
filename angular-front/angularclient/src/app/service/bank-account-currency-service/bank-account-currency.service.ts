@@ -1,28 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BankAccountCurrency } from '../../model/bank-account-currency';
+import { CrudService} from '../crud-service/crud.service'
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class BankAccountCurrencyService {
+export class BankAccountCurrencyService extends CrudService{
 
-  private readonly accountCurrencyUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.accountCurrencyUrl = 'http://localhost:8080/accountcurrency';
+  constructor(http : HttpClient) {
+    super(http);
+    this.setUpUrl('/accountcurrency')
   }
 
-  public findAll(): Observable<BankAccountCurrency[]> {
-    return this.http.get<BankAccountCurrency[]>(this.accountCurrencyUrl);
-  }
-
-  public save(bankAccountCurrency : BankAccountCurrency) {
-    return this.http.post<BankAccountCurrency>(this.accountCurrencyUrl, bankAccountCurrency);
-  }
-
-  public delete(accountId: number, currencyId: number) {
-  const url = `${this.accountCurrencyUrl}/${accountId}/${currencyId}`;
+  public deleteAccountCurrency(accountId: number, currencyId: number) {
+  const url = `${this.url}/${accountId}/${currencyId}`;
   return this.http.delete<number>(url);
   }
-
 }

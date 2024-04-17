@@ -11,7 +11,7 @@ export class UserListComponent implements OnInit {
 
   users: User[] = [];
   sortedUsers: User[] = [];
-  sortColumn: keyof User | null = null; // Allow sortColumn to be nullable
+  sortColumn: keyof User | null = null;
   sortReverse: boolean = false;
 
   constructor(private userService: UserService) {
@@ -31,8 +31,8 @@ export class UserListComponent implements OnInit {
   sortUsers() {
     this.sortedUsers = [...this.users].sort((a, b) => {
       if (this.sortColumn) {
-        const valueA = a[this.sortColumn] as any; // Use 'as any' to access the property dynamically
-        const valueB = b[this.sortColumn] as any; // Use 'as any' to access the property dynamically
+        const valueA = a[this.sortColumn] as any;
+        const valueB = b[this.sortColumn] as any;
         if (valueA < valueB) return this.sortReverse ? 1 : -1;
         if (valueA > valueB) return this.sortReverse ? -1 : 1;
       }

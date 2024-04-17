@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { CrudService } from './service/crud-service/crud.service';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserService } from './service/user-service/user.service';
@@ -41,7 +42,7 @@ import { BankAccountCurrencyService } from './service/bank-account-currency-serv
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService, BankAccountService, CurrencyService, BankAccountCurrencyService],
+  providers: [UserService, BankAccountService, CurrencyService, BankAccountCurrencyService, CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

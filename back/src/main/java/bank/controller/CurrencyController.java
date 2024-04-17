@@ -27,7 +27,7 @@ public class CurrencyController {
     public void createCurrency(@RequestBody CurrencyDto currency) { currencyService.create(currency);}
 
     @GetMapping("/currency/{id}")
-    @ResponseStatus(value = HttpStatus.FOUND)
+    @ResponseStatus(value = HttpStatus.OK)
     public CurrencyDto getCurrency(@PathVariable Integer id) {
         return currencyService.getById(id);
     }

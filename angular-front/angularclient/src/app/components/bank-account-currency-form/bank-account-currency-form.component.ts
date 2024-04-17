@@ -23,6 +23,8 @@ export class BankAccountCurrencyFormComponent {
     private currencyService: CurrencyService
   ) {
     this.bankAccountCurrency = new BankAccountCurrency();
+    this.bankAccountCurrency.account = new BankAccount();
+    this.bankAccountCurrency.currency = new Currency();
   }
 
   onSubmit() {
@@ -30,12 +32,13 @@ export class BankAccountCurrencyFormComponent {
       this.bankAccountCurrency.account = account;
       this.currencyService.getById(this.bankAccountCurrency.currency.id).subscribe((currency: Currency) => {
         this.bankAccountCurrency.currency = currency;
+        console.log('here')
         this.bankAccountCurrencyService.save(this.bankAccountCurrency).subscribe(result => this.gotoCurrencyList());
       });
     });
   }
 
   gotoCurrencyList() {
-    this.router.navigate(['/currencies']);
+    this.router.navigate(['/accountcurrency']);
   }
 }

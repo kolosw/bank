@@ -9,7 +9,7 @@
                name="accountId"
                placeholder="Enter your accountId"
                required #accountIdNgModel="ngModel">
-        <div [hidden]="!accountIdNgModel.dirty" class="alert alert-danger">Account Id is required</div>
+        <div [hidden]="accountIdNgModel.dirty" class="alert alert-danger">Account Id is required</div>
       </div>
       <div class="form-group">
         <label for="currencyId">Currency Id</label>
@@ -19,7 +19,7 @@
                name="currencyId"
                placeholder="Enter your currencyId"
                required #currencyIdNgModel="ngModel">
-        <div [hidden]="!currencyIdNgModel.dirty" class="alert alert-danger">Currency Id is required</div>
+        <div [hidden]="currencyIdNgModel.dirty" class="alert alert-danger">Currency Id is required</div>
       </div>
       <div class="form-group">
         <label for="balance">Balance</label>
@@ -28,8 +28,8 @@
                id="balance"
                name="balance"
                placeholder="Enter your balance"
-               required #currencyIdNgModel="ngModel">
-        <div [hidden]="!currencyIdNgModel.dirty" class="alert alert-danger">Balance is required</div>
+               required #balanceNgModel="ngModel">
+        <div [hidden]="balanceNgModel.dirty" class="alert alert-danger">Balance is required</div>
       </div>
       <button type="submit" [disabled]="!bankAccountCurrencyForm.form.valid"
               class="btn btn-info">Submit</button>

@@ -30,7 +30,7 @@ export class BankAccountCurrencyListComponent implements OnInit {
   }
 
   delete(accountId: number, currencyId: number) {
-    this.bankAccountCurrencyService.delete(accountId, currencyId).subscribe(() => {
+    this.bankAccountCurrencyService.deleteAccountCurrency(accountId, currencyId).subscribe(() => {
       this.loadAccountCurrencies();
     });
   }
