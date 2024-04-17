@@ -17,7 +17,7 @@ export class UserUpdateComponent {
   private userService: UserService) {}
 
   onSubmit() {
-    this.userService.update(this.user).subscribe(result => this.gotoUserList());
+    this.userService.update(this.user).subscribe(() => this.gotoUserList());
   }
 
   gotoUserList() {

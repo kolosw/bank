@@ -17,7 +17,7 @@ export class CurrencyFormComponent {
   private currencyService: CurrencyService) {}
 
   onSubmit() {
-    this.currencyService.save(this.currency).subscribe(result => this.gotoCurrencyList());
+    this.currencyService.save(this.currency).subscribe(() => this.gotoCurrencyList());
   }
 
   gotoCurrencyList() {

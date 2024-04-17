@@ -33,7 +33,7 @@ export class BankAccountCurrencyFormComponent {
       this.currencyService.getById(this.bankAccountCurrency.currency.id).subscribe((currency: Currency) => {
         this.bankAccountCurrency.currency = currency;
         console.log('here')
-        this.bankAccountCurrencyService.save(this.bankAccountCurrency).subscribe(result => this.gotoCurrencyList());
+        this.bankAccountCurrencyService.save(this.bankAccountCurrency).subscribe(() => this.gotoCurrencyList());
       });
     });
   }

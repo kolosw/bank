@@ -19,7 +19,7 @@ export class CurrencyUpdateComponent {
   }
 
   onSubmit() {
-    this.currencyService.update(this.currency).subscribe(result => this.gotoCurrencyList());
+    this.currencyService.update(this.currency).subscribe(() => this.gotoCurrencyList());
   }
 
   gotoCurrencyList() {

@@ -17,7 +17,7 @@ export class BankAccountUpdateComponent {
   private bankAccountService: BankAccountService) {}
 
   onSubmit() {
-    this.bankAccountService.update(this.account).subscribe(result => this.gotoAccountList());
+    this.bankAccountService.update(this.account).subscribe(() => this.gotoAccountList());
   }
 
   gotoAccountList() {

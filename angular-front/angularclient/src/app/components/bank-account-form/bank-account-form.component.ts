@@ -19,7 +19,7 @@ export class BankAccountFormComponent {
   }
 
   onSubmit() {
-    this.bankAccountService.save(this.account).subscribe(result => this.goToBankAccountList());
+    this.bankAccountService.save(this.account).subscribe(() => this.goToBankAccountList());
   }
 
   goToBankAccountList() {
