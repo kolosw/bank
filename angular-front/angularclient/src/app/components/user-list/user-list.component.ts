@@ -52,7 +52,11 @@ export class UserListComponent implements OnInit {
 
   delete(userId: number) {
     this.userService.delete(userId).subscribe(() => {
-      this.loadUsers();
-    });
+    const index = this.users.findIndex(n => n.id === userId);
+    if (index !== -1) {
+      this.users.splice(index, 1);
+      this.sortUsers();
+    }
+  });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
 import { BankAccountService } from '../../service/bank-account-service/bank-account.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-bank-account-list',
@@ -13,7 +14,10 @@ export class BankAccountListComponent implements OnInit {
   sortColumn: string = '';
   sortReverse: boolean = false;
 
-  constructor(private bankAccountService: BankAccountService) {}
+  constructor(
+  private bankAccountService: BankAccountService,
+  private cdr: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     this.loadBankAccounts();
@@ -56,7 +60,11 @@ export class BankAccountListComponent implements OnInit {
 
   delete(bankAccountId: number) {
     this.bankAccountService.delete(bankAccountId).subscribe(() => {
-      this.loadBankAccounts(); // Refresh the account list after deletion
+      const index = this.accounts.findIndex(n => n.id === bankAccountId);
+      if (index !== -1) {
+        this.accounts.splice(index, 1);
+        this.sortData();
+      }
     });
   }
 }

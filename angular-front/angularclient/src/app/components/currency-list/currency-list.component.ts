@@ -28,7 +28,11 @@ export class CurrencyListComponent implements OnInit {
 
   delete(currencyId: number) {
     this.currencyService.delete(currencyId).subscribe(() => {
-      this.loadCurrencies();
+    const index = this.currencies.findIndex(n => n.id === currencyId);
+      if (index !== -1) {
+        this.currencies.splice(index, 1);
+        this.sort(this.sortColumn);
+      }
     });
   }
 

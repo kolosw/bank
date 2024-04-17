@@ -31,8 +31,13 @@ export class BankAccountCurrencyListComponent implements OnInit {
 
   delete(accountId: number, currencyId: number) {
     this.bankAccountCurrencyService.deleteAccountCurrency(accountId, currencyId).subscribe(() => {
-      this.loadAccountCurrencies();
-    });
+      const index = this.bankAccountCurrency.findIndex(n => n.account.id === accountId && n.currency.id === currencyId);
+      if (index !== -1) {
+        this.bankAccountCurrency.splice(index, 1);
+        this.sortData();
+      }
+    }
+    );
   }
 
   sort(column: string) {
