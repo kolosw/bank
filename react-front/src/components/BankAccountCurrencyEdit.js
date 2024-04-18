@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
+import { BankAccountCurrencyService } from '../services/BankAccountCurrencyService';
 
 class BankAccountCurrencyEdit extends Component {
+  bankAccountCurrencyService = new BankAccountCurrencyService();
   emptyItem = {
     account: {
       id: '',
@@ -29,16 +30,14 @@ class BankAccountCurrencyEdit extends Component {
 
   async componentDidMount() {
     const { id1, id2 } = this.props.match.params;
-
-    if (id1 === 'new') {
+    if (id1 > 0 && id2 > 0) {
+      // In "Edit" mode, fetch the existing bank account currency details
+      const response = await this.bankAccountCurrencyService.getBy2Id(id1,id2);
+      const bankAccount = response.data;
+      this.setState({ item: bankAccount });
+    } else {
       // In "Add" mode, initialize an empty bank account currency
       this.setState({ item: this.emptyItem });
-    } else {
-      // In "Edit" mode, fetch the existing bank account currency details
-      const bankAccount = await (
-        await fetch(`/api/accountcurrency/${id2}/${id1}`)
-      ).json();
-      this.setState({ item: bankAccount });
     }
   }
 
@@ -47,7 +46,6 @@ class BankAccountCurrencyEdit extends Component {
     const value = target.value;
     const name = target.name;
     let item = { ...this.state.item };
-
     if (name === 'accountid') {
       item = {
         ...item,
@@ -77,23 +75,9 @@ class BankAccountCurrencyEdit extends Component {
     const { id1, id2 } = this.props.match.params;
 
     if (id1 && id2) {
-      await fetch(`/api/accountcurrency`, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(item),
-      });
+        this.bankAccountCurrencyService.updateBankAccountCurrency(id1,id2,item);
     } else {
-      await fetch(`/api/accountcurrency`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(item),
-      });
+      this.bankAccountCurrencyService.create(item);
       // Handle the case when one or both IDs are missing
       console.log('Missing ID1 or ID2');
     }
@@ -107,7 +91,6 @@ class BankAccountCurrencyEdit extends Component {
 
     return (
       <div>
-        <AppNavbar />
         <Container>
           {title}
           <Form onSubmit={this.handleSubmit}>
@@ -210,4 +193,4 @@ class BankAccountCurrencyEdit extends Component {
   }
 }
 
-export default withRouter(BankAccountCurrencyEdit);
+export default BankAccountCurrencyEdit;

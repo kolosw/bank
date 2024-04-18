@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
 import { Link } from 'react-router-dom';
+import { BankAccountCurrencyService } from '../services/BankAccountCurrencyService'
 import './SortButon.css';
 
 class BankAccountCurrencyList extends Component {
+  bankAccountCurrencyService = new BankAccountCurrencyService();
   constructor(props) {
     super(props);
     this.state = { bankAccountCurrencies: [],
@@ -20,28 +21,20 @@ class BankAccountCurrencyList extends Component {
   }
 
   async fetchAccountCurrencies() {
-    const { sortColumn, sortDirection } = this.state
-    const response = await fetch(`api/accountcurrency?sort=${sortColumn}&direction=${sortDirection}`)
-    const data = await response.json()
+    const response = await this.bankAccountCurrencyService.getAll();
+    const data = response.data;
     this.setState({ bankAccountCurrencies : data, isLoading: false })
   }
 
   async remove(accountId, currencyId) {
-    await fetch(`api/accountcurrency/${accountId}/${currencyId}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-           if (response.ok) {
-      let updatedBankAccountCurrencies = [...this.state.bankAccountCurrencies].filter(
-        i => i.account.id !== accountId && i.currency.id !== currencyId
-      );
-      this.setState({ bankAccountCurrencies: updatedBankAccountCurrencies });
-      }
-    });
-  }
+    this.bankAccountCurrencyService.deleteBankAccountCurrency(accountId, currencyId).then(response => {
+    if (response.ok) {
+      this.setState(prevState => ({
+        bankAccountCurrencies: prevState.bankAccountCurrencies.filter(i => i.account.id !== accountId || i.currency.id !== currencyId)
+      }));
+    }
+  });
+}
 
     handleSort(column) {
       this.setState(prevState => {
@@ -129,7 +122,6 @@ class BankAccountCurrencyList extends Component {
 
     return (
       <div>
-        <AppNavbar />
         <Container fluid>
           <div className="float-right">
             <Button color="success" tag={Link} to="/bankaccountcurrency/new">

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
 import { Link } from 'react-router-dom';
+import { UserService } from '../services/UserService';
 import './SortButon.css';
 
 class UserList extends Component {
+
+  userService = new UserService();
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,26 +24,20 @@ class UserList extends Component {
   }
 
   async fetchUsers() {
-    const { sortColumn, sortDirection } = this.state;
-    const response = await fetch(`api/users?sort=${sortColumn}&direction=${sortDirection}`);
-    const data = await response.json();
+    const response = await this.userService.getAll();
+    const data = response.data;
     this.setState({ users: data, isLoading: false });
   }
 
-  async remove(id) {
-    await fetch(`api/users/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-      let updatedUsers = [...this.state.users].filter(i => i.id !== id);
-      this.setState({ users: updatedUsers });
-      }
-    });
-  }
+async remove(id) {
+    this.userService.delete(id).then(response => {
+    if (response.ok) {
+      this.setState(prevState => ({
+        users: prevState.users.filter(i => i.id !== id)
+      }));
+    }
+  });
+}
 
   handleSort(column) {
     this.setState(prevState => {
@@ -104,7 +101,6 @@ class UserList extends Component {
 
     return (
       <div>
-        <AppNavbar />
         <Container fluid>
           <div className="float-right">
             <Button color="success" tag={Link} to="/users/new">Add User</Button>

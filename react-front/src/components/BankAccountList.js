@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
 import { Link } from 'react-router-dom';
+import { BankAccountService } from '../services/BankAccountService'
 import './SortButon.css';
 
 class BankAccountList extends Component {
+
+    bankAccountService = new BankAccountService();
 
     constructor(props) {
         super(props);
@@ -21,26 +23,20 @@ class BankAccountList extends Component {
   }
 
   async fetchAccounts() {
-    const { sortColumn, sortDirection } = this.state
-    const response = await fetch(`api/account?sort=${sortColumn}&direction=${sortDirection}`)
-    const data = await response.json()
+    const response = await this.bankAccountService.getAll();
+    const data = response.data;
     this.setState({ bankAccounts: data, isLoading: false })
   }
 
     async remove(id) {
-        await fetch(`api/accounts/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-         if (response.ok) {
-            let updatedBankAccounts = [...this.state.bankAccounts].filter(i => i.id !== id);
-            this.setState({bankAccounts : updatedBankAccounts});
-            }
-        });
+    this.bankAccountService.delete(id).then(response => {
+    if (response.ok) {
+      this.setState(prevState => ({
+        users: prevState.bankAccounts.filter(i => i.id !== id)
+      }));
     }
+  });
+}
 
   handleSort(column) {
     this.setState(prevState => {
@@ -100,7 +96,6 @@ class BankAccountList extends Component {
 
         return (
             <div>
-                <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/account/new">Add Bank Account</Button>

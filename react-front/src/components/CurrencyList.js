@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Button, ButtonGroup, Container, Table } from 'reactstrap'
-import AppNavbar from '../AppNavbar'
 import { Link } from 'react-router-dom'
+import { CurrencyService } from '../services/CurrencyService'
 import './SortButon.css';
 
 class CurrencyList extends Component {
+
+  currencyService = new CurrencyService();
+
   constructor(props) {
     super(props)
     this.state = {
@@ -21,26 +24,20 @@ class CurrencyList extends Component {
   }
 
   async fetchCurrencies() {
-    const { sortColumn, sortDirection } = this.state
-    const response = await fetch(`api/currency?sort=${sortColumn}&direction=${sortDirection}`)
-    const data = await response.json()
+    const response = await this.currencyService.getAll();
+    const data = response.data;
     this.setState({ currencies: data, isLoading: false })
   }
 
   async remove(id) {
-    await fetch(`api/currency/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-      let updatedCurrencies = [...this.state.currencies].filter(i => i.id !== id)
-      this.setState({ currencies: updatedCurrencies })
-      }
-    })
-  }
+   this.currencyService.delete(id).then(response => {
+    if (response.ok) {
+      this.setState(prevState => ({
+        users: prevState.currencies.filter(i => i.id !== id)
+      }));
+    }
+  });
+}
 
   handleSort(column) {
     this.setState(prevState => {
@@ -103,7 +100,6 @@ class CurrencyList extends Component {
 
     return (
       <div>
-        <AppNavbar />
         <Container fluid>
           <div className="float-right">
             <Button color="success" tag={Link} to="/currency/new">Add Currency</Button>

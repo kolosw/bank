@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    @ResponseStatus(value = HttpStatus.FOUND)
+    @ResponseStatus(value = HttpStatus.OK)
     public UserDto getUser(@PathVariable int id) {
         return userService.getById(id);
     }

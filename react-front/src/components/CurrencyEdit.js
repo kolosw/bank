@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
+import { CurrencyService } from '../services/CurrencyService';
 
 class CurrencyEdit extends Component {
 
@@ -16,13 +16,14 @@ class CurrencyEdit extends Component {
         this.state = {
             item: this.emptyItem
         };
+        this.currencyService = new CurrencyService();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const currency = await (await fetch(`/api/currency/${this.props.match.params.id}`)).json();
+            const currency = (await this.currencyService.getById(this.props.match.params.id)).data;
             this.setState({item : currency});
         }
     }
@@ -38,15 +39,7 @@ class CurrencyEdit extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
-
-        await fetch(`/api/currency${item.id ? '/' + item.id : ''}`, {
-          method: item.id ? 'PUT' : 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(item),
-        });
+        this.currencyService.create(item);
         this.props.history.push('/currencies');
     }
 
@@ -55,7 +48,6 @@ class CurrencyEdit extends Component {
         const title = <h2>{item.id ? 'Edit Currency' : 'Add Currency'}</h2>;
 
         return <div>
-            <AppNavbar/>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
@@ -83,4 +75,4 @@ class CurrencyEdit extends Component {
         </div>
     }
 }
-export default withRouter(CurrencyEdit);
+export default CurrencyEdit;

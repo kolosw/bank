@@ -2,6 +2,8 @@ package bank.controller;
 
 import bank.dto.BankAccountCurrencyDto;
 import bank.service.BankAccountCurrencyService;
+import bank.service.BankAccountService;
+import bank.service.CurrencyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +14,16 @@ import java.util.List;
 public class BankAccountCurrencyController {
 
     private final BankAccountCurrencyService bankAccountCurrencyService;
+    private final CurrencyService currencyService;
+    private final BankAccountService bankAccountService;
 
-    BankAccountCurrencyController(BankAccountCurrencyService bankAccountCurrencyService)
+    BankAccountCurrencyController(BankAccountCurrencyService bankAccountCurrencyService,
+                                  CurrencyService currencyService,
+                                  BankAccountService bankAccountService)
     {
         this.bankAccountCurrencyService = bankAccountCurrencyService;
+        this.currencyService = currencyService;
+        this.bankAccountService = bankAccountService;
     }
 
     @GetMapping("/accountcurrency")
@@ -29,14 +37,20 @@ public class BankAccountCurrencyController {
     public void createAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
         bankAccountCurrencyService.create(bankAccountCurrencyDto);
     }
-
     @PutMapping("/accountcurrency")
     public void updateAccountCurrency(@RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
         bankAccountCurrencyService.update(bankAccountCurrencyDto);
     }
-
+    @PutMapping("/accountcurrency/{idAccount}/{idCurrency}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateAccountCurrencyWithId(@PathVariable Integer idAccount, @PathVariable Integer idCurrency,
+                                                              @RequestBody BankAccountCurrencyDto bankAccountCurrencyDto) {
+        bankAccountCurrencyDto.setCurrency(currencyService.getById(idCurrency));
+        bankAccountCurrencyDto.setCurrency(currencyService.getById(idCurrency));
+        bankAccountCurrencyService.update(bankAccountCurrencyDto);
+    }
     @GetMapping("/accountcurrency/{idAccount}/{idCurrency}")
-    @ResponseStatus(value = HttpStatus.FOUND)
+    @ResponseStatus(value = HttpStatus.OK)
     public BankAccountCurrencyDto getAccountCurrency(@PathVariable Integer idAccount, @PathVariable Integer idCurrency) {
         return bankAccountCurrencyService.getById(idAccount,idCurrency);
     }

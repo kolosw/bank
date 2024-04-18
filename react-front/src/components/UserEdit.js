@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
+import { UserService } from '../services/UserService'
 
 class UserEdit extends Component {
 
-    emptyItem = {
+     userService = new UserService();
+
+      emptyItem = {
         name: '',
         surname: '',
         email: '',
         password: ''
-    };
+      };
 
-    constructor(props) {
+      constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+          item: this.emptyItem
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
+      }
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const user = await (await fetch(`/api/users/${this.props.match.params.id}`)).json();
+            const response = await this.userService.getById(this.props.match.params.id)
+            const user = response.data;
             this.setState({item : user});
         }
     }
@@ -39,15 +42,7 @@ class UserEdit extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
-
-        await fetch(`/api/users${item.id ? '/' + item.id : ''}`, {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
+        this.userService.create(item)
         this.props.history.push('/users');
     }
 
@@ -56,7 +51,6 @@ class UserEdit extends Component {
         const title = <h2>{item.id ? 'Edit User' : 'Add User'}</h2>;
 
         return <div>
-            <AppNavbar/>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
@@ -89,4 +83,4 @@ class UserEdit extends Component {
         </div>
     }
 }
-export default withRouter(UserEdit);
+export default UserEdit;

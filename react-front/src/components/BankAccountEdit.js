@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from '../AppNavbar';
+import { BankAccountService } from '../services/BankAccountService';
 
 class BankAccountEdit extends Component {
+
+    bankAccountService = new BankAccountService();
 
     emptyItem = {
         userId: '',
@@ -21,7 +23,7 @@ class BankAccountEdit extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const bankAccount = await (await fetch(`/api/account/${this.props.match.params.id}`)).json();
+            const bankAccount = (await this.bankAccountService.getById(this.props.match.params.id)).data;
             this.setState({item : bankAccount});
         }
     }
@@ -37,15 +39,7 @@ class BankAccountEdit extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
-
-        await fetch(`/api/account${item.id ? '/' + item.id : ''}`, {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
+        this.bankAccountService.create(item);
         this.props.history.push('/accounts');
     }
 
@@ -54,7 +48,6 @@ class BankAccountEdit extends Component {
         const title = <h2>{item.id ? 'Edit Bank Account' : 'Add Bank Account'}</h2>;
 
         return <div>
-            <AppNavbar/>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
@@ -69,11 +62,6 @@ class BankAccountEdit extends Component {
                                onChange={this.handleChange} autoComplete="type"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="balance">Balance</Label>
-                        <Input type="text" name="balance" id="balance" value={item.balance || ''}
-                               onChange={this.handleChange} autoComplete="balance"/>
-                    </FormGroup>
-                    <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
                         <Button color="secondary" tag={Link} to="/accounts">Cancel</Button>
                     </FormGroup>
@@ -82,4 +70,4 @@ class BankAccountEdit extends Component {
         </div>
     }
 }
-export default withRouter(BankAccountEdit);
+export default BankAccountEdit;

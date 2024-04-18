@@ -10,11 +10,13 @@ import BankAccountList from './components/BankAccountList';
 import BankAccountEdit from "./components/BankAccountEdit";
 import BankAccountCurrencyList from './components/BankAccountCurrencyList';
 import BankAccountCurrencyEdit from "./components/BankAccountCurrencyEdit";
+import AppNavBarLayout from './AppNavBarLayout'
 
 class App extends Component {
   render() {
     return (
         <Router>
+        <AppNavBarLayout>
           <Switch>
             <Route path='/' exact={true} component={Home}/>
             <Route path='/users' exact={true} component={UserList}/>
@@ -27,6 +29,7 @@ class App extends Component {
             <Route path='/bankaccountcurrency/:id1/:id2' exact={true} component={BankAccountCurrencyEdit}/>
             <Route path="/bankaccountcurrency/new" exact={true} component={BankAccountCurrencyEdit} />
           </Switch>
+          </AppNavBarLayout>
         </Router>
     )
   }

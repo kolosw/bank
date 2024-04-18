@@ -38,7 +38,7 @@ public class CurrencyController {
     }
 
     @DeleteMapping("/currency/{id}")
-    @ResponseStatus(value = HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.OK)
     public void deleteCurrency(@PathVariable Integer id) {
         currencyService.deleteById(id);
     }
