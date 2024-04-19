@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { BankAccountCurrencyService } from '../services/BankAccountCurrencyService'
+import BankAccountCurrencyService from '../services/BankAccountCurrencyService'
 import './SortButon.css';
 
 class BankAccountCurrencyList extends Component {

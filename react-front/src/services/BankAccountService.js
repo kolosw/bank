@@ -1,7 +1,9 @@
 import CrudService from './CrudService';
 
-export class BankAccountService extends CrudService {
+class BankAccountService extends CrudService {
   constructor() {
     super('/account');
   }
 }
+
+export default BankAccountService;

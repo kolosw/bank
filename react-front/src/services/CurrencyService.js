@@ -5,3 +5,5 @@ export class CurrencyService extends CrudService {
     super('/currency');
   }
 }
+
+export default CurrencyService;

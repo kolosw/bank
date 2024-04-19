@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import { BankAccountCurrencyService } from '../services/BankAccountCurrencyService';
+import BankAccountCurrencyService from '../services/BankAccountCurrencyService';
 
 class BankAccountCurrencyEdit extends Component {
   bankAccountCurrencyService = new BankAccountCurrencyService();
@@ -45,28 +45,31 @@ class BankAccountCurrencyEdit extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    let item = { ...this.state.item };
-    if (name === 'accountid') {
-      item = {
-        ...item,
-        account: {
-          ...item.account,
-          id: value
-        }
-      };
-    } else if (name === 'currencyid') {
-      item = {
-        ...item,
-        currency: {
-          ...item.currency,
-          id: value
-        }
-      };
-    } else {
-      item[name] = value;
-    }
 
-    this.setState({ item });
+    this.setState(prevState => {
+      let item = { ...prevState.item };
+      if (name === 'accountid') {
+        item = {
+          ...item,
+          account: {
+            ...item.account,
+            id: value
+          }
+        };
+      } else if (name === 'currencyid') {
+        item = {
+          ...item,
+          currency: {
+            ...item.currency,
+            id: value
+          }
+        };
+      } else {
+        item[name] = value;
+      }
+
+      return { item };
+    });
   }
 
   async handleSubmit(event) {

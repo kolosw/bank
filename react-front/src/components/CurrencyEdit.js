@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import { CurrencyService } from '../services/CurrencyService';
+import CurrencyService from '../services/CurrencyService';
 
 class CurrencyEdit extends Component {
 
@@ -29,12 +29,14 @@ class CurrencyEdit extends Component {
     }
 
     handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-        let item = {...this.state.item};
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+      this.setState(prevState => {
+        const item = { ...prevState.item };
         item[name] = value;
-        this.setState({item});
+        return { item };
+      });
     }
     async handleSubmit(event) {
         event.preventDefault();

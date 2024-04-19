@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { UserService } from '../services/UserService';
+import UserService from '../services/UserService';
 import './SortButon.css';
 
 class UserList extends Component {

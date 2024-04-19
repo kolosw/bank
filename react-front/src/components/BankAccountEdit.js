@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import { BankAccountService } from '../services/BankAccountService';
+import BankAccountService from '../services/BankAccountService';
 
 class BankAccountEdit extends Component {
 
@@ -29,13 +29,15 @@ class BankAccountEdit extends Component {
     }
 
     handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-        let item = {...this.state.item};
-        item[name] = value;
-        this.setState({item});
-    }
+       const target = event.target;
+       const value = target.value;
+       const name = target.name;
+       this.setState(prevState => {
+         const item = { ...prevState.item };
+         item[name] = value;
+         return { item };
+       });
+     }
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;

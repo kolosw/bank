@@ -1,17 +1,17 @@
 import CrudService from './CrudService';
 import axios from 'axios';
 
-export class BankAccountCurrencyService extends CrudService {
+class BankAccountCurrencyService extends CrudService {
   constructor() {
     super('/accountcurrency');
   }
 
-  async deleteBankAccountCurrency(currencyId, accountId) {
+  async deleteBankAccountCurrency(accountId, currencyId) {
     const response = await axios.delete(`${this.apiUrl}/${accountId}/${currencyId}`);
     return response;
   }
 
-  async getBy2Id(currencyId, accountId) {
+  async getBy2Id(accountId, currencyId) {
     const response = await axios.get(`${this.apiUrl}/${accountId}/${currencyId}`);
     return response;
   }
@@ -21,3 +21,5 @@ export class BankAccountCurrencyService extends CrudService {
     return response;
   }
 }
+
+export default BankAccountCurrencyService;
