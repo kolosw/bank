@@ -1,0 +1,12 @@
+<style>
+  .link-group ul.list-inline li {
+    margin-bottom: 10px;
+     font-size: 20px;
+  }
+</style>
+
+<style>
+  .user-links ul.list-inline li {
+    margin-bottom: 1px; /* Adjust the value as desired */
+  }
+</style>
